@@ -1,285 +1,229 @@
 <?php
+// echo phpinfo();
+// exit;
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends MY_Controller {
-
 	function __construct()
 	{
-		parent::__construct(array(
-			'auth' => FALSE
-		));
+		parent::__construct();
 		$this->load->model('home_model','hm');
-
+		
 	}
 
 	public function index()
 	{		
-		$url = ( ! empty($this->uri->segment(1))) ? $this->uri->segment(1) :'home';
-
-		$get_properties = $this->hm->get_properties($url);
-		$this->store_params = array();
-		if ($get_properties && $get_properties->num_rows() > 0)
-		{	
-
-			// $get_data_penerima = $this->hm->get_data_penerima(5);
-			// $get_data_donasi = $this->hm->get_data_donasi(5);
-
-			// $this->store_params = array(
-			// 	'header' => $this->load_header(),
-			// 	'services' => $this->load_services(),
-			// 	'data_penerima' => $get_data_penerima->result_array(),
-			// 	'data_donasi' => $get_data_donasi->result(),
+		$total_guru = $this->db_home->get_total_guru('data_guru')->row();
+		$total_siswa = $this->db_home->get_total_siswa('data_siswa')->row();
+		
+		$this->store_params['total_guru'] = ( ! empty($total_guru) ? $total_guru->total : 0);	
+		$this->store_params['total_anak'] = ( ! empty($total_siswa) ? $total_siswa->total : 0);	
+		
+		
+		$this->store_params['source_bot'] = array(
+				'<script src="'.front_url('assets/templates/admin').'/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>',
+				'<script src="'.front_url('assets/js/admin').'/home.js"></script>',
 				
-			// );
-			$this->store_params = array(
-				'source_bot' => array(
-					'<script src="'.base_url('assets/js/frontend').'/home.js"></script>',
-				)
 			);
-			$this->view('home_view');
-		}
-		else
-		{
-			show_404();
+		
+		$this->view('home_view');
+	}
+
+	public function send_email()
+	{
+		$config['protocol'] = "smtp";
+		$config['smtp_host'] = "info@iwebebs.com";
+		$config['smtp_port'] = "465";
+		$config['smtp_user'] = "info@iwebebs.com";
+		$config['smtp_pass'] = "P@ssw0rd";
+		$config['charset'] = "utf-8";
+		$config['mailtype'] = "html";
+		$config['newline'] = "\r\n";
+
+		$this->load->library('email',$config);
+		$this->email->from('info@iwebebs.com', 'PT. Iwebe Bangun Solusi');
+		$email_to = explode(';', $this->input->post('emailto'));
+		$this->email->to($email_to);
+		$this->email->subject($this->input->post('subject'));
+		$this->email->message(strip_tags($this->input->post('txt_content')));
+		if ($this->email->send()) {
+			 echo ('<script>
+				    window.alert("Email Send..");
+				    window.location.href="'.base_url().'";
+				    </script>');
+		} else {
+		echo ('<script>
+		    window.alert("Email Failed..");
+		    window.location.href="'.base_url().'";
+		    </script>');
 		}
 	}
 
-	public function cek_card_id()
+	public function get_new_notif()
 	{
-		$card_id = $this->input->post('card_id');
-
-		$get_data = $this->db_home->get_card_data($card_id);
-
-		if($get_data->num_rows() > 0)
+		$view = $this->input->post('view');
+		echo $view;
+		$output = "";
+		if($view != '')
 		{
-			$cetak = $get_data->row();
-
-
-			echo json_encode(array(
-            	"nama" => $cetak->nama_siswa,
-            	"id_siswa" => $cetak->ds_id,
-            	"kelas" => $cetak->nama_kelas_ruangan,
-            	"img" => $cetak->img,
-            	"status" => TRUE
-            ));
-
+			$upd = $this->hm->update_notif();
 		}
 		else
 		{
-			echo json_encode(array(
-            	"status" => FALSE
-            ));
-		}
-	}
-
-	public function input_absen()
-	{
-		date_default_timezone_set("Asia/Bangkok");
-
-		$status = $this->input->post('status');
-
-		$data['id_siswa'] = $this->input->post('id_siswa');
-		$data['tanggal'] = date('Y-m-d');
-		if($status == 'masuk')
-		{
-			$data['jam_masuk'] = date('H:i:s');
-			$dataedit['jam_masuk'] = date('H:i:s');
-			$abs = "jam_masuk";
-			
-		}
-		else
-		{
-			$data['jam_pulang'] = date('H:i:s');
-			$dataedit['jam_pulang'] = date('H:i:s');
-			$abs = "jam_pulang";
-			
-		}
-		$cek['id_siswa'] = $this->input->post('id_siswa');
-		$cek['tanggal'] = date('Y-m-d');
-
-		$cek_abs = $this->db_home->cek_absensi($cek,$abs);
-		if($cek_abs->num_rows() > 0)
-		{
-			echo json_encode(array(
-            	"status" => FALSE
-            ));	
-		}
-		else
-		{
-			$before_input = $this->db_home->cek_absensi($data);
-
-			if($before_input->num_rows() > 0)
+			$get_notif = $this->hm->get_notif('data');
+			// echo $get_notif->num_rows()."asdjkasjkd";exit;
+			if($get_notif->num_rows() > 0)
 			{
-				$bf_in = $before_input->row();
-
-				$where['id'] = $bf_in->id;
-				$where['tanggal'] = $bf_in->tanggal;
-				
-				// echo $id;exit;
-				$update = $this->db_home->do_update($dataedit,$where,'data_absen_siswa');
-
-				if($update)
+				$total_notif = $this->hm->get_notif('total')->num_rows();
+				$output .= '<li class="header">You have '.$total_notif.' Notification</li>';
+				$limit = 0;
+				foreach($get_notif->result() as $g => $m)
 				{
-					echo json_encode(array(
-		            	"status" => TRUE
-		            ));			
+					date_default_timezone_set("Asia/Jakarta");
+					$awal1  = date('Y-m-d h:i:sa',strtotime($m->create_date)); //waktu awal
+					$akhir2 = date('Y-m-d h:i:sa',strtotime(date('Y-m-d h:i:sa'))); //waktu akhir
+					$awal = strtotime($awal1);
+					$akhir = strtotime($akhir2);
+					$diff  = $akhir - $awal;
+					$jam   = floor($diff / (60 * 60));
+					$menit = $diff - $jam * (60 * 60);
+					
+					if($jam > 24)
+					{
+						$time = 'Yesterday';
+					}
+					elseif($diff / (60 * 60) > 1)
+					{
+						$time = 'Today';
+					}
+					else
+					{
+						$time = $jam .' jam, ' . floor( $menit / 60 ) . ' menit';
+					}
+
+						$output .= '
+								   <li>
+								   <ul class="menu">
+								   <li>
+				                    <a href="'.base_url($m->url).'">
+				                      <div class="pull-left">
+				                        <img src="'.front_url($m->img).'" class="img-circle" alt="User Image">
+				                      </div>
+				                      <h4>
+				                        '.$m->title.'
+				                        <small><i class="fa fa-clock-o"></i> '.$time.'</small>
+				                      </h4>
+				                      	'.$m->content.'
+				                    </a>
+				                  </li>
+				                  </ul>
+				                  </li>
+								   ';
+					
 				}
+				$output   .= '<li class="footer"><a href="'.base_url('/notification').'">See All Data</a></li>';
 			}
 			else
-			{				
-
-				$input = $this->db_home->do_upload($data,'data_absen_siswa');
-
-				if($input)
-				{
-					echo json_encode(array(
-		            	"status" => TRUE
-		            ));			
-				}
-			}
-		}
-	}
-
-	public function load_header()
-	{
-		$url = (! empty($this->uri->segment(1))) ? $this->uri->segment(1) : 'home';
-		
-		$get_header = $this->db_home->get_header_home($url);
-		$row_header = $get_header->result();
-
-		foreach ($row_header as $k => $v)
-		{
-			$v->title = ucwords(strtolower($v->title));
-			$v->description = ucwords(strtolower($v->description));
-		}
-
-		return $row_header;
-	}
-
-	public function load_services()
-	{
-		$get_services = $this->db_home->get_services();
-		$row_services = $get_services->result();
-
-		foreach ($row_services as $k => $v)
-		{
-			$v->caption = ucwords(strtolower($v->caption));
-			$v->short_description = ucwords(strtolower($v->short_description));
-		}
-		
-		return $row_services;
-	}
-
-	public function load_data_penerima()
-	{
-		$get_data_penerima = $this->db_home->get_data_penerima();
-		$row_data_penerima = $get_data_penerima->result();
-
-		foreach ($row_data_penerima as $k => $v)
-		{
-			$v->fullname = ucwords(strtolower($v->fullname));
-		}
-		
-		return $row_data_penerima;
-	}
-
-	public function load_projects()
-	{
-		$get_projects = $this->db_home->get_projects();
-		$row_projects = $get_projects->result();
-
-		foreach ($row_projects as $k => $v)
-		{
-			$v->project_name = ucwords(strtolower($v->project_name));
-		}
-
-		return $row_projects;
-	}
-
-	public function load_filter_projects()
-	{
-		$get_filter_projects = $this->db_home->get_filter_projects();
-		$row_filter_projects = $get_filter_projects->result();
-
-		return $row_filter_projects;
-	}
-
-	public function load_team()
-	{
-		$get_team = $this->db_home->get_team();
-		$row_team = $get_team->result();
-
-		foreach ($row_team as $k => $v)
-		{
-			$v->fullname = ucwords(strtolower($v->fullname));
-			$v->position = ucwords(strtolower($v->position));
-		}
-
-		return $row_team;
-	}
-
-	public function load_news()
-	{
-		$get_news = $this->db_home->get_news();
-		$row_news = $get_news->result();
-
-		return $row_news;
-	}
-
-	public function load_products()
-	{
-		$get_prd = $this->db_home->get_products();
-		$row_prd = $get_prd->result();
-
-		// print_r($row_prd);
-		// exit;
-		return $row_prd;
-	}
-
-	public function load_company_legal()
-	{
-		$get_cmp_lgl = $this->db_home->get_company_legal();
-		$row_cmp_lgl = $get_cmp_lgl->result();
-
-		// print_r($row_prd);
-		// exit;
-		return $row_cmp_lgl;
-	}
-
-	public function create_transfer_donate()
-	{
-		$tgl_skrg = date('Y-m-d');
-
-		$get_data_donasi = $this->db_home->get_data_donate();
-
-		if($get_data_donasi->num_rows() > 0)
-		{
-			foreach($get_data_donasi->result() as $gd => $gdn)
 			{
-				$tgldonasi = (strlen($gdn->trf_setiap_tgl) == 2) ? $gdn->trf_setiap_tgl : '0'.$gdn->trf_setiap_tgl;
-
-				$tgl_donasi = date('2020-m-'.$tgldonasi);
-				//buat selisih hari 
-				$selisih = date('Y-m-d',strtotime('+3 days',strtotime($tgl_skrg)));
-				
-				if($tgl_donasi == $selisih)
-				{
-					$data['id_data_donasi'] = $gdn->id;
-					$data['tgl_mulai'] = $tgl_skrg;
-					$data['tgl_jatuh_tempo'] = $tgl_donasi;
-
-					$cek_duplikat = $this->db_home->cek_duplikat_transfer($data)->num_rows();
-					if($cek_duplikat == 0)
-					{
-						$create = $this->db_home->do_upload($data,'transfer_donasi');
-					}
-				
-				}
-				
+				 $output .= '
+   						  <li class="footer"><a href="#">Tidak ada data terbaru</a></li>
+   						  <li class="footer"><a href="'.base_url('/notification').'"><b>See All Data</b></a></li>';
+				// $output   .= '<li class="footer"><a href="'.base_url('/report_donasi').'">See All Messages</a></li>';
 			}
+			
+			$data = array(
+			    'notification' => $output,
+			    'unseen_notification'  => $total_notif
+			);
+			// print_r($data);exit;
+			echo json_encode($data);
 		}
 	}
 
-	
+	public function get_new_notif2()
+	{
+		$view = $this->input->post('view');
+		$output = "";
+		if($view != '')
+		{
+			// $upd = $this->pm->update_message();
+		}
+		else
+		{
+			$get_notif = $this->hm->get_notif();
+			// echo $get_notif->num_rows()."asdjkasjkd";exit;
+			if($get_notif->num_rows() > 0)
+			{
+				$total_notif = $this->hm->get_notif()->num_rows();
+				$output .= '<li class="header">You have '.$total_notif.' Notification</li>';
+				$limit = 0;
+				foreach($get_notif->result() as $g => $m)
+				{
+					date_default_timezone_set("Asia/Jakarta");
+					$awal1  = date('Y-m-d h:i:sa',strtotime($m->tgl_dibuat)); //waktu awal
+					$akhir2 = date('Y-m-d h:i:sa',strtotime(date('Y-m-d h:i:sa'))); //waktu akhir
+					$awal = strtotime($awal1);
+					$akhir = strtotime($akhir2);
+					$diff  = $akhir - $awal;
+					$jam   = floor($diff / (60 * 60));
+					$menit = $diff - $jam * (60 * 60);
+					
+					if($jam > 24)
+					{
+						$time = 'Yesterday';
+					}
+					elseif($diff / (60 * 60) > 1)
+					{
+						$time = 'Today';
+					}
+					else
+					{
+						$time = $jam .' jam, ' . floor( $menit / 60 ) . ' menit';
+					}
 
+						$output .= '
+								   <li>
+								   <ul class="menu">
+								   <li>
+				                    <a href="'.base_url('report_donasi/show_detail/'.$m->dd_id).'">
+				                      <div class="pull-left">
+				                        <img src="'.front_url($m->dpn_img).'" class="img-circle" alt="User Image">
+				                      </div>
+				                      <h4>
+				                        '.$m->dpn_fullname.'
+				                        <small><i class="fa fa-clock-o"></i> '.$time.'</small>
+				                      </h4>
+				                      <p> Transfer di Tanggal <b>'.$m->trf_setiap_tgl.'</b> Setiap Bulan</p>
+				                      <p>Donatur <b>'.$m->dpd_fullname.'</b></p>
+				                    </a>
+				                  </li>
+				                  </ul>
+				                  </li>
+								   ';
+					
+				}
+				$output   .= '<li class="footer"><a href="'.base_url('/report_donasi').'">See All Data</a></li>';
+			}
+			else
+			{
+				 $output .= '
+   						  <li class="footer"><a href="#">Tidak ada data terbaru</a></li>
+   						  <li class="footer"><a href="'.base_url('/report_donasi').'"><b>See All Data</b></a></li>';
+				// $output   .= '<li class="footer"><a href="'.base_url('/report_donasi').'">See All Messages</a></li>';
+			}
+			
+			$data = array(
+			    'notification' => $output,
+			    'unseen_notification'  => $get_notif->num_rows()
+			);
+			// print_r($data);exit;
+			echo json_encode($data);
+		}
+	}
+
+	public function get_new_donatur()
+	{
+		// return $this->hm->get_new_donatur();
+	}
 }

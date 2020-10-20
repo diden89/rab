@@ -1,91 +1,108 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
-
-?>
-<main id="main">
-    <?php foreach ($header as $k => $v) { ?>
-    <!-- ======= Blog Header ======= -->
-        <div class="header-bg page-area" style="background:url(<?php echo base_url($v->img) ?>)">
-          <div class="home-overly"></div>
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="slider-content text-center">
-                  <div class="header-bottom">
-                    <div class="layer2 wow zoomIn" data-wow-duration="1s" data-wow-delay=".4s">
-                      <h1 class="title2"><?php echo $v->caption;?></h1>
-                    </div>
-                    <div class="layer3 wow zoomInUp" data-wow-duration="2s" data-wow-delay="1s">
-                      <h2 class="title3"><?php echo strip_tags($v->description);?></h2>
-                    </div>
-                  </div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><?php echo TITLE;?></title>
+    <meta name="author" content="phpmu.com">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--===============================================================================================-->  
+    <link rel="icon" type="image/png" href="<?php echo front_url('assets/templates/login_rab/'); ?>images/icons/favicon.ico"/>
+  <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?php echo front_url('assets/templates/login_rab/'); ?>vendor/bootstrap/css/bootstrap.min.css">
+  <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?php echo front_url('assets/templates/login_rab/'); ?>fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?php echo front_url('assets/templates/login_rab/'); ?>vendor/animate/animate.css">
+  <!--===============================================================================================-->  
+    <link rel="stylesheet" type="text/css" href="<?php echo front_url('assets/templates/login_rab/'); ?>vendor/css-hamburgers/hamburgers.min.css">
+  <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?php echo front_url('assets/templates/login_rab/'); ?>vendor/select2/select2.min.css">
+  <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="<?php echo front_url('assets/templates/login_rab/'); ?>css/util.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo front_url('assets/templates/login_rab/'); ?>css/main.css">
+  <!--===============================================================================================-->
+  </head>
+  <body>
+    
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <img src="<?php echo front_url('assets/images/'); ?>logo.png" alt="IMG">
                 </div>
-              </div>
-            </div>
-          </div>
-        </div><!-- End Blog Header -->
-    <?php } ?>      
 
-    <!-- ======= Blog Page ======= -->
-    <div class="blog-page area-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="page-head-blog">
-                        <div class="single-blog-page">
-                            <!-- recent start -->
-                            <div class="left-blog">
-                                <h4>Menu</h4>
-                                <ul>
-                                    <li><a href="<?php echo base_url("daftar/new_member");?>">Daftar</a></li>
-                                    <li><a href="<?php echo base_url("auth");?>">Login</a></li>
-                                </ul>                                
-                            </div>
-                        </div>
+                <form class="login100-form validate-form" action="<?php echo site_url('auth/login'); ?>" method="post" autoComplete = "off">
+                    <span class="login100-form-title">
+                        Login
+                    </span>
+
+                    <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                        <input class="input100" type="text" name="txt_username" placeholder="Username">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                        </span>
                     </div>
-                </div> <!-- .col-md-8 -->
 
-                <div class="col-md-8 col-sm-8 col-xs-12">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="single-blog">
-                                <div class="single-blog-img">
-                                    <form action="<?php echo site_url('auth/login'); ?>" method="post" autocomplete="off">
-                                        <div class="tab-content">
-                                            <h2>Login Member</h2>
-                                            <div class="box-body pad">
-                                                <div class="form-group">
-                                                    <label for="txtUsername">Username :</label>
-                                                    <input type="text" class="form-control" id="txtUsername" name="txt_username" placeholder="Username...." value='' required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="txtEmail">Password :</label>
-                                                    <input type="password" class="form-control" id="txtPassword" name="txt_password" placeholder="Password Anda...." value='' required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="txtEmail">Login Sebagai :</label>
-                                                    <select name=login_as class="form-control">
-                                                        <option value="">--Pilih--</option>
-                                                        <option value="2">Donatur</option>
-                                                        <option value="4">Anak Asuh</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /.tab-content -->
-                                        <div class="box-footer">
-                                            <input type="hidden" name="action" value="login">    
-                                            <button type="submit" class="btn btn-primary submit-data" id="submitmember">Login</button>
-
-                                            <a href='<?php echo base_url();?>' class="btn btn-warning" >Cancel</a>
-                                        </div>
-                                    </form>        
-                                </div>
-                            </div>
-                        </div>
+                    <div class="wrap-input100 validate-input" data-validate = "Password is required">
+                        <input class="input100" type="password" name="txt_password" placeholder="Password">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
                     </div>
-                </div>
+                    
+                    <div class="container-login100-form-btn">
+                        <button name='login' type="submit" class="login100-form-btn">
+                            Login
+                        </button>
+                    </div>
+
+                    <div class="text-center p-t-12">
+                        <span class="txt1">
+                            Forgot
+                        </span>
+                        <a class="txt2" href="#">
+                            Username / Password?
+                        </a>
+                    </div>
+
+                    <div class="text-center p-t-136">
+                        <!-- <a class="txt2" href="#">
+                            Create your Account
+                            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                        </a> -->
+                    </div>
+                    <input type="hidden" name="action" value="login">
+                </form>
             </div>
         </div>
-    </div><!-- End Blog Page -->
+    </div>
+    
+    
 
-  </main><!-- End #main -->        
+    
+<!--===============================================================================================-->  
+    <script src="<?php echo front_url('assets/templates/login_rab/'); ?>vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+    <script src="<?php echo front_url('assets/templates/login_rab/'); ?>vendor/bootstrap/js/popper.js"></script>
+    <script src="<?php echo front_url('assets/templates/login_rab/'); ?>vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+    <script src="<?php echo front_url('assets/templates/login_rab/'); ?>vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+    <script src="<?php echo front_url('assets/templates/login_rab/'); ?>vendor/tilt/tilt.jquery.min.js"></script>
+    <script >
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
+    </script>
+<!--===============================================================================================-->
+    <script src="<?php echo front_url('assets/templates/login_rab/'); ?>js/main.js"></script>
+
+</body>
+</html>   

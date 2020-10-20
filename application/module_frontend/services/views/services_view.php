@@ -1,95 +1,103 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
+<section class="services box">
+	<div class="box-header">
+		<h3 class="box-title">Content</h3>
+	</div>
+	<div class="box-body pad">
+              <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+              	<div class="row">
+              		<div class="col-sm-6">
+              			<div class="dataTables_length" id="example1_length">
+              				<label>
+              					Show 
+              					<select name="example1_length" aria-controls="example1" class="form-control input-sm">
+              						<option value="10">10</option>
+              						<option value="25">25</option>
+              						<option value="50">50</option>
+              						<option value="100">100</option>
+              					</select> 
+              					entries
+              				</label>
+              			</div>
+              		</div>
+              		<div class="col-sm-6">
+              			<div id="example1_filter" class="dataTables_filter">
+              				<label>
+              					Search:
+              					<input class="form-control input-sm" placeholder="" aria-controls="example1" type="search">
+              					<button type="submit" class="form-control input-sm btn-primary"><i class="fa fa-search"></i></button>
+              				</label>
+              			</div>
+              		</div>
+              	</div>
+              	<div class="row">
+              		<div class="col-sm-12">
+              		<table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">	
+              			<thead>
+              				<tr role="row">
+              					<th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 20px;" aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending">
+              						No
+              					</th>
+              					
+              					<th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 200px;" aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending">
+              						Caption
+              					</th>
+              					<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 300px;" aria-label="Browser: activate to sort column ascending">
+              						Short Description
+              					</th>
+              					<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 200px;text-align: center;" aria-label="Platform(s): activate to sort column ascending">
+              						Image
+              					</th>
+                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 200px;" aria-label="Platform(s): activate to sort column ascending">
+                                                        Menu Kategori
+                                                 </th>
+              					<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 100px;" aria-label="Platform(s): activate to sort column ascending">
+              						Status
+              					</th>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 100px; text-align: center;" aria-label="Platform(s): activate to sort column ascending">
+                          Icon
+                        </th>
+              					<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 100px; text-align: center;" aria-label="Platform(s): activate to sort column ascending">
+              						Action
+              					</th>
+              					
+              				</tr>
+	                </thead>
+	                <tbody>
+	                	<?php 
+	                		$no = 1;
+	                		foreach($data as $dt){
+	                		$url_img = $dt['img'];
+	                		$new_url = str_replace('admin/', "", site_url());
+	                	 ?>
+	                		<tr role="row" class="odd">
+			                 <td><?php echo $no; ?></td>
+			                 <td class="sorting_1"><?php echo $dt['caption']; ?></td>
+			                 <td class=""><?php echo $dt['short_description']; ?></td>
 
-<?php foreach ($header as $k => $v) { ?>
-<div class="hero-wrap" style="background-image: url(<?php echo base_url($v->img);?>);" data-stellar-background-ratio="0.5">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row no-gutters slider-text align-items-center justify-content-end" data-scrollax-parent="true">
-      <div class="col-md-6 order-md-last ftco-animate mt-5" data-scrollax=" properties: { translateY: '70%' }">
-        <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><?php echo $v->description;?></h1>       
-      </div>
-    </div>
-  </div>
-</div>
-<?php } ?> 
- <section class="section">
-
-      <div class="container">
-      	<div class="row justify-content-center mb-5 element-animate">
-	          <div class="col-md-8 text-center mb-5">
-	            <h2 class="text-uppercase heading border-bottom mb-4"><?php echo $slider->caption; ?></h2>
-	            <p class="mb-0 lead"><?php echo $slider->description; ?></p>
-	          </div>
-	        </div>
-        <div class="row">
-	        <?php foreach($services as $srv => $v):?>
-	           <div class="col-lg-4 col-md-6 col-12 mb-3 element-animate">
-	            <div class="media d-block media-feature text-center">
-	              <span class="<?php echo $v->icon;?> icon"></span>
-	              <div class="media-body">
-	                <h3 class="mt-0 text-black"><?php echo $v->caption;?></h3>
-	                <p><?php echo $v->short_description;?></p>
-	                <p><a href="https://api.whatsapp.com/send?phone=628118606060&text=Halo%20Admin,%20Saya%20Membutuhkan%20Informasi%20di%20Perusahaan%20anda" target="_blank"class="btn btn-primary btn-sm">Call Us</a></p>
-	              </div>
-	            </div>
-	          </div>
-	     	 <?php endforeach; ?>
-          <!-- <div class="col-lg-4 col-md-6 col-12 mb-3 element-animate">
-            <div class="media d-block media-feature text-center">
-              <span class="flaticon-building-1 icon"></span>
-              <div class="media-body">
-                <h3 class="mt-0 text-black">Construction Consultant</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <p><a href="#" class="btn btn-outline-primary btn-sm">Learn More</a></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 col-12 mb-3 element-animate">
-            <div class="media d-block media-feature text-center">
-              <span class="flaticon-crane icon"></span>
-              <div class="media-body">
-                <h3 class="mt-0 text-black">General Contracting</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <p><a href="#" class="btn btn-outline-primary btn-sm">Learn More</a></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 col-12 mb-3 element-animate">
-            <div class="media d-block media-feature text-center">
-              <span class="flaticon-helmet icon"></span>
-              <div class="media-body">
-                <h3 class="mt-0 text-black">Laminate Flooring</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <p><a href="#" class="btn btn-outline-primary btn-sm">Learn More</a></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 col-12 mb-3 element-animate">
-            <div class="media d-block media-feature text-center">
-              <span class="flaticon-building icon"></span>
-              <div class="media-body">
-                <h3 class="mt-0 text-black">Metal Roofing</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <p><a href="#" class="btn btn-outline-primary btn-sm">Learn More</a></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 col-12 mb-3 element-animate">
-            <div class="media d-block media-feature text-center">
-              <span class="flaticon-engineer icon"></span>
-              <div class="media-body">
-                <h3 class="mt-0 text-black">General Contracting</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <p><a href="#" class="btn btn-outline-primary btn-sm">Learn More</a></p>
-              </div>
-            </div>
-          </div> -->
-        </div>
-      </div>
-    </section>
-    <!-- END section -->
+			                 <td style="text-align: center;"><img src='<?php echo $new_url.$url_img;?>' width="50px"></td>
+                             <td ><?php echo $dt['url'] ;?></td>
+			                   <td ><?php echo ($dt['is_active'] == 'Y') ? '<span style="color:green;">Enable</span>':'<span style="color:red;">Disable</span>';?></td>
+                        <td class="sorting_1" style="text-align: center;"><span class="<?php echo $dt['icon'];?> icon" style="font-size: 30px;"></span></td>
+			                  <td style="text-align: center;">
+			                  	<a href="<?php echo base_url('services/cu_action/edit/'.$dt["id"].'');?>" class="fa btn btn-success fa-pencil"></a>
+			                  	
+			                  </td>
+			                </tr>
+	                	<?php 
+	                	$no++;
+	                } ?>
+	               </tbody>
+	               </table>
+         		</div>
+      		</div>
+      
+         
+	</div>
+	<div class="box-footer">
+		<a href="<?php echo base_url('services/cu_action/add');?>" class="btn btn-primary">Add</a>
+	</div>
+</section>
