@@ -141,11 +141,12 @@ class MY_Controller extends CI_Controller {
 					$menu_open = ($uri_active == $data->url) ? 'menu-open' : '';
 					$style_height = ($uri_active == $data->url) ? 'style="height: auto;"' : '';
 					$display = ($uri_active == $data->url) ? 'style="display: block;"' : '';
-					$str_menu .= '<li class="treeview '.$menu_open.'" '.$style_height.'><a href="'.site_url($data->url).'"><i class="'.$data->icon.'"></i> <span>'.$data->caption.'</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>';
 
+					$str_menu .= '<li class="treeview '.$menu_open.'" '.$style_height.'><a href="'.site_url($data->url).'"><i class="'.$data->icon.'"></i> <span>'.$data->caption.'</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>';
 					if ($idx > 0)
 					{
-						$str_menu .= '<ul class="treeview-menu" '.$display.'>';
+					// echo $menu_open;
+						$str_menu .= '<ul class="treeview-menu '.$menu_open.'" '.$display.'>';
 					}
 
 					$str_menu .= $children;
