@@ -19,28 +19,32 @@ class Menu_model extends CI_Model {
 			$this->db->limit($params['limit'],$params['start']);
 		}
 
+		if( ! empty($params['m_id']) && isset($params['m_id']))
+		{
+			$this->db->where('m_id',$params['m_id']);
+		}
+
 		return $this->db->get('menu');
 	}
 
 	public function get_data_edit($id)
 	{		
-		$this->db->where('is_active', 'Y');
-		$this->db->where('id',$id);
+		$this->db->where('m_is_active', 'Y');
+		$this->db->where('m_id',$id);
 
 		return $this->db->get('menu');
 	}
 	
 	public function get_menu($cond)
 	{
-		$this->db->where('is_active', 'Y');
-		$this->db->where('is_admin', $cond);
+		$this->db->where($cond);
 		return $this->db->get('menu');
 	}
 	
 	public function get_menu_utama($id)
 	{
-		$this->db->where('is_active', 'Y');
-		$this->db->where('id', $id);
+		$this->db->where('m_is_active', 'Y');
+		$this->db->where('m_id', $id);
 		return $this->db->get('menu');
 	}
 	
@@ -53,7 +57,7 @@ class Menu_model extends CI_Model {
 	{
 
 		$this->db->set($data);
-		$this->db->where('id',$id);
+		$this->db->where('m_id',$id);
 
 		$update = $this->db->update('menu');
 

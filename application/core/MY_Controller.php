@@ -109,6 +109,22 @@ class MY_Controller extends CI_Controller {
 		$this->load->view($view, $this->store_params);
 	}
 
+	protected function _view($view, $params = array())
+	{
+		$this->store_params['title'] = isset($this->store_params['title']) ? $this->store_params['title'] : TITLE;
+		
+		if (ENVIRONMENT == 'production')
+		{
+			$output = html_uglify($this->load->view($view, $params, TRUE));
+		}
+		else
+		{
+			$output = $this->load->view($view, $params, TRUE);
+		}
+		
+		print ($output);
+	}
+
 	private function _generate_admin_menu($where)
 	{
 		$get_menu = $this->db_home->get_menu($where);

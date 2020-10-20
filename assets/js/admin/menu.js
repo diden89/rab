@@ -24,6 +24,88 @@ var uploadImage = function(image) {
     });
 };
 
+function show_modal(data,title,mode){
+    $.popup({
+        title: title + ' Menu',
+        id: mode + 'MenuPopup',
+        size: 'medium',
+        proxy: {
+            url: siteUrl+'settings/menu/popup_modal',
+            params: {
+                action: 'popup_modal',
+                mode: mode,
+                id: data
+            }
+        },
+        buttons: [{
+            btnId: 'saveData',
+            btnText:'Save',
+            btnClass: 'info',
+            btnIcon: 'fa fa-check-circle',
+            onclick: function(popup) {
+                var form  = popup.find('form');
+                if ($.validation(form)) {
+                    var formData = new FormData(form[0]);
+                    $.ajax({
+                        url: siteUrl+'settings/menu/store_data',
+                        type: 'POST',
+                        dataType: 'JSON',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        enctype: 'multipart/form-data',
+                        success: function(result) {
+                            if (result.success) {
+                                // toastr.success(msgSaveOk);
+                            } else if (typeof(result.msg) !== 'undefined') {
+                                // toastr.error(result.msg);
+                            } else {
+                                // toastr.error(msgErr);
+                            }
+
+                            $.ajax({
+                                url: siteUrl+'settings/menu/load_data_menu',
+                                type: 'POST',
+                                dataType: 'JSON',
+                                data: {
+                                    action: 'load_data_menu'
+                                },
+                                success: function (result) {
+                                    if (result.success) {
+                                        _generate_menu(result.data);
+                                    } else if (typeof (result.msg) !== 'undefined') {
+                                        toastr.error(result.msg);
+                                    } else {
+                                        toastr.error(msgErr);
+                                    }
+                                },
+                                error: function (error) {
+                                    toastr.error(msgErr);
+                                }
+                            });
+
+                            popup.close();
+
+                        },
+                        error: function(error) {
+                            toastr.error(msgErr);
+                        }
+                    });
+                }
+            }
+        }, {
+            btnId: 'closePopup',
+            btnText:'Close',
+            btnClass: 'secondary',
+            btnIcon: 'fa fa-times',
+            onclick: function(popup) {
+                popup.close();
+            }
+        }]
+    });
+}
+
 const _generate_menu = (data) => {
     let treeMenu = _generate_tree_menu(data, null, 0);
 
@@ -117,6 +199,7 @@ $(document).ready(function() {
         success: function (result) {
             if (result.success) {
                 _generate_menu(result.data);
+                // alert("Hello! I am an alert box!");
             }
         },
         error: function (error) {

@@ -84,7 +84,11 @@
 					<li class="active"><i class="<?php echo $page_icon; ?>"></i> <?php echo $page_active; ?></li>
 				</ol>
 			</section>
-			<section class="content container-fluid"><?php print $body; ?></section>
+			<section class="content">
+					<div class="container-fluid">
+						<?php echo $body; ?>
+					</div>
+				</section>
 		</div>
 		<footer class="main-footer">
 			<!-- <div class="pull-right hidden-xs">Developed by Al Gaza Solution</div> -->
@@ -106,6 +110,8 @@
 	</script>
 	<script src="<?php echo base_url('assets/templates/admin/bower_components/moment')?>/moment.js"></script>
 	<script src="<?php echo base_url('assets/templates/admin/bower_components/fullcalendar/dist')?>/fullcalendar.min.js"></script>
+	<script src="<?php echo base_url('assets/templates/admin/bower_components/jquery_popup/js')?>/popup.js"></script>
+	<script src="<?php echo base_url('assets/templates/admin/bower_components/jquery_validation/js')?>/validation.js"></script>
 	<script src="<?php echo base_url('assets/js/admin/'); ?>admin_algaza.js"></script>
 </body>
 </html>
