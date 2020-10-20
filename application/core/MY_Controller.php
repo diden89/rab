@@ -159,26 +159,26 @@ class MY_Controller extends CI_Controller {
 					$style_height = ($uri_active == $data->m_url) ? 'style="height: auto;"' : '';
 					$display = ($uri_active == $data->m_url) ? 'style="display: block;"' : '';
 
-					$str_menu .= '<li class="treeview '.$menu_open.'" '.$style_height.'><a href="'.site_url($data->m_url).'"><i class="'.$data->m_icon.'"></i> <span>'.$data->m_caption.'</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>';
+					$str_menu .= '<li class="treeview '.$menu_open.'" '.$style_height.'><a href="'.site_url($data->m_url).'"><i class="'.$data->m_icon.'"></i> <span>'.$data->m_caption.'</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>'."\n";
 					if ($idx > 0)
 					{
 					// echo $menu_open;
-						
-						$str_menu .= '<ul class="treeview-menu '.$menu_open.'" '.$display.'>';
+
+						$str_menu .= '<ul class="treeview-menu '.$menu_open.'" '.$display.'>'."\n";
 					}
 
 					$str_menu .= $children;
 
 					if ($idx > 0)
 					{
-						$str_menu .= '</ul>';
+						$str_menu .= '</ul>'."\n";
 					}
 
-					$str_menu .= '</li>';
+					$str_menu .= '</li>'."\n";
 				}
 				else
 				{
-					$str_menu .= '<li class="'.($uri_seg == $data->m_url ? 'active' : '').'"><a href="'.site_url($data->m_url).'"><i class="'.$data->m_icon.'"></i> '.$data->m_caption.'</a></li>';
+					$str_menu .= '<li class="'.($this->uri->uri_string() == $data->m_url ? 'active' : '').'"><a href="'.site_url($data->m_url).'"><i class="'.$data->m_icon.'"></i> '.$data->m_caption.'</a></li>'."\n";
 				}
 			}
 		}
