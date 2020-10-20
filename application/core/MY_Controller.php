@@ -155,6 +155,7 @@ class MY_Controller extends CI_Controller {
 				if ($children !== FALSE)
 				{
 					$menu_open = ($uri_active == $data->m_url) ? 'menu-open' : '';
+
 					$style_height = ($uri_active == $data->m_url) ? 'style="height: auto;"' : '';
 					$display = ($uri_active == $data->m_url) ? 'style="display: block;"' : '';
 
@@ -162,6 +163,7 @@ class MY_Controller extends CI_Controller {
 					if ($idx > 0)
 					{
 					// echo $menu_open;
+						
 						$str_menu .= '<ul class="treeview-menu '.$menu_open.'" '.$display.'>';
 					}
 
