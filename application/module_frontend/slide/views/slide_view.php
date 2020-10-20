@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			                <td class=""><?php echo $dt['description']; ?></td>
 			                <td class=""><?php echo $dt['url']; ?></td>
                       <td class=""><?php echo $dt['type']; ?></td>
-			                <td style="text-align: center;"><img onclick="showImage('<?php echo front_url().$url_img;?>')" style="width:100%;max-width:300px" src='<?php echo front_url().$url_img;?>'>
+			                <td style="text-align: center;"><img onclick="showImage('<?php echo base_url().$url_img;?>')" style="width:100%;max-width:300px" src='<?php echo base_url().$url_img;?>'>
                       </td> 
 			                <td> 
 			                  	<a href="<?php echo base_url('slide/cu_action/edit/'.$dt["id"].'');?>" class="fa btn btn-success fa-pencil"></a>

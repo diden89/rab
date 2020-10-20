@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="form-group">
         <label for="txtImg">Favicon:</label>
           <input type="file" id="txtImg" name="txt_img" value='<?php echo (isset($data->favicon)) ? $data->favicon : ""; ?>'>
-          <img src="<?php echo front_url().$data->favicon;?>" width="300px">
+          <img src="<?php echo base_url().$data->favicon;?>" width="300px">
          <input type="hidden" name="txt_img_old" value="<?php echo (isset($data->favicon)) ? $data->favicon : ""; ?>">
       </div>
        <div class="container" id="multipleAdd">

@@ -61,11 +61,11 @@ class Company extends MY_Controller {
 			$this->store_params['page_active'] = $row_properties->caption;
 			$this->store_params['page_icon'] = $row_properties->icon;
 			$this->store_params['source_top'] = array(
-				'<link rel="stylesheet" href="'.front_url('assets/templates/admin').'/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">'
+				'<link rel="stylesheet" href="'.base_url('assets/templates/admin').'/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">'
 			);
 			$this->store_params['source_bot'] = array(
-				'<script src="'.front_url('assets/js/admin').'/company.js"></script>',
-				'<script src="'.front_url('assets/templates/admin').'/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>',
+				'<script src="'.base_url('assets/js/admin').'/company.js"></script>',
+				'<script src="'.base_url('assets/templates/admin').'/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>',
 			);
 			$company = $get_data->row();
 			$this->store_params['data'] = $get_data->row();

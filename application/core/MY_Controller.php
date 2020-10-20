@@ -22,14 +22,6 @@ class MY_Controller extends CI_Controller {
 			}
 		}
 
-		if (MODULE == 'module_admin')
-		{
-			if ($this->auth !== FALSE)
-			{
-				$this->validate_login();
-			}
-		}
-
 		if (MODULE == 'module_frontend')
 		{
 			if ($this->auth !== FALSE)
@@ -54,14 +46,7 @@ class MY_Controller extends CI_Controller {
 			if ($validate_login !== FALSE && $validate_login->num_rows() > 0)
 			{
 				$row = $validate_login->row();
-				if($row->sub_group == '2')
-				{
-					$kopen =  $row->kode_pendonor;
-				}
-				else
-				{
-					$kopen = $row->kode_penerima;
-				}
+			
 				$this->session->set_userdata(array(
 					'token' => $this->encryption->encrypt($row->ud_id.':'.$row->username.':'.$row->sub_group),
 					'username' => $row->username,
@@ -114,28 +99,7 @@ class MY_Controller extends CI_Controller {
 
 		if (MODULE == 'module_frontend')
 		{
-			$this->store_params['menu'] = $this->_menu_build();
-			$this->store_params['footer'] = $this->load_footer();
-
-			$view = 'views';
-		}
-		elseif (MODULE == 'module_admin')
-		{
-			if($this->session->userdata('sub_group') == '2')
-			{
-				$where = array('as_kepsek' => 'Y');
-			}
-			elseif($this->session->userdata('sub_group') == '3')
-			{
-				$where = array('as_guru' => 'Y');
-			}
-			else
-			{
-				$where = array('is_admin' => 'Y');
-			}
-			
-			
-			$this->store_params['menu'] = $this->_generate_admin_menu($where);
+			$this->store_params['menu'] = $this->_generate_admin_menu($where=array());
 			$this->store_params['message'] = $this->_load_message();
 			$view = 'admin_view';
 		}

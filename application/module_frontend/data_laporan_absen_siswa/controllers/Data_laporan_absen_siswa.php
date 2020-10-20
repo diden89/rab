@@ -26,17 +26,17 @@ class Data_laporan_absen_siswa extends MY_Controller {
 			$this->store_params['page_active'] = $row_properties->caption;
 			$this->store_params['page_icon'] = $row_properties->icon;
 			$this->store_params['source_top'] = array(
-				'<link rel="stylesheet" href="'.front_url('assets/templates/admin').'/bower_components/datatables.net-bs/css/dataTables.bootstrap.css">',
-				'<link rel="stylesheet" href="'.front_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.css">',
-				'<link rel="stylesheet" href="'.front_url('assets/templates/admin').'/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">',
+				'<link rel="stylesheet" href="'.base_url('assets/templates/admin').'/bower_components/datatables.net-bs/css/dataTables.bootstrap.css">',
+				'<link rel="stylesheet" href="'.base_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.css">',
+				'<link rel="stylesheet" href="'.base_url('assets/templates/admin').'/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">',
 				'<style>
 					.datepicker{z-index:-1151;}
 				</style>'
 			);
 			$this->store_params['source_bot'] = array(
-				'<script src="'.front_url('assets/js/admin').'/data_laporan_absen_siswa.js"></script>',
-				'<script src="'.front_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.min.js"></script>',
-				'<script src="'.front_url('assets/templates/admin').'/bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>',
+				'<script src="'.base_url('assets/js/admin').'/data_laporan_absen_siswa.js"></script>',
+				'<script src="'.base_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.min.js"></script>',
+				'<script src="'.base_url('assets/templates/admin').'/bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>',
 				'<script> function delete_data(delete_url){$("#deleteModal").modal("show", {backdrop: "static"});
       			document.getElementById("deletedata").setAttribute("href" , delete_url);
     			}</script>',
@@ -47,8 +47,8 @@ class Data_laporan_absen_siswa extends MY_Controller {
     					// document.getElementById("img01").setAttribute("width" , "500px");
     				}
     			</script>',
-    			'<script src="'.front_url('assets/templates/admin').'/bower_components/autocomplete/typeahead.js"></script>',
-    			'<script src="'.front_url('assets/templates/admin').'/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>',
+    			'<script src="'.base_url('assets/templates/admin').'/bower_components/autocomplete/typeahead.js"></script>',
+    			'<script src="'.base_url('assets/templates/admin').'/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>',
 				'<script type="text/javascript">
 					 $(function(){
 					  $("#datepicker").datepicker({

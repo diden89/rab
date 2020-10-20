@@ -61,7 +61,7 @@ class Category extends MY_Controller {
 			$this->store_params['data'] = $get_data->result_array();
 
 			$this->store_params['source_bot'] = array(
-				'<script src="'.front_url('assets/js/admin').'/category.js"></script>',
+				'<script src="'.base_url('assets/js/admin').'/category.js"></script>',
 				'<script> function delete_data(delete_url){$("#deleteModal").modal("show", {backdrop: "static"});
       			document.getElementById("deleteCategory").setAttribute("href" , delete_url);
     			}</script>'
@@ -89,11 +89,11 @@ class Category extends MY_Controller {
 			$this->store_params['page_active'] = $row_properties->caption;
 			$this->store_params['page_icon'] = $row_properties->icon;
 			$this->store_params['source_top'] = array(
-				'<link rel="stylesheet" href="'.front_url('assets/templates/admin').'/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">'
+				'<link rel="stylesheet" href="'.base_url('assets/templates/admin').'/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">'
 			);
 			$this->store_params['source_bot'] = array(
-				'<script src="'.front_url('assets/templates/admin').'/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>',
-				'<script src="'.front_url('assets/js/admin').'/category.js"></script>'
+				'<script src="'.base_url('assets/templates/admin').'/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>',
+				'<script src="'.base_url('assets/js/admin').'/category.js"></script>'
 			);
 			
 			$this->store_params['cond'] = ucwords($cond).' users';

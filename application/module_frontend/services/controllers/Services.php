@@ -79,11 +79,11 @@ class Services extends MY_Controller {
 			$this->store_params['page_active'] = $row_properties->caption;
 			$this->store_params['page_icon'] = $row_properties->icon;
 			$this->store_params['source_top'] = array(
-				'<link rel="stylesheet" href="'.front_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.css">'
+				'<link rel="stylesheet" href="'.base_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.css">'
 			);
 			$this->store_params['source_bot'] = array(
-				'<script src="'.front_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.min.js"></script>',
-				'<script src="'.front_url('assets/js/admin').'/services.js"></script>'
+				'<script src="'.base_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.min.js"></script>',
+				'<script src="'.base_url('assets/js/admin').'/services.js"></script>'
 			);
 			
 			$this->store_params['cond'] = ucwords($cond).' Services';
@@ -131,7 +131,7 @@ class Services extends MY_Controller {
 
 				print(json_encode(array(
 					'success' => true,
-					'url' => front_url('assets/images/tmp/'.$data['file_name'])
+					'url' => base_url('assets/images/tmp/'.$data['file_name'])
 				)));
 			}
 		}

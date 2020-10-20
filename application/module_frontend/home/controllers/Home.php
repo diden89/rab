@@ -22,8 +22,8 @@ class Home extends MY_Controller {
 		
 		
 		$this->store_params['source_bot'] = array(
-				'<script src="'.front_url('assets/templates/admin').'/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>',
-				'<script src="'.front_url('assets/js/admin').'/home.js"></script>',
+				'<script src="'.base_url('assets/templates/admin').'/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>',
+				'<script src="'.base_url('assets/js/admin').'/home.js"></script>',
 				
 			);
 		
@@ -108,7 +108,7 @@ class Home extends MY_Controller {
 								   <li>
 				                    <a href="'.base_url($m->url).'">
 				                      <div class="pull-left">
-				                        <img src="'.front_url($m->img).'" class="img-circle" alt="User Image">
+				                        <img src="'.base_url($m->img).'" class="img-circle" alt="User Image">
 				                      </div>
 				                      <h4>
 				                        '.$m->title.'
@@ -188,7 +188,7 @@ class Home extends MY_Controller {
 								   <li>
 				                    <a href="'.base_url('report_donasi/show_detail/'.$m->dd_id).'">
 				                      <div class="pull-left">
-				                        <img src="'.front_url($m->dpn_img).'" class="img-circle" alt="User Image">
+				                        <img src="'.base_url($m->dpn_img).'" class="img-circle" alt="User Image">
 				                      </div>
 				                      <h4>
 				                        '.$m->dpn_fullname.'

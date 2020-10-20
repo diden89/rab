@@ -64,13 +64,13 @@ class Data_jurusan extends MY_Controller {
 			$this->store_params['page_active'] = $row_properties->caption;
 			$this->store_params['page_icon'] = $row_properties->icon;
 			$this->store_params['source_top'] = array(
-				'<link rel="stylesheet" href="'.front_url('assets/templates/admin').'/bower_components/datatables.net-bs/css/dataTables.bootstrap.css">',
-				'<link rel="stylesheet" href="'.front_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.css">'
+				'<link rel="stylesheet" href="'.base_url('assets/templates/admin').'/bower_components/datatables.net-bs/css/dataTables.bootstrap.css">',
+				'<link rel="stylesheet" href="'.base_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.css">'
 			);
 			$this->store_params['source_bot'] = array(
-				'<script src="'.front_url('assets/js/admin').'/data_jurusan.js"></script>',
-				'<script src="'.front_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.min.js"></script>',
-				'<script src="'.front_url('assets/templates/admin').'/bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>',
+				'<script src="'.base_url('assets/js/admin').'/data_jurusan.js"></script>',
+				'<script src="'.base_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.min.js"></script>',
+				'<script src="'.base_url('assets/templates/admin').'/bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>',
 				'<script> function delete_data(delete_url){$("#deleteModal").modal("show", {backdrop: "static"});
       			document.getElementById("deleteemployee").setAttribute("href" , delete_url);
     			}</script>',
@@ -81,7 +81,7 @@ class Data_jurusan extends MY_Controller {
     					// document.getElementById("img01").setAttribute("width" , "500px");
     				}
     			</script>',
-    			'<script src="'.front_url('assets/templates/admin').'/bower_components/autocomplete/typeahead.js"></script>',
+    			'<script src="'.base_url('assets/templates/admin').'/bower_components/autocomplete/typeahead.js"></script>',
 			);
 			$this->store_params['data'] = $get_data->result();
 
@@ -299,7 +299,7 @@ class Data_jurusan extends MY_Controller {
 			foreach ($berkas->result_array() as $f) {							
 				$nama_berkas = (isset($f["nama_berkas"])) ? $f["nama_berkas"] : "";
 				$id_berkas = (isset($f["id"])) ? $f["id"] : "";
-				$path_berkas = (isset($f["path_berkas"])) ? front_url($f["path_berkas"]) : "";
+				$path_berkas = (isset($f["path_berkas"])) ? base_url($f["path_berkas"]) : "";
 
 				echo '<section class="col-lg-6 connectedSortable ui-sortable after-add-input"">';
              		echo '<div class="form-group">';

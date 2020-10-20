@@ -2,18 +2,18 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="shortcut icon" href="<?php echo front_url(); ?>assets/images/favicon.ico">
+	<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title><?php echo $title; ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<link rel="stylesheet" href="<?php echo front_url('assets/templates/admin'); ?>/bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo front_url('assets/templates/admin'); ?>/bower_components/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo front_url(); ?>assets/fonts/flaticon/font/flaticon.css">
-	<link rel="stylesheet" href="<?php echo front_url('assets/templates/admin'); ?>/bower_components/Ionicons/css/ionicons.min.css">
-	<link rel="stylesheet" href="<?php echo front_url('assets/templates/admin'); ?>/dist/css/AdminLTE.min.css">
-	<link rel="stylesheet" href="<?php echo front_url('assets/templates/admin'); ?>/dist/css/skins/skin-blue.min.css">
-	<link rel="stylesheet" href="<?php echo front_url('assets/templates/admin/bower_components/fullcalendar/dist')?>/fullcalendar.min.css">
-	<link rel="stylesheet" href="<?php echo front_url('assets/templates/admin/bower_components/fullcalendar/dist')?>/fullcalendar.print.min.css" media="print">
+	<link rel="stylesheet" href="<?php echo base_url('assets/templates/admin'); ?>/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo base_url('assets/templates/admin'); ?>/bower_components/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/fonts/flaticon/font/flaticon.css">
+	<link rel="stylesheet" href="<?php echo base_url('assets/templates/admin'); ?>/bower_components/Ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="<?php echo base_url('assets/templates/admin'); ?>/dist/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="<?php echo base_url('assets/templates/admin'); ?>/dist/css/skins/skin-blue.min.css">
+	<link rel="stylesheet" href="<?php echo base_url('assets/templates/admin/bower_components/fullcalendar/dist')?>/fullcalendar.min.css">
+	<link rel="stylesheet" href="<?php echo base_url('assets/templates/admin/bower_components/fullcalendar/dist')?>/fullcalendar.print.min.css" media="print">
 	<?php
 		if (isset($source_top) && is_array($source_top) && count($source_top) > 0)
 		{
@@ -40,7 +40,7 @@
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
 						<li>
-							<a href="<?php echo front_url(); ?>" target="_blank"><i class="fa fa-home"></i> View Website</a>
+							<a href="<?php echo base_url(); ?>" target="_blank"><i class="fa fa-home"></i> View Website</a>
 						</li>
 
 					     <!-- <li class="dropdown messages-menu">
@@ -98,12 +98,12 @@
 		</div>
 		<footer class="main-footer">
 			<!-- <div class="pull-right hidden-xs">Developed by Al Gaza Solution</div> -->
-			<strong>Copyright &copy; 2020 <a href="<?php echo front_url(); ?>">Sistem Presensi Akademik MAN 2 Ketapang</a>.</strong> All rights reserved.
+			<strong>Copyright &copy; 2020 <a href="<?php echo base_url(); ?>">Sistem Presensi Akademik MAN 2 Ketapang</a>.</strong> All rights reserved.
 		</footer>
 	</div>
-	<script src="<?php echo front_url('assets/templates/admin'); ?>/bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="<?php echo front_url('assets/templates/admin'); ?>/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="<?php echo front_url('assets/templates/admin'); ?>/dist/js/adminlte.min.js"></script>
+	<script src="<?php echo base_url('assets/templates/admin'); ?>/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="<?php echo base_url('assets/templates/admin'); ?>/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="<?php echo base_url('assets/templates/admin'); ?>/dist/js/adminlte.min.js"></script>
 	<?php
 		if (isset($source_bot) && is_array($source_bot) && count($source_bot) > 0)
 		{
@@ -112,10 +112,10 @@
 	?>
 	<script type="text/javascript">
 		var siteUrl = '<?php echo base_url(); ?>';
-		var frontUrl = '<?php echo front_url(); ?>';
+		var frontUrl = '<?php echo base_url(); ?>';
 	</script>
-	<script src="<?php echo front_url('assets/templates/admin/bower_components/moment')?>/moment.js"></script>
-	<script src="<?php echo front_url('assets/templates/admin/bower_components/fullcalendar/dist')?>/fullcalendar.min.js"></script>
-	<script src="<?php echo front_url('assets/js/admin/'); ?>admin_algaza.js"></script>
+	<script src="<?php echo base_url('assets/templates/admin/bower_components/moment')?>/moment.js"></script>
+	<script src="<?php echo base_url('assets/templates/admin/bower_components/fullcalendar/dist')?>/fullcalendar.min.js"></script>
+	<script src="<?php echo base_url('assets/js/admin/'); ?>admin_algaza.js"></script>
 </body>
 </html>

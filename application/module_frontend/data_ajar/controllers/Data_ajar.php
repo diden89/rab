@@ -59,11 +59,11 @@ class Data_ajar extends MY_Controller {
 			$this->store_params['page_icon'] = $row_properties->icon;
 			$this->store_params['data'] = $get_data->result();
 			$this->store_params['source_top'] = array(
-				'<link rel="stylesheet" href="'.front_url('assets/templates/admin').'/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">'
+				'<link rel="stylesheet" href="'.base_url('assets/templates/admin').'/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">'
 			);
 			$this->store_params['source_bot'] = array(
-				'<script src="'.front_url('assets/templates/admin').'/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>',
-				'<script src="'.front_url('assets/js/admin').'/data_ajar.js"></script>',
+				'<script src="'.base_url('assets/templates/admin').'/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>',
+				'<script src="'.base_url('assets/js/admin').'/data_ajar.js"></script>',
 				'<script> function delete_data(delete_url){$("#deleteModal").modal("show", {backdrop: "static"});
       			document.getElementById("deletedata").setAttribute("href" , delete_url);
     			}</script>',
@@ -176,16 +176,16 @@ class Data_ajar extends MY_Controller {
 			$this->store_params['page_active'] = $row_properties->caption;
 			$this->store_params['page_icon'] = $row_properties->icon;
 			$this->store_params['source_top'] = array(
-				'<link rel="stylesheet" href="'.front_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.css">',
-				'<link rel="stylesheet" href="'.front_url('assets/templates/admin').'/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">',
+				'<link rel="stylesheet" href="'.base_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.css">',
+				'<link rel="stylesheet" href="'.base_url('assets/templates/admin').'/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">',
 				'<style>
 					.datepicker{z-index:-1151;}
 				</style>'
 			);
 			$this->store_params['source_bot'] = array(
-				'<script src="'.front_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.min.js"></script>',
-				'<script src="'.front_url('assets/js/admin').'/data_ajar.js"></script>',
-				'<script src="'.front_url('assets/templates/admin').'/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>',
+				'<script src="'.base_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.min.js"></script>',
+				'<script src="'.base_url('assets/js/admin').'/data_ajar.js"></script>',
+				'<script src="'.base_url('assets/templates/admin').'/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>',
 				'<script type="text/javascript">
 					 $(function(){
 					  $("#txtTanggalLahir").datepicker({
@@ -196,7 +196,7 @@ class Data_ajar extends MY_Controller {
 					  });
 					 });
 				</script>',
-				'<script src="'.front_url('assets/templates/admin').'/bower_components/autocomplete/typeahead.js"></script>',
+				'<script src="'.base_url('assets/templates/admin').'/bower_components/autocomplete/typeahead.js"></script>',
 
 			);
 			
@@ -271,7 +271,7 @@ class Data_ajar extends MY_Controller {
 
 				print(json_encode(array(
 					'success' => true,
-					'url' => front_url('assets/images/tmp/'.$data['file_name'])
+					'url' => base_url('assets/images/tmp/'.$data['file_name'])
 				)));
 			}
 		}

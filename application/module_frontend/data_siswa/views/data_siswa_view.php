@@ -94,7 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             {
                                 $no = $number_data;
                                 foreach($data as $dt => $d){
-                                    $img = ( ! empty($d->img)) ? front_url($d->img) : "";
+                                    $img = ( ! empty($d->img)) ? base_url($d->img) : "";
                                     ?>
                                     <tr role="row" class="odd">
                                     <td><?php echo $no; ?></td>

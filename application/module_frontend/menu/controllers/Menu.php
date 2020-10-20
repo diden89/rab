@@ -59,11 +59,11 @@ class Menu extends MY_Controller {
 			$this->store_params['page_icon'] = $row_properties->icon;
 			$this->store_params['data'] = $get_data->result_array();
 			$this->store_params['source_top'] = array(
-				'<link rel="stylesheet" href="'.front_url('assets/templates/admin').'/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">'
+				'<link rel="stylesheet" href="'.base_url('assets/templates/admin').'/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">'
 			);
 			$this->store_params['source_bot'] = array(
-				'<script src="'.front_url('assets/templates/admin').'/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>',
-				'<script src="'.front_url('assets/js/admin').'/menu.js"></script>'
+				'<script src="'.base_url('assets/templates/admin').'/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>',
+				'<script src="'.base_url('assets/js/admin').'/menu.js"></script>'
 			);
 			$this->view('menu_view');
 		}
@@ -143,7 +143,7 @@ class Menu extends MY_Controller {
 		{			
 			$no = 1;
 	        foreach($data as $dt){
-	            $img = ( ! empty($dt['img'])) ? front_url($dt['img']) : "";
+	            $img = ( ! empty($dt['img'])) ? base_url($dt['img']) : "";
 	            ?>
 	            <tr role="row" class="odd">
 	            <td><?php echo $no; ?></td>
@@ -205,11 +205,11 @@ class Menu extends MY_Controller {
 			$this->store_params['page_active'] = $row_properties->caption;
 			$this->store_params['page_icon'] = $row_properties->icon;
 			$this->store_params['source_top'] = array(
-				'<link rel="stylesheet" href="'.front_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.css">'
+				'<link rel="stylesheet" href="'.base_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.css">'
 			);
 			$this->store_params['source_bot'] = array(
-				'<script src="'.front_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.min.js"></script>',
-				'<script src="'.front_url('assets/js/admin').'/menu.js"></script>'
+				'<script src="'.base_url('assets/templates/admin').'/plugins/summernote/0.8.12/summernote.min.js"></script>',
+				'<script src="'.base_url('assets/js/admin').'/menu.js"></script>'
 			);
 			
 			$this->store_params['cond'] = ucwords($cond).' Menu';
@@ -369,7 +369,7 @@ class Menu extends MY_Controller {
 
 				print(json_encode(array(
 					'success' => true,
-					'url' => front_url('assets/images/tmp/'.$data['file_name'])
+					'url' => base_url('assets/images/tmp/'.$data['file_name'])
 				)));
 			}
 		}

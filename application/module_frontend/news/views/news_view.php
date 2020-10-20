@@ -63,7 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                      <td class=""><?php echo $dt['count_read']; ?></td>
 			                <td ><?php echo $dt['category_name']; ?></td>
 							       <td class=""><?php echo ($dt['is_active'] == 'Y') ? 'Yes' : 'No'; ?></td>
-			                <td style="text-align: center;"><img onclick="showImage('<?php echo front_url().$url_img;?>')" src='<?php echo $new_url.$url_img;?>' style="width:100%;max-width:300px"></td>
+			                <td style="text-align: center;"><img onclick="showImage('<?php echo base_url().$url_img;?>')" src='<?php echo $new_url.$url_img;?>' style="width:100%;max-width:300px"></td>
 			                <td>
 			                  	<a href="<?php echo base_url('news/cu_action/edit/'.$dt["news_id"].'');?>" class="fa btn btn-success fa-pencil"></a>
 			                  	<button type="button" onclick="deletenews('<?php echo base_url();?>news/delete/<?php echo $dt['news_id'];?>')" class="fa btn btn-danger fa-trash"></a> 

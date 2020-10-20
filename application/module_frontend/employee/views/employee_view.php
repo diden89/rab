@@ -109,7 +109,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <td class=""><?php echo $dt['p_caption']; ?></td>
                                                 <td class=""><?php echo $dt['phone']; ?></td>
                                                 <td class=""><?php echo $dt['email']; ?></td>
-                                                <td style="text-align: center;"><img onclick="showImage('<?php echo front_url().$url_img;?>')" style="width:100%;max-width:300px" src='<?php echo front_url().$url_img;?>'>
+                                                <td style="text-align: center;"><img onclick="showImage('<?php echo base_url().$url_img;?>')" style="width:100%;max-width:300px" src='<?php echo base_url().$url_img;?>'>
                                                 </td> 
                                                 <td> 
                                                 <a href="<?php echo base_url('employee/cu_action/edit/'.$dt["e_id"].'');?>" class="fa btn btn-success fa-pencil"></a>

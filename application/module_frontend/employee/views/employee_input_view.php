@@ -126,7 +126,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								if (isset($data->img)) { 
 									$url_img = $data->img;
 				              		?>
-									<img src="<?php echo front_url().$url_img;?>" width="300px">
+									<img src="<?php echo base_url().$url_img;?>" width="300px">
 								<?php } ?>
 								<input type="hidden" name="txt_img_old" value="<?php echo (isset($data->img)) ? $data->img : ""; ?>">
 							</div>

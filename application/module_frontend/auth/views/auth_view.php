@@ -11,20 +11,20 @@
    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--===============================================================================================-->  
-    <link rel="icon" type="image/png" href="<?php echo front_url('assets/templates/login_rab/'); ?>images/icons/favicon.ico"/>
+    <link rel="icon" type="image/png" href="<?php echo base_url('assets/templates/login_rab/'); ?>images/icons/favicon.ico"/>
   <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="<?php echo front_url('assets/templates/login_rab/'); ?>vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/templates/login_rab/'); ?>vendor/bootstrap/css/bootstrap.min.css">
   <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="<?php echo front_url('assets/templates/login_rab/'); ?>fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/templates/login_rab/'); ?>fonts/font-awesome-4.7.0/css/font-awesome.min.css">
   <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="<?php echo front_url('assets/templates/login_rab/'); ?>vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/templates/login_rab/'); ?>vendor/animate/animate.css">
   <!--===============================================================================================-->  
-    <link rel="stylesheet" type="text/css" href="<?php echo front_url('assets/templates/login_rab/'); ?>vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/templates/login_rab/'); ?>vendor/css-hamburgers/hamburgers.min.css">
   <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="<?php echo front_url('assets/templates/login_rab/'); ?>vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/templates/login_rab/'); ?>vendor/select2/select2.min.css">
   <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="<?php echo front_url('assets/templates/login_rab/'); ?>css/util.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo front_url('assets/templates/login_rab/'); ?>css/main.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/templates/login_rab/'); ?>css/util.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/templates/login_rab/'); ?>css/main.css">
   <!--===============================================================================================-->
   </head>
   <body>
@@ -33,7 +33,7 @@
         <div class="container-login100">
             <div class="wrap-login100">
                 <div class="login100-pic js-tilt" data-tilt>
-                    <img src="<?php echo front_url('assets/images/'); ?>logo.png" alt="IMG">
+                    <img src="<?php echo base_url('assets/images/'); ?>logo.png" alt="IMG">
                 </div>
 
                 <form class="login100-form validate-form" action="<?php echo site_url('auth/login'); ?>" method="post" autoComplete = "off">
@@ -88,21 +88,21 @@
 
     
 <!--===============================================================================================-->  
-    <script src="<?php echo front_url('assets/templates/login_rab/'); ?>vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="<?php echo base_url('assets/templates/login_rab/'); ?>vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-    <script src="<?php echo front_url('assets/templates/login_rab/'); ?>vendor/bootstrap/js/popper.js"></script>
-    <script src="<?php echo front_url('assets/templates/login_rab/'); ?>vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url('assets/templates/login_rab/'); ?>vendor/bootstrap/js/popper.js"></script>
+    <script src="<?php echo base_url('assets/templates/login_rab/'); ?>vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-    <script src="<?php echo front_url('assets/templates/login_rab/'); ?>vendor/select2/select2.min.js"></script>
+    <script src="<?php echo base_url('assets/templates/login_rab/'); ?>vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-    <script src="<?php echo front_url('assets/templates/login_rab/'); ?>vendor/tilt/tilt.jquery.min.js"></script>
+    <script src="<?php echo base_url('assets/templates/login_rab/'); ?>vendor/tilt/tilt.jquery.min.js"></script>
     <script >
         $('.js-tilt').tilt({
             scale: 1.1
         })
     </script>
 <!--===============================================================================================-->
-    <script src="<?php echo front_url('assets/templates/login_rab/'); ?>js/main.js"></script>
+    <script src="<?php echo base_url('assets/templates/login_rab/'); ?>js/main.js"></script>
 
 </body>
 </html>   

@@ -1,121 +1,121 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-	<head>
-		<base href="<?php echo base_url(); ?>" />
-		<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/templates/aid/images/favicon.ico">
-		<title><?php echo $title; ?></title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">		
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/templates/aid/css/flaticon.css">
-        <!-- Vendor CSS Files -->
-        <link href="<?php echo base_url('assets/templates/eBusiness'); ?>/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <?php
-        if (isset($source_top) && is_array($source_top) && count($source_top) > 0)
-        {
-            echo implode("\n\t", $source_top)."\n";
-        }
-        ?>
-	</head>
-	<body>
-	 
-	<!-- start Content -->
-		<?php
-		print $body."\n"; 
-		?>
-	<!-- end Content -->
-  </body>
-   <!-- ======= Footer ======= -->
-  <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="copyright text-center">
-              <p>
-                &copy; Copyright <strong>Presensi</strong>. All Rights Reserved
-              </p>
-            </div>
-          </div>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><?php echo $title; ?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="<?php echo base_url('assets/templates/admin'); ?>/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo base_url('assets/templates/admin'); ?>/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="<?php echo base_url('assets/templates/admin'); ?>/bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="<?php echo base_url('assets/templates/admin'); ?>/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<?php echo base_url('assets/templates/admin'); ?>/dist/css/skins/skin-blue.min.css">
+  <link rel="stylesheet" href="<?php echo base_url('assets/templates/admin/bower_components/fullcalendar/dist')?>/fullcalendar.min.css">
+  <link rel="stylesheet" href="<?php echo base_url('assets/templates/admin/bower_components/fullcalendar/dist')?>/fullcalendar.print.min.css" media="print">
+  <?php
+    if (isset($source_top) && is_array($source_top) && count($source_top) > 0)
+    {
+      echo implode("\n\t", $source_top)."\n";
+    }
+  ?>
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+    <header class="main-header">
+      <a href="<?php echo base_url(); ?>" class="logo">
+        <span class="logo-mini"><b>i</b>Bees</span>
+        <span class="logo-lg"><?php echo TITLE2; ?></span>
+      </a>
+      <nav class="navbar navbar-static-top" role="navigation">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="<?php echo base_url(); ?>" target="_blank"><i class="fa fa-home"></i> View Website</a>
+            </li>
+
+               <!-- <li class="dropdown messages-menu">
+                    <a href="#" class="dropdown-toggle klik-pesan" data-toggle="dropdown">
+                      <i class="fa fa-envelope-o"></i>
+                      <span class="label label-danger jumlah-pesan"></span>
+                    </a>
+                    <ul class="dropdown-menu scrollable-menu-add pesan-masuk">
+                 
+                    </ul>
+                  </li> -->
+
+                   <li class="dropdown messages-menu">
+                    <a href="#" class="dropdown-toggle klik-notif" data-toggle="dropdown" width="550px">
+                      <i class="fa fa-bell"></i>
+                      <span class="label label-danger jml-notif"></span>
+                    </a>
+                    <ul class="dropdown-menu scrollable-menu-add notif-baru" style="height:auto;max-height:400px;overflow-y: auto;max-width:400px;width:auto;">
+                 
+                    </ul>
+                  </li>
+
+            <li class="dropdown user user-menu">
+              <a href="#" class="dropdown-toggle">
+                <span class="hidden-xs">Hi, <b><?php echo $this->session->userdata('fullname'); ?></b></span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo site_url('auth/logout'); ?>"><i class="fa fa-sign-out"></i> Logout</a>
+            </li>
+          </ul>
         </div>
-      </div>
-  </footer><!-- End  Footer -->
-
-<!-- Vendor JS Files -->
-<script src="<?php echo base_url('assets/templates/eBusiness'); ?>/assets/vendor/jquery/jquery.min.js"></script>
-<script src="<?php echo base_url('assets/templates/eBusiness'); ?>/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="<?php echo base_url('assets/templates/eBusiness'); ?>/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-<script src="<?php echo base_url('assets/templates/eBusiness'); ?>/assets/vendor/php-email-form/validate.js"></script>
-<script src="<?php echo base_url('assets/templates/eBusiness'); ?>/assets/vendor/appear/jquery.appear.js"></script>
-<script src="<?php echo base_url('assets/templates/eBusiness'); ?>/assets/vendor/knob/jquery.knob.js"></script>
-<script src="<?php echo base_url('assets/templates/eBusiness'); ?>/assets/vendor/parallax/parallax.js"></script>
-<script src="<?php echo base_url('assets/templates/eBusiness'); ?>/assets/vendor/wow/wow.min.js"></script>
-<script src="<?php echo base_url('assets/templates/eBusiness'); ?>/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="<?php echo base_url('assets/templates/eBusiness'); ?>/assets/vendor/nivo-slider/js/jquery.nivo.slider.js"></script>
-<script src="<?php echo base_url('assets/templates/eBusiness'); ?>/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-<script src="<?php echo base_url('assets/templates/eBusiness'); ?>/assets/vendor/venobox/venobox.min.js"></script>
-
-<!-- Template Main JS File -->
-<script src="<?php echo base_url('assets/templates/eBusiness'); ?>/assets/js/main.js"></script>
-<!-- <script src="<?php //echo base_url('assets/js/goskul.js'); ?>"></script> -->
-
-    <?php
-        if (isset($source_bot) && is_array($source_bot) && count($source_bot) > 0)
-        {
-            echo implode("\n\t", $source_bot)."\n";
-        }
-    ?>
-<script type="text/javascript">
+      </nav>
+    </header>
+    <aside class="main-sidebar">
+      <section class="sidebar">
+        <div class="user-panel">
+          <div class="info">MAIN NAVIGATION</div>
+        </div>
+        <ul class="sidebar-menu" data-widget="tree">
+          <li class="<?php echo ($page_active == 'Home' ? 'active' : ''); ?>"><a href="<?php echo site_url(''); ?>"><i class="fa fa-home"></i> <span>Home</span></a></li>
+          <?php echo $menu; ?>
+        </ul>
+      </section>
+    </aside>
+    <div class="content-wrapper">
+      <section class="content-header">
+        <h1><?php echo $page_active; ?></h1>
+        <ol class="breadcrumb">
+          <li>Admin</li>
+          <li class="active"><i class="<?php echo $page_icon; ?>"></i> <?php echo $page_active; ?></li>
+        </ol>
+      </section>
+      <section class="content container-fluid"><?php print $body; ?></section>
+    </div>
+    <footer class="main-footer">
+      <!-- <div class="pull-right hidden-xs">Developed by Al Gaza Solution</div> -->
+      <strong>Copyright &copy; 2020 <a href="<?php echo base_url(); ?>">Sistem Presensi Akademik MAN 2 Ketapang</a>.</strong> All rights reserved.
+    </footer>
+  </div>
+  <script src="<?php echo base_url('assets/templates/admin'); ?>/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="<?php echo base_url('assets/templates/admin'); ?>/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="<?php echo base_url('assets/templates/admin'); ?>/dist/js/adminlte.min.js"></script>
+  <?php
+    if (isset($source_bot) && is_array($source_bot) && count($source_bot) > 0)
+    {
+      echo implode("\n\t", $source_bot)."\n";
+    }
+  ?>
+  <script type="text/javascript">
     var siteUrl = '<?php echo base_url(); ?>';
-    var frontUrl = '<?php echo front_url(); ?>';
-</script>
-<script type="text/javascript">
-    $('#loginUser').submit(function(e){
-        // $('.ftco-section.box').append('<div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>');
-            e.preventDefault(); 
-         $.ajax({
-             url: siteUrl+'home/do_login',
-             type:"post",
-             data :new FormData(this),
-             processData:false,
-             contentType:false,
-             cache:false,
-             async:false,
-             dataType :'json',
-             success: function(response){
-                if(response.status)
-                {
-                    $('div.overlay').remove();
-                  alert("Input Data Berhasil.");
-                  window.location.replace(response.url);
-                }
-                else
-                {
-                    $('div.overlay').remove();
-                    alert("Input Data Gagal.");
-                }
-
-           }
-         });
-    });
-</script>
-<script type="text/javascript">
-    $('input.number').keyup(function(event) {
-
-    // skip for arrow keys
-    if(event.which >= 37 && event.which <= 40) return;
-
-    // format number
-    $(this).val(function(index, value) {
-      return value
-      .replace(/\D/g, "")
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-      ;
-    });
-    });
-
-    $.ajaxSetup({ cache: false });
-    
-</script>
-  </body>
+    var frontUrl = '<?php echo base_url(); ?>';
+  </script>
+  <script src="<?php echo base_url('assets/templates/admin/bower_components/moment')?>/moment.js"></script>
+  <script src="<?php echo base_url('assets/templates/admin/bower_components/fullcalendar/dist')?>/fullcalendar.min.js"></script>
+  <script src="<?php echo base_url('assets/js/admin/'); ?>admin_algaza.js"></script>
+</body>
 </html>
-	

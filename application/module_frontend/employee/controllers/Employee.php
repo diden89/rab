@@ -62,11 +62,11 @@ class Employee extends MY_Controller {
 			$this->store_params['page_active'] = $row_properties->caption;
 			$this->store_params['page_icon'] = $row_properties->icon;
 			$this->store_params['source_top'] = array(
-				'<link rel="stylesheet" href="'.front_url('assets/templates/admin').'/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">'
+				'<link rel="stylesheet" href="'.base_url('assets/templates/admin').'/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">'
 			);
 			$this->store_params['source_bot'] = array(
-				'<script src="'.front_url('assets/templates/admin').'/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>',
-				'<script src="'.front_url('assets/js/admin').'/employee.js"></script>',
+				'<script src="'.base_url('assets/templates/admin').'/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>',
+				'<script src="'.base_url('assets/js/admin').'/employee.js"></script>',
 				'<script> function delete_data(delete_url){$("#deleteModal").modal("show", {backdrop: "static"});
       			document.getElementById("deleteemployee").setAttribute("href" , delete_url);
     			}</script>',
@@ -125,7 +125,7 @@ class Employee extends MY_Controller {
                     <td class=""><?php echo $dt['p_caption']; ?></td>
                     <td class=""><?php echo $dt['phone']; ?></td>
                     <td class=""><?php echo $dt['email']; ?></td>
-                    <td style="text-align: center;"><img onclick="showImage('<?php echo front_url().$url_img;?>')" style="width:100%;max-width:300px" src='<?php echo front_url().$url_img;?>'>
+                    <td style="text-align: center;"><img onclick="showImage('<?php echo base_url().$url_img;?>')" style="width:100%;max-width:300px" src='<?php echo base_url().$url_img;?>'>
                     </td> 
                     <td> 
                     <a href="<?php echo base_url('employee/cu_action/edit/'.$dt["e_id"].'');?>" class="fa btn btn-success fa-pencil"></a>
@@ -163,16 +163,16 @@ class Employee extends MY_Controller {
 			$this->store_params['page_active'] = $row_properties->caption;
 			$this->store_params['page_icon'] = $row_properties->icon;
 			$this->store_params['source_top'] = array(
-				'<link rel="stylesheet" href="'.front_url('assets/templates/admin').'/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">',
-				'<link rel="stylesheet" href="'.front_url('assets/templates/admin').'/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">',
+				'<link rel="stylesheet" href="'.base_url('assets/templates/admin').'/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">',
+				'<link rel="stylesheet" href="'.base_url('assets/templates/admin').'/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">',
 				'<style>
 					.datepicker{z-index:1151;}
 				</style>'
 			);
 			$this->store_params['source_bot'] = array(
-				'<script src="'.front_url('assets/templates/admin').'/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>',
-				'<script src="'.front_url('assets/templates/admin').'/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>',
-				'<script src="'.front_url('assets/js/admin').'/employee.js"></script>',
+				'<script src="'.base_url('assets/templates/admin').'/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>',
+				'<script src="'.base_url('assets/templates/admin').'/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>',
+				'<script src="'.base_url('assets/js/admin').'/employee.js"></script>',
 				'<script type="text/javascript">
 				 $(function(){
 				  $(".datepicker").datepicker({

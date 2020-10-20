@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <ul class="users-list clearfix">
                     <?php //foreach($data_donatur as $dn=> $d){?>
                     <li>
-                      <img src="<?php //echo front_url($d->img);?>" alt="User Image" width="100px">
+                      <img src="<?php //echo base_url($d->img);?>" alt="User Image" width="100px">
                       <a class="users-list-name" href="#"><?php //echo $d->fullname; ?></a>
                       <span class="users-list-date">Today</span>
                     </li>
