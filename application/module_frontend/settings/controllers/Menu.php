@@ -73,6 +73,32 @@ class Menu extends MY_Controller {
 		}
 	}
 
+	public function load_data_menu()
+	{
+		if (isset($_POST['action']) && $_POST['action'] == 'load_data_menu')
+		{
+			$post = $this->input->post(NULL, TRUE);
+			$load_data_menu = $this->db_menu->get_data($post);
+
+			if ($load_data_menu->num_rows() > 0) 
+			{
+				$result = $load_data_menu->result();
+				$number = 1;
+
+				foreach ($result as $k => $v)
+				{
+					$v->no = $number;
+
+					$number++;
+				}
+
+				echo json_encode(array('success' => TRUE, 'data' => $result));
+			}
+			else echo json_encode(array('success' => FALSE, 'msg' => 'Data not found!'));
+		}
+		else $this->show_404();
+	}
+
 	public function search_data()
 	{
 		$src = "";

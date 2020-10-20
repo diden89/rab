@@ -27,11 +27,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 switch ($_SERVER['SERVER_ADMIN'])
 {
     case 'admin@example.com':
-		$config['base_url'] = 'http://localhost/rab/'.BASE_URL;
+		$config['base_url'] = 'http://rab.local/'.BASE_URL;
 	break;
 
 	case 'diden89':
-		$config['base_url'] = 'http://rab.local'.BASE_URL;
+		$config['base_url'] = 'http://rab.local/'.BASE_URL;
 	break;
     
 	default:

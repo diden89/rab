@@ -43,16 +43,6 @@
 							<a href="<?php echo base_url(); ?>" target="_blank"><i class="fa fa-home"></i> View Website</a>
 						</li>
 
-					     <!-- <li class="dropdown messages-menu">
-				            <a href="#" class="dropdown-toggle klik-pesan" data-toggle="dropdown">
-				              <i class="fa fa-envelope-o"></i>
-				              <span class="label label-danger jumlah-pesan"></span>
-				            </a>
-				            <ul class="dropdown-menu scrollable-menu-add pesan-masuk">
-				         
-				            </ul>
-				          </li> -->
-
 				           <li class="dropdown messages-menu">
 				            <a href="#" class="dropdown-toggle klik-notif" data-toggle="dropdown" width="550px">
 				              <i class="fa fa-bell"></i>

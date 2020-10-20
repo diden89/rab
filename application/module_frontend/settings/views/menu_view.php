@@ -34,13 +34,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </label>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-6 col-xl-6">
+                <div class="col-sm-6 col-md-6 col-xl-6 btn-xs-3">
                     <div id="example1_filter" class="dataTables_filter">
                         <form id="filterdata">
                             <label>
                                 Search:
-                                    <input class="form-control input-sm" type="text" id="searchdata" name="srcdt" placeholder="Search Data...." required>
-                                    <button type="button" class="form-control input-sm btn-primary fa fa-search filter-data-aa "></button>
+                                    <input class="form-control" type="text" id="searchdata" name="srcdt" placeholder="Search.." required>
+                                    <button type="button" class="btn btn-primary filter-data-aa "><i class=" fa fa-search"></i></button>
                             </label>
                         </form>
                     </div>

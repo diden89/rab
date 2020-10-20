@@ -30,41 +30,47 @@ function doSearch(obj)
     if(data.val().length > 2)
     {
         $.ajax({
-          url: siteUrl+'settings/menu/search_data',
+          url: siteUrl+'settings/menu/load_data_menu',
           method: 'POST',
-          // dataType: 'json',
-          data: {'searchdata' : data.val()},
-          success: function(e) {
-              console.log(e)
+          dataType: 'JSON',
+          data: {
+            action : 'load_data_menu',
+            'searchdata' : data.val(),
+        },
+          success: function(result) {
               $('div.overlay').remove();
               $('.reloadTableData').html(e);
-              // alert('Data successfully saved');
           },
           error: function() {
               $('div.overlay').remove();
-              // alert('Something wrong, please contact the administrators');
           }
         });   
     }
-    else if(data.val().length == 0)
-    {
-        $.ajax({
-          url: siteUrl+'settings/menu/search_data',
-          method: 'POST',
-          // dataType: 'json',
-          data: {'searchdata' : ""},
-          success: function(e) {
-              console.log(e)
-              $('div.overlay').remove();
-              $('.reloadTableData').html(e);
-              // alert('Data successfully saved');
-          },
-          error: function() {
-              $('div.overlay').remove();
-              // alert('Something wrong, please contact the administrators');
-          }
-        }); 
-    }
+}
+
+function generateDataTable(data)
+{
+    const $this = $('.reloadTableData tbody');
+
+        $this.html('');
+
+        let body = '';
+
+        $.each(data, (idx, item) => {
+            body += '<tr>';
+            body += '<td>' + item.no + '</td>';
+            body += '<td>' + item.bp_brm_num + '</td>';
+            body += '<td>' + item.bp_caption + '</td>';
+            body += '<td>' + item.bp_website + '</td>';
+            body += '<td>' + item.bp_link + '</td>';
+            body += '<td>' + item.bp_month + '</td>';
+            body += '<td>' + item.bp_year + '</td>';
+            body += '<td>' + item.start_date + '</td>';
+            body += '<td>' + item.end_date + '</td>';
+            body += '</tr>';
+        });
+
+        $this.html(body);
 }
 $(document).ready(function() {
     
