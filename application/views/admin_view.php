@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/fonts/flaticon/font/flaticon.css">
 	<link rel="stylesheet" href="<?php echo base_url('assets/templates/admin'); ?>/bower_components/Ionicons/css/ionicons.min.css">
 	<link rel="stylesheet" href="<?php echo base_url('assets/templates/admin'); ?>/dist/css/AdminLTE.min.css">
-	<link rel="stylesheet" href="<?php echo base_url('assets/templates/admin'); ?>/dist/css/skins/skin-blue.min.css">
+	<link rel="stylesheet" href="<?php echo base_url('assets/templates/admin'); ?>/dist/css/skins/skin-purple.min.css">
 	<link rel="stylesheet" href="<?php echo base_url('assets/templates/admin/bower_components/fullcalendar/dist')?>/fullcalendar.min.css">
 	<link rel="stylesheet" href="<?php echo base_url('assets/templates/admin/bower_components/fullcalendar/dist')?>/fullcalendar.print.min.css" media="print">
 	<?php
@@ -26,7 +26,7 @@
 	<![endif]-->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-purple sidebar-mini">
 	<div class="wrapper">
 		<header class="main-header">
 			<a href="<?php echo base_url(); ?>" class="logo">

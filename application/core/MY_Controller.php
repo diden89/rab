@@ -130,17 +130,22 @@ class MY_Controller extends CI_Controller {
 
 		foreach ($datas as $data)
 		{
+			$uri_active = $this->uri->segment(1);
+			$uri_seg = $this->uri->segment(1).'/'.$this->uri->segment(2);
 			if ($data->parent_id == $parent_id)
 			{
 				$children = $this->_generate_tree_menu($datas, $data->id, $idx);
 
 				if ($children !== FALSE)
 				{
-					$str_menu .= '<li class="treeview"><a href="'.site_url($data->url).'"><i class="'.$data->icon.'"></i> <span>'.$data->caption.'</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>';
+					$menu_open = ($uri_active == $data->url) ? 'menu-open' : '';
+					$style_height = ($uri_active == $data->url) ? 'style="height: auto;"' : '';
+					$display = ($uri_active == $data->url) ? 'style="display: block;"' : '';
+					$str_menu .= '<li class="treeview '.$menu_open.'" '.$style_height.'><a href="'.site_url($data->url).'"><i class="'.$data->icon.'"></i> <span>'.$data->caption.'</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>';
 
 					if ($idx > 0)
 					{
-						$str_menu .= '<ul class="treeview-menu">';
+						$str_menu .= '<ul class="treeview-menu" '.$display.'>';
 					}
 
 					$str_menu .= $children;
@@ -154,7 +159,7 @@ class MY_Controller extends CI_Controller {
 				}
 				else
 				{
-					$str_menu .= '<li class="'.($this->store_params['page_active'] == $data->caption ? 'active' : '').'"><a href="'.site_url($data->url).'"><i class="'.$data->icon.'"></i> '.$data->caption.'</a></li>';
+					$str_menu .= '<li class="'.($uri_seg == $data->url ? 'active' : '').'"><a href="'.site_url($data->url).'"><i class="'.$data->icon.'"></i> '.$data->caption.'</a></li>';
 				}
 			}
 		}
