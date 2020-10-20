@@ -132,17 +132,17 @@ class MY_Controller extends CI_Controller {
 		{
 			$uri_active = $this->uri->segment(1);
 			$uri_seg = $this->uri->segment(1).'/'.$this->uri->segment(2);
-			if ($data->parent_id == $parent_id)
+			if ($data->m_parent_id == $parent_id)
 			{
-				$children = $this->_generate_tree_menu($datas, $data->id, $idx);
+				$children = $this->_generate_tree_menu($datas, $data->m_id, $idx);
 
 				if ($children !== FALSE)
 				{
-					$menu_open = ($uri_active == $data->url) ? 'menu-open' : '';
-					$style_height = ($uri_active == $data->url) ? 'style="height: auto;"' : '';
-					$display = ($uri_active == $data->url) ? 'style="display: block;"' : '';
+					$menu_open = ($uri_active == $data->m_url) ? 'menu-open' : '';
+					$style_height = ($uri_active == $data->m_url) ? 'style="height: auto;"' : '';
+					$display = ($uri_active == $data->m_url) ? 'style="display: block;"' : '';
 
-					$str_menu .= '<li class="treeview '.$menu_open.'" '.$style_height.'><a href="'.site_url($data->url).'"><i class="'.$data->icon.'"></i> <span>'.$data->caption.'</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>';
+					$str_menu .= '<li class="treeview '.$menu_open.'" '.$style_height.'><a href="'.site_url($data->m_url).'"><i class="'.$data->m_icon.'"></i> <span>'.$data->m_caption.'</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>';
 					if ($idx > 0)
 					{
 					// echo $menu_open;
@@ -160,106 +160,12 @@ class MY_Controller extends CI_Controller {
 				}
 				else
 				{
-					$str_menu .= '<li class="'.($uri_seg == $data->url ? 'active' : '').'"><a href="'.site_url($data->url).'"><i class="'.$data->icon.'"></i> '.$data->caption.'</a></li>';
+					$str_menu .= '<li class="'.($uri_seg == $data->m_url ? 'active' : '').'"><a href="'.site_url($data->m_url).'"><i class="'.$data->m_icon.'"></i> '.$data->m_caption.'</a></li>';
 				}
 			}
 		}
 
 		return $str_menu;
-	}
-
-	private function _menu_build()
-	{
-		$menu_build_raw = $this->_menu_build_raw();
-		$menu_build_style = $this->_menu_build_style($menu_build_raw);
-
-		return $this->menu;
-	}
-
-	private function _menu_build_style($datas = array(), $idx = 0)
-	{
-		foreach ($datas as $data)
-		{
-			if (isset($data->html_start) || isset($data->html_end))
-			{
-				$this->menu .= $data->html_start;
-				$this->_menu_build_style($data->data, $data->idx);
-				$this->menu .= $data->html_end;
-			}
-			else
-			{
-				$this->menu .= $data->html;
-			}
-		}
-	}
-
-	private function _menu_build_raw($datas = array(), $parent_id = NULL, $idx = -1)
-	{
-		$menu = array();
-
-		if (count($datas) < 1)
-		{
-			$get_menu = $this->db_home->get_menu(array('is_admin' => 'N'));
-			$menu_build = $this->_menu_build_raw($get_menu->result());
-
-			return $menu_build;
-		}
-
-		$idx++;
-
-		foreach ($datas as $data)
-		{
-			if ($data->parent_id == $parent_id)
-			{
-				$children = $this->_menu_build_raw($datas, $data->id, $idx);
-
-				if ($children)
-				{
-					if ($idx == 0)
-					{
-						$html_start = '<li class="drop-down"><a href="'.$data->url.'">'.ucwords(strtolower($data->caption)).'</a><ul>';
-						$html_end = '</ul></li>';
-					}
-					elseif ($idx > 0)
-					{
-						$html_start = '<li class="drop-down"><a href="'.$data->url.'">'.ucwords(strtolower($data->caption)).'</a><ul>';
-						$html_end = '</ul></li>';
-					}
-
-					$data->idx = $idx;
-					$data->html_start = $html_start;
-					$data->data = $children;
-					$data->html_end = $html_end;
-				}
-				else
-				{
-					if ($idx == 0)
-					{
-						$html = '<li><a href="'.$data->url.'">'.ucwords(strtolower($data->caption)).'</a></li>';
-					}
-					elseif ($idx == 1)
-					{
-						$html = '<li><a href="'.$data->url.'">'.ucwords(strtolower($data->caption)).'</a></li>';
-					}
-					elseif ($idx > 1)
-					{
-						$html = '<li><a href="'.$data->url.'">'.ucwords(strtolower($data->caption)).'</a></li>';
-					}
-
-					$data->idx = $idx;
-					$data->html = $html;
-				}
-				$menu[] = $data;
-				
-			}
-		}
-		// exit;
-	
-		// $html = '<a href="'.site_url("auth/logout").'"><i class="fa fa-sign-out"></i> Logout</a>';
-		// $data->html = $html;
-		
-		// $menu[] = $data;
-		return $menu;
 	}
 	
 	protected function load_footer()

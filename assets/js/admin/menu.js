@@ -24,163 +24,103 @@ var uploadImage = function(image) {
     });
 };
 
-function doSearch(obj)
-{
-    var data = $(obj);
-    if(data.val().length > 2)
-    {
-        $.ajax({
-          url: siteUrl+'settings/menu/load_data_menu',
-          method: 'POST',
-          dataType: 'JSON',
-          data: {
-            action : 'load_data_menu',
-            'searchdata' : data.val(),
-        },
-          success: function(result) {
-              $('div.overlay').remove();
-              $('.reloadTableData').html(e);
-          },
-          error: function() {
-              $('div.overlay').remove();
-          }
-        });   
-    }
-}
+const _generate_menu = (data) => {
+    let treeMenu = _generate_tree_menu(data, null, 0);
 
-function generateDataTable(data)
-{
-    const $this = $('.reloadTableData tbody');
-
-        $this.html('');
-
-        let body = '';
-
-        $.each(data, (idx, item) => {
-            body += '<tr>';
-            body += '<td>' + item.no + '</td>';
-            body += '<td>' + item.bp_brm_num + '</td>';
-            body += '<td>' + item.bp_caption + '</td>';
-            body += '<td>' + item.bp_website + '</td>';
-            body += '<td>' + item.bp_link + '</td>';
-            body += '<td>' + item.bp_month + '</td>';
-            body += '<td>' + item.bp_year + '</td>';
-            body += '<td>' + item.start_date + '</td>';
-            body += '<td>' + item.end_date + '</td>';
-            body += '</tr>';
-        });
-
-        $this.html(body);
-}
-$(document).ready(function() {
-    
-    $('#showEntriesData').on('change',function(){
-        $('.box-body.pad').append('<div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>');
-        var val = $('#showEntriesData').val();
-
-        if(val !== "")
-        {
-          $.ajax({
-              url: siteUrl+'settings/menu/search_data',
-              method: 'POST',
-              // dataType: 'json',
-              data: {'is_admin' : val},
-              success: function(e) {
-                  console.log(e)
-                  $('div.overlay').remove();
-                  // console.log($('.reloadTableData').html(e));
-                  $('.reloadTableData').html(e);
-                  // alert('Data successfully saved');
-              },
-              error: function() {
-                  $('div.overlay').remove();
-                  // alert('Something wrong, please contact the administrators');
-              }
-          });            
-        }
-    });
-    $('#searchdata').on('keyup',function(){
-        doSearch(this);
+    $('.collaptable').find('tbody').html(treeMenu);
+     $('.collaptable').aCollapTable({
+        startCollapsed: true,
+        addColumn: false,
+        plusButton: '<span class="fa fa-plus"></span>',
+        minusButton: '<span class="fa fa-minus"></span>'
     }); 
-    // $('#searchdata').on('keypress',function(){
-    //     doSearch(this);
-    // });
-    $('#filterdata').submit(function(e){
-        $('.box-body.pad').append('<div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>');
-            e.preventDefault(); 
-         $.ajax({
-             url: siteUrl+'settings/menu/input_action',
-             type:"post",
-             data :new FormData(this),
-             processData:false,
-             contentType:false,
-             cache:false,
-             async:false,
-             dataType :'json',
-             success: function(response){
-                if(response.status)
-                {
-                    $('div.overlay').remove();
-                  alert("Input Data Berhasil.");
-                  window.location.replace(response.url);
-                }
-                else
-                {
-                    $('div.overlay').remove();
-                    alert("Input Data Gagal.");
-                }
+};
 
-           }
-         });
-    });
+const _generate_tree_menu = (datas, parentId, idx) => {
+    let strMenu = '';
 
-    if($('#txt_id_menu').val() !== '')
-    {
-         var id_parent_menu = $('#txt_id_parent').val();
-         var is_admin = $('#txt_position').val();
-        
-         if(is_admin){
-            $.ajax({
-                type:'POST',
-                url: siteUrl+'settings/menu/get_menu_option',
-                data:{'is_admin':is_admin,'id_parent_menu':id_parent_menu},
-                success:function(html){
-                    $('#txt_parent_id').html(html);
-                    
-                }
-            }); 
-        }else{
-            $('#txt_parent_id').html('<option value="">Pilih Position Terlebih Dahulu</option>');
-           
-        }
+    if (parentId == null || parentId == '' || parentId == ' ' || parentId == 0) {
+        parentId = null;
     }
 
-    $('#txt_position').on('change',function(){
-        var id_pos = $(this).val();
-       
-        if(id_pos){
-            $.ajax({
-                type:'POST',
-                url: siteUrl+'settings/menu/get_menu_option',
-                data:'is_admin='+id_pos,
-                success:function(html){
-                    $('#txt_parent_id').html(html);
-                    
+    idx++;
+
+    $.each(datas, (k, v) => {
+        if (v.m_parent_id == parentId) {
+            // console.log(parentId);
+            let children = _generate_tree_menu(datas, v.m_id, idx);
+
+            if (children != '') {
+                strMenu += '<tr data-id="' + v.m_id + '" data-parent="' + v.m_parent_id + '">';
+                    strMenu += '<td></td>';
+                    strMenu += '<td id="captionMenu"><b>' + v.m_caption + '</b></td>';
+                    strMenu += '<td>' + v.m_url + '</td>';
+                    strMenu += '<td>' + v.m_icon + '</td>';
+                    strMenu += '<td>' + v.m_description + '</td>';
+                    strMenu += '<td style="text-align:center;">';
+                        strMenu += '<div class="btn-group" role="group">'; 
+                            strMenu += '<button id="btnEdit" class="btn btn-success btn-sm" onClick=show_modal(' + v.m_id +',"Edit","edit")><i class="fa fa-edit"></i> Edit</button>';
+                            strMenu += '<button id="btnDelete" class="btn btn-danger btn-sm " onClick=delete_data(' + v.m_id +') ><i class="fa fa-trash-alt"></i> Delete</button >';
+                        strMenu += '</div>';
+                        strMenu += '</td >';
+                strMenu += '</tr>';
+
+                if (idx > 0) {
+                    strMenu += children;
                 }
-            }); 
-        }else{
-            $('#txt_parent_id').html('<option value="">Pilih Position Terlebih Dahulu</option>');
-           
+            } else {
+                if (parentId != null && parentId != '') {
+                    strMenu += '<tr data-id="' + v.m_id + '" data-parent="' + v.m_parent_id + '">';
+                        strMenu += '<td><i class="fa fa-angle-double-right"></i></td>';
+                        strMenu += '<td id="captionMenu">' + v.m_caption + '</td>';
+                        strMenu += '<td>' + v.m_url + '</td>';
+                        strMenu += '<td>' + v.m_icon + '</td>';
+                        strMenu += '<td>' + v.m_description +'</td>';
+                        strMenu += '<td style="text-align:center;">';
+                        strMenu += '<div class="btn-group" role="group">'; 
+                            strMenu += '<button id="btnEdit" class="btn btn-success btn-sm" onClick=show_modal(' + v.m_id +',"Edit","edit")><i class="fa fa-edit"></i> Edit</button>';
+                            strMenu += '<button id="btnDelete" class="btn btn-danger btn-sm" onClick=delete_data(' + v.m_id +') ><i class="fa fa-trash-alt"></i> Delete</button >';
+                        strMenu += '</div>';
+                        strMenu += '</td >';
+                    strMenu += '</tr >';
+                } else {
+                    strMenu += '<tr data-id="' + v.m_id + '" data-parent="">';
+                        strMenu += '<td><i class="fa fa-angle-double-right"></i></td>';
+                        strMenu += '<td id="captionMenu"><b>' + v.m_caption + '</b></td>';
+                        strMenu += '<td>' + v.m_url + '</td>';
+                        strMenu += '<td>' + v.m_icon + '</td>';
+                        strMenu += '<td>' + v.m_description + '</td>';
+                        strMenu += '<td style="text-align:center;">';
+                        strMenu += '<div class="btn-group" role="group">'; 
+                            strMenu += '<button id="btnEdit" class="btn btn-success btn-sm" onClick=show_modal(' + v.m_id +',"Edit","edit")><i class="fa fa-edit"></i> Edit</button>';
+                            strMenu += '<button id="btnDelete" class="btn btn-danger btn-sm" onClick=delete_data(' + v.m_id +') ><i class="fa fa-trash-alt"></i> Delete</button >';
+                        strMenu += '</div>';
+                        strMenu += '</td >';
+                    strMenu += '</tr >';
+                }
+            }
         }
     });
 
-    $('#is_admin').on('change',function(){
-       //  var new_href = window.location.href + "?is_admin="+ $('#is_admin').val();
-       location.reload(true);
-       // if(window.location.hostname == "localhost"){
-       //     window.location.href = window.location.href + "?single";
-       //  } 
-       // window.history.replaceState(null, null, "/another-new-url");
+    return strMenu;
+};
+
+$(document).ready(function() {
+
+    $.ajax({
+        url: siteUrl+'settings/menu/load_data_menu',
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+            action: 'load_data_menu'
+        },
+        success: function (result) {
+            if (result.success) {
+                _generate_menu(result.data);
+            }
+        },
+        error: function (error) {
+        }
     });
 
     $('.textarea').summernote({
@@ -220,61 +160,4 @@ $(document).ready(function() {
          });
     });
 
-
-    $('.filter-data-aa').click(function(){
-        console.log('fasd')
-      $('.box-body.pad').append('<div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>');
-      
-      var form = $('#filterdata');
-      var data = form.serializeArray();
-      var url = siteUrl +'data_penerima';
-
-          if($('#showEntries').val() !== "")
-          {
-              data.push({name: 'is_admin', value:$('#showEntries').val()});
-          }
-         
-      $.ajax({
-        url: './settings/menu/search_data',
-        method: 'POST',
-        // dataType: 'json',
-        data: data,
-        success: function(e) {
-          console.log(e)
-          $('div.overlay').remove();
-          $('.reloadTableData').html(e);
-          // alert('Data successfully saved');
-        },
-        error: function() {
-          $('div.overlay').remove();
-          // alert('Something wrong, please contact the administrators');
-        }
-      });
-    });
-
-    
-    $('#showEntries').on('change',function(){
-      $('.box-body.pad').append('<div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>');
-      var val = $('#showEntries').val();
-
-      if(val !== "")
-      {
-          $.ajax({
-              url: './settings/menu/search_data',
-              method: 'POST',
-              // dataType: 'json',
-              data: {'is_admin' : val},
-              success: function(e) {
-                  console.log(e)
-                  $('div.overlay').remove();
-                  $('.reloadTableData').html(e);
-                  // alert('Data successfully saved');
-              },
-              error: function() {
-                  $('div.overlay').remove();
-                  // alert('Something wrong, please contact the administrators');
-              }
-          });            
-      }
-    });
 });

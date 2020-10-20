@@ -3,39 +3,20 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Menu_model extends CI_Model {
-	public function get_data($limit="",$start="",$src="",$like="")
+	public function get_data($params = array())
 	{
-		$this->db->where('is_active', 'Y');
-		
-		if( ! empty($src))
+		$this->db->where('m_is_active', 'Y');
+
+		if( ! empty($params['like']) && isset($params['like']))
 		{
-			if($src == 'mm')
-			{
-				$this->db->where('is_admin', '');
-			}
-			elseif($src == 'all')
-			{
-				//$this->db->where('is_admin', '');
-			}
-			else
-			{
-				$this->db->where('is_admin', $src);
-			}
-			
+			$this->db->like('m_caption',$params['like']);
+			$this->db->or_like('m_url',$params['like']);
+			$this->db->or_like('m_description',$params['like']);
 		}
 
-
-		if( ! empty($like))
+		if( ! empty($params['limit']) && isset($params['limit']))
 		{
-			$this->db->like('caption',$like);
-			$this->db->or_like('url',$like);
-			$this->db->or_like('description',$like);
-			// }
-		}
-
-		if( ! empty($limit))
-		{
-			$this->db->limit($limit,$start);
+			$this->db->limit($params['limit'],$params['start']);
 		}
 
 		return $this->db->get('menu');
