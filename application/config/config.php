@@ -29,6 +29,10 @@ switch ($_SERVER['SERVER_ADMIN'])
     case 'admin@example.com':
 		$config['base_url'] = 'http://localhost/rab/'.BASE_URL;
 	break;
+
+	case 'diden89':
+		$config['base_url'] = 'http://rab.local'.BASE_URL;
+	break;
     
 	default:
 		$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/'.BASE_URL;
