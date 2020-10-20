@@ -119,7 +119,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <td class=""><?php echo ($dt['as_kepsek'] == 'Y') ? '<span style="color:green;">Yes</span>':'<span style="color:red;">No</span>'; ?></td>
                                     <td class=""><?php echo $dt['icon']; ?></td>
                                     <td style="text-align:center;"> 
-                                    <a href="<?php echo base_url('menu/cu_action/edit/'.$dt["id"].'');?>" class="fa btn btn-success fa-pencil"></a>
+                                    <a href="<?php echo base_url('settings/menu/cu_action/edit/'.$dt["id"].'');?>" class="fa btn btn-success fa-pencil"></a>
                                     <!-- <button type="button" onclick="delete_data('<?php// echo base_url();?>category/delete/<?php //echo $dt['id'];?>')" class="fa btn btn-danger fa-trash"></a>  -->
                                     </td>
                                     </tr>
@@ -140,6 +140,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
     <div class="box-footer">
-        <a href="<?php echo base_url('menu/cu_action/add');?>" class="btn btn-primary">Add</a>
+        <a href="<?php echo base_url('settings/menu/cu_action/add');?>" class="btn btn-primary">Add</a>
     </div>
 </section>

@@ -5,7 +5,7 @@ var uploadImage = function(image) {
     data.append("image", image);
     data.append('action', 'store_image');
     $.ajax({
-        url: siteUrl+'menu/store_image',
+        url: siteUrl+'settings/menu/store_image',
         cache: false,
         contentType: false,
         processData: false,
@@ -30,7 +30,7 @@ function doSearch(obj)
     if(data.val().length > 2)
     {
         $.ajax({
-          url: siteUrl+'menu/search_data',
+          url: siteUrl+'settings/menu/search_data',
           method: 'POST',
           // dataType: 'json',
           data: {'searchdata' : data.val()},
@@ -49,7 +49,7 @@ function doSearch(obj)
     else if(data.val().length == 0)
     {
         $.ajax({
-          url: siteUrl+'menu/search_data',
+          url: siteUrl+'settings/menu/search_data',
           method: 'POST',
           // dataType: 'json',
           data: {'searchdata' : ""},
@@ -75,7 +75,7 @@ $(document).ready(function() {
         if(val !== "")
         {
           $.ajax({
-              url: siteUrl+'menu/search_data',
+              url: siteUrl+'settings/menu/search_data',
               method: 'POST',
               // dataType: 'json',
               data: {'is_admin' : val},
@@ -103,7 +103,7 @@ $(document).ready(function() {
         $('.box-body.pad').append('<div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>');
             e.preventDefault(); 
          $.ajax({
-             url: siteUrl+'menu/input_action',
+             url: siteUrl+'settings/menu/input_action',
              type:"post",
              data :new FormData(this),
              processData:false,
@@ -136,7 +136,7 @@ $(document).ready(function() {
          if(is_admin){
             $.ajax({
                 type:'POST',
-                url: siteUrl+'menu/get_menu_option',
+                url: siteUrl+'settings/menu/get_menu_option',
                 data:{'is_admin':is_admin,'id_parent_menu':id_parent_menu},
                 success:function(html){
                     $('#txt_parent_id').html(html);
@@ -155,7 +155,7 @@ $(document).ready(function() {
         if(id_pos){
             $.ajax({
                 type:'POST',
-                url: siteUrl+'menu/get_menu_option',
+                url: siteUrl+'settings/menu/get_menu_option',
                 data:'is_admin='+id_pos,
                 success:function(html){
                     $('#txt_parent_id').html(html);
@@ -189,7 +189,7 @@ $(document).ready(function() {
         $('.menu.box').append('<div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>');
             e.preventDefault(); 
          $.ajax({
-             url: siteUrl+'menu/input_action',
+             url: siteUrl+'settings/menu/input_action',
              type:"post",
              data :new FormData(this),
              processData:false,
@@ -229,7 +229,7 @@ $(document).ready(function() {
           }
          
       $.ajax({
-        url: './menu/search_data',
+        url: './settings/menu/search_data',
         method: 'POST',
         // dataType: 'json',
         data: data,
@@ -254,7 +254,7 @@ $(document).ready(function() {
       if(val !== "")
       {
           $.ajax({
-              url: './menu/search_data',
+              url: './settings/menu/search_data',
               method: 'POST',
               // dataType: 'json',
               data: {'is_admin' : val},

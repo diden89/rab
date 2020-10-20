@@ -19,7 +19,7 @@ class Menu extends MY_Controller {
 			//pagination
 			//konfigurasi pagination
 
-	        $config['base_url'] = base_url('menu/index'); //site url
+	        $config['base_url'] = base_url('settings/menu/index'); //site url
 	        $config['total_rows'] = $total_data; //total row
 	        $config['per_page'] = 10;  //show record per halaman
 	        $config["uri_segment"] = 3;  // uri parameter
@@ -170,7 +170,7 @@ class Menu extends MY_Controller {
 	            <td class=""><?php echo ($dt['as_kepsek'] == 'Y') ? '<span style="color:green;">Yes</span>':'<span style="color:red;">No</span>'; ?></td>
 	            <td class=""><?php echo $dt['icon']; ?></td>
 	            <td style="text-align:center;"> 
-	            <a href="<?php echo base_url('menu/cu_action/edit/'.$dt["id"].'');?>" class="fa btn btn-success fa-pencil"></a>
+	            <a href="<?php echo base_url('settings/menu/cu_action/edit/'.$dt["id"].'');?>" class="fa btn btn-success fa-pencil"></a>
 	            <!-- <button type="button" onclick="delete_data('<?php// echo base_url();?>category/delete/<?php //echo $dt['id'];?>')" class="fa btn btn-danger fa-trash"></a>  -->
 	            </td>
 	            </tr>
@@ -217,7 +217,7 @@ class Menu extends MY_Controller {
 			
 			if($cond !== 'add')
 			{
-				$id = $this->uri->segment(4);
+				$id = $this->uri->segment(5);
 				$get_data_edit = $this->mm->get_data_edit($id);
 				$this->store_params['data'] = $get_data_edit->row();
 			}
@@ -299,7 +299,7 @@ class Menu extends MY_Controller {
 
 	            echo json_encode(array(
 	            	"status" => $result,
-	            	"url" => base_url('menu')
+	            	"url" => base_url('settings/menu')
 	            ));
 			}
 			else
@@ -310,7 +310,7 @@ class Menu extends MY_Controller {
 
 	            echo json_encode(array(
 	            	"status" => $result,
-	            	"url" => base_url('menu')
+	            	"url" => base_url('settings/menu')
 	            ));
 			}
 
@@ -326,7 +326,7 @@ class Menu extends MY_Controller {
 
 	            echo json_encode(array(
 	            	"status" => $result,
-	            	"url" => base_url('menu')
+	            	"url" => base_url('settings/menu')
 	            ));
 	        }
 	        else
@@ -338,7 +338,7 @@ class Menu extends MY_Controller {
 
 	            echo json_encode(array(
 	            	"status" => $result,
-	            	"url" => base_url('menu')
+	            	"url" => base_url('settings/menu')
 	            ));
 	        }
 		}
