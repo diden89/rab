@@ -98,7 +98,7 @@
 		</div>
 		<footer class="main-footer">
 			<!-- <div class="pull-right hidden-xs">Developed by Al Gaza Solution</div> -->
-			<strong>Copyright &copy; 2020 <a href="<?php echo base_url(); ?>">Sistem Presensi Akademik MAN 2 Ketapang</a>.</strong> All rights reserved.
+			<strong>Copyright &copy; 2020 <a href="<?php echo base_url(); ?>">Aplikasi RAB</a>.</strong> All rights reserved.
 		</footer>
 	</div>
 	<script src="<?php echo base_url('assets/templates/admin'); ?>/bower_components/jquery/dist/jquery.min.js"></script>

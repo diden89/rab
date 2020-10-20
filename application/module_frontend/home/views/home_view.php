@@ -5,36 +5,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <section class="home">
 	<p>Selamat datang, <b><?php echo $this->session->userdata('fullname'); ?></b>!</p>
 	
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-md-6 col-sm-12 col-xs-24">
-			<!-- small box -->
+	
           	<div class="small-box bg-aqua">
            	 <div class="inner">
-              <h3><?php echo $total_guru;?></h3>
+              <h3><?php //echo $total_guru;?></h3>
 
               <p>Tenaga Pengajar</p>
             	</div>
 	            <div class="icon">
 	              <i class="ion ion-cube"></i>
 	            </div>
-           	 <a href="<?php echo base_url('data_pendonor');?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+           	 <a href="<?php //echo base_url('data_pendonor');?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           	</div>
 		</div>
 		<div class="col-md-6 col-sm-12 col-xs-24">
-			<!-- small box -->
+	
           	<div class="small-box bg-red">
            	 <div class="inner">
-              <h3><?php echo $total_anak;?></h3>
+              <h3><?php //echo $total_anak;?></h3>
 
               <p>Siswa</p>
             	</div>
 	            <div class="icon">
 	              <i class="ion ion-clipboard"></i>
 	            </div>
-           	 <a href="<?php echo base_url('data_penerima');?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+           	 <a href="<?php //echo base_url('data_penerima');?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           	</div>
 		</div>
-	</div>
+	</div> -->
 
     <!-- <section class="col-lg-5 connectedSortable ui-sortable">
         
