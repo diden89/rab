@@ -48,10 +48,10 @@ class Auth extends MY_Controller {
 		$this->do_logout();
 	}
 
-	private function _view($view)
-	{
-		$this->_header['title'] = isset($this->_header['title']) ? $this->_header['title'] : TITLE;
+	// private function _view($view)
+	// {
+	// 	$this->_header['title'] = isset($this->_header['title']) ? $this->_header['title'] : TITLE;
 		
-		$this->load->view($view, $this->_header);
-	}
+	// 	$this->load->view($view, $this->_header);
+	// }
 }
