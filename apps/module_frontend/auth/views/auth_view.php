@@ -13,7 +13,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>NOOBS_TITLE_1</title>
+    <title><?= NOOBS_TITLE ?></title>
     <meta name="author" content="phpmu.com">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
    	<meta charset="UTF-8">
@@ -37,13 +37,13 @@
                     <img src="<?php echo base_url('images/'); ?>logo.png" alt="IMG">
                 </div>
 
-                <form class="login100-form validate-form" action="<?php echo site_url('auth/login'); ?>" method="post" autoComplete = "off">
+                <form id="formLogin" action="#" method="post" autocomplete="off">
                     <span class="login100-form-title">
                         Login
                     </span>
 
                     <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="txt_username" placeholder="Username">
+                        <input class="input100" type="text"  id="txtUsername" name="txt_username" placeholder="Username">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-users" aria-hidden="true"></i>
@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                        <input class="input100" type="password" name="txt_password" placeholder="Password">
+                        <input class="input100" type="password" id="txtPassword" name="txt_password" placeholder="Password">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-lock" aria-hidden="true"></i>
@@ -59,7 +59,8 @@
                     </div>
                     
                     <div class="container-login100-form-btn">
-                        <button name='login' type="submit" class="login100-form-btn">
+                        <input type="hidden" name="action" value="do_login">
+                        <button type="submit" class="login100-form-btn">
                             Login
                         </button>
                     </div>
@@ -74,12 +75,7 @@
                     </div>
 
                     <div class="text-center p-t-136">
-                        <!-- <a class="txt2" href="#">
-                            Create your Account
-                            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-                        </a> -->
                     </div>
-                    <input type="hidden" name="action" value="login">
                 </form>
             </div>
         </div>
@@ -98,6 +94,10 @@
     <script src="<?php echo base_url('vendors/template/login/'); ?>vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url('vendors/template/login/'); ?>vendor/select2/select2.min.js"></script>
 	<script src="<?php echo base_url('vendors/template/login/'); ?>vendor/tilt/tilt.jquery.min.js"></script>
+    <script src="<?php echo base_url('scripts/custom_validity.js'); ?>"></script>
+    <script src="<?php echo base_url('vendors/jquery_waitme/waitMe.js'); ?>"></script>
+    <script src="<?php echo base_url('scripts/scripts.js'); ?>"></script>
+    <script src="<?php echo base_url('scripts/auth/auth.js'); ?>"></script>
     <script >
         $('.js-tilt').tilt({
             scale: 1.1
