@@ -142,7 +142,7 @@ const _generate_tree_menu = (datas, parentId, idx) => {
                     strMenu += '<td style="text-align:center;">';
                         strMenu += '<div class="btn-group" role="group">'; 
                             strMenu += '<button id="btnEdit" class="btn btn-success btn-sm" onClick=show_modal(' + v.m_id +',"Edit","edit")><i class="fa fa-edit"></i> Edit</button>';
-                            strMenu += '<button id="btnDelete" class="btn btn-danger btn-sm " onClick=delete_data(' + v.m_id +') ><i class="fa fa-trash-alt"></i> Delete</button >';
+                            strMenu += '<button id="btnDelete" class="btn btn-danger btn-sm " onClick=delete_data(' + v.m_id +') ><i class="fa fa-trash"></i> Delete</button >';
                         strMenu += '</div>';
                         strMenu += '</td >';
                 strMenu += '</tr>';
@@ -161,7 +161,7 @@ const _generate_tree_menu = (datas, parentId, idx) => {
                         strMenu += '<td style="text-align:center;">';
                         strMenu += '<div class="btn-group" role="group">'; 
                             strMenu += '<button id="btnEdit" class="btn btn-success btn-sm" onClick=show_modal(' + v.m_id +',"Edit","edit")><i class="fa fa-edit"></i> Edit</button>';
-                            strMenu += '<button id="btnDelete" class="btn btn-danger btn-sm" onClick=delete_data(' + v.m_id +') ><i class="fa fa-trash-alt"></i> Delete</button >';
+                            strMenu += '<button id="btnDelete" class="btn btn-danger btn-sm" onClick=delete_data(' + v.m_id +') ><i class="fa fa-trash"></i> Delete</button >';
                         strMenu += '</div>';
                         strMenu += '</td >';
                     strMenu += '</tr >';
@@ -175,7 +175,7 @@ const _generate_tree_menu = (datas, parentId, idx) => {
                         strMenu += '<td style="text-align:center;">';
                         strMenu += '<div class="btn-group" role="group">'; 
                             strMenu += '<button id="btnEdit" class="btn btn-success btn-sm" onClick=show_modal(' + v.m_id +',"Edit","edit")><i class="fa fa-edit"></i> Edit</button>';
-                            strMenu += '<button id="btnDelete" class="btn btn-danger btn-sm" onClick=delete_data(' + v.m_id +') ><i class="fa fa-trash-alt"></i> Delete</button >';
+                            strMenu += '<button id="btnDelete" class="btn btn-danger btn-sm" onClick=delete_data(' + v.m_id +') ><i class="fa fa-trash"></i> Delete</button >';
                         strMenu += '</div>';
                         strMenu += '</td >';
                     strMenu += '</tr >';
