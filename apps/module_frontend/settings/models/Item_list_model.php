@@ -54,7 +54,7 @@ class Item_list_model extends NOOBS_Model
 
 		$this->edit(['il_is_active' => 'N'], "il_id = {$params['txt_id']}");
 		
-		return $this->load_data_item();
+		return $this->load_data_item_list();
 	}
 
 	public function load_data($params = array())

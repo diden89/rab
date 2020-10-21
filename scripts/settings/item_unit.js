@@ -5,48 +5,48 @@
  * @edit Diden89
  * @version 1.0
  * @access Public
- * @path /ahp_merekdagang_frontend/scripts/settings/similar_letters.js
+ * @path /ahp_merekdagang_frontend/scripts/trademark/similar_letters.js
  */
 
-const itemList = {
-	selectedData: '',
+const similarWords = {
+	selectedWord: '',
 	init: function() {
 		const me = this;
 
-		$('#btnSearchItem').click(function(e) {
+		$('#btnSearchWord').click(function(e) {
 			e.preventDefault();
-			me.loadDataItem(this);
+			me.loadDataWord(this);
 		});
 
-		$('#txtList').keydown(function(e) {
+		$('#txtWord').keydown(function(e) {
 			const keyCode = (e.keyCode ? e.keyCode : e.which);
 
 			if (keyCode == 13) {
-				$('#btnSearchItem').trigger('click');
+				$('#btnSearchWord').trigger('click');
 			}
 		});
 
-		$('#btnAddItem').click(function(e) {
+		$('#btnAddWord').click(function(e) {
 			e.preventDefault();
-			me.showItem(this);
+			me.showWord(this);
 		});
 	},
-	loadDataItem: function(el) {
+	loadDataWord: function(el) {
 		const me = this;
 		const $this = $(el);
 
 		$.ajax({
-			url: siteUrl('settings/item_list/load_data_item_list'),
+			url: siteUrl('trademark/ignored_words/load_data_word'),
 			type: 'POST',
 			dataType: 'JSON',
 			data: {
-				action: 'load_data_item_list',
-				txt_item: $('#txtList').val()
+				action: 'load_data_word',
+				txt_word: $('#txtWord').val()
 			},
 			success: function(result) {
-				$('#ignoredItemDataTable tbody').html('');
+				$('#ignoredWordsDataTable tbody').html('');
 
-				if (result.success !== false) me._generateItemDataTable(result.data);
+				if (result.success !== false) me._generateWordDataTable(result.data);
 				else if (typeof(result.msg) !== 'undefined') toastr.error(result.msg);
 				else toastr.error(msgErr);
 			},
@@ -55,24 +55,21 @@ const itemList = {
 			}
 		});
 	},
-	_generateItemDataTable: (data) => {
-		const $this = $('#ignoredItemDataTable tbody');
+	_generateWordDataTable: (data) => {
+		const $this = $('#ignoredWordsDataTable tbody');
 
 		$this.html('');
 
 		let body = '';
 
 		$.each(data, (idx, item) => {
-			var price = $.number(item.il_price);
 			body += '<tr>';
 			body += '<td>' + item.no + '</td>';
-			body += '<td>' + item.il_item_name + '</td>';
-			body += '<td>' + price + '</td>';
-			body += '<td>' + item.un_name + '</td>';
+			body += '<td>' + item.words + '</td>';
 			body += '<td>';
 				body += '<div class="btn-group btn-group-sm" role="group" aria-label="Action Button">';
-					body += '<button type="button" class="btn btn-success" data-id="' + item.id + '" data-item="' + item.il_item_name + '" onclick="itemList.showItem(this, \'edit\');"><i class="fas fa-edit"></i></button>';
-					body += '<button type="button" class="btn btn-danger" data-id="' + item.id + '" data-item="' + item.il_item_name + '" onclick="itemList.deleteDataItem(this);"><i class="fas fa-trash-alt"></i></button>';
+					body += '<button type="button" class="btn btn-success" data-id="' + item.id + '" data-words="' + item.words + '" onclick="similarWords.showWord(this, \'edit\');"><i class="fas fa-edit"></i></button>';
+					body += '<button type="button" class="btn btn-danger" data-id="' + item.id + '" data-words="' + item.words + '" onclick="similarWords.deleteDataWord(this);"><i class="fas fa-trash-alt"></i></button>';
 				body += '</div>';
 			body += '</td>';
 			body += '</tr>';
@@ -80,28 +77,24 @@ const itemList = {
 
 		$this.html(body);
 	},
-	showItem: function(el, mode) {
+	showWord: function(el, mode) {
 		const me = this;
-		let params = {action: 'load_item_form'};
-		let title = 'Add New';
+		let params = {action: 'load_word_form'};
+		let title = 'Add new';
 
 		if (typeof(mode) !== 'undefined') {
 			params.mode = mode;
 			title = 'Edit';
-			params.txt_item = $(el).data('item');
+			params.txt_word = $(el).data('words');
 			params.txt_id = $(el).data('id');
-		}
-		else
-		{
-			params.mode = 'add';
 		}
 
 		$.popup({
-			title: title + ' Item',
-			id: 'showItem',
-			size: 'medium',
+			title: title + ' Words',
+			id: 'showWord',
+			size: 'small',
 			proxy: {
-				url: siteUrl('settings/item_list/load_item_form'),
+				url: siteUrl('trademark/ignored_words/load_word_form'),
 				params: params
 			},
 			buttons: [{
@@ -116,7 +109,7 @@ const itemList = {
 						const formData = new FormData(form[0]);
 
 						$.ajax({
-							url: siteUrl('settings/item_list/store_data_item'),
+							url: siteUrl('trademark/ignored_words/store_data_word'),
 							type: 'POST',
 							dataType: 'JSON',
 							data: formData,
@@ -126,7 +119,7 @@ const itemList = {
 							success: function(result) {
 								if (result.success) {
 									toastr.success(msgSaveOk);
-									me._generateItemDataTable(result.data);
+									me._generateWordDataTable(result.data);
 								} else if (typeof(result.msg) !== 'undefined') toastr.error(result.msg);
 								else toastr.error(msgErr);
 
@@ -150,7 +143,7 @@ const itemList = {
 			}]
 		});
 	},
-	deleteDataItem: function(el) {
+	deleteDataWord: function(el) {
 		const me = this;
 		const $this = $(el);
 
@@ -165,17 +158,17 @@ const itemList = {
 		}).then((result) => {
 			if (result.value) {
 				$.ajax({
-					url: siteUrl('settings/item_list/delete_data_item'),
+					url: siteUrl('trademark/ignored_words/delete_data_word'),
 					type: 'POST',
 					dataType: 'JSON',
 					data: {
-						action: 'delete_data_item',
+						action: 'delete_data_word',
 						txt_id: $this.data('id')
 					},
 					success: function(result) {
-						$('#ignoredItemDataTable tbody').html('');
+						$('#ignoredWordsDataTable tbody').html('');
 						
-						if (result.success) me._generateItemDataTable(result.data);
+						if (result.success) me._generateWordDataTable(result.data);
 						else if (typeof(result.msg) !== 'undefined') toastr.error(result.msg);
 						else toastr.error(msgErr);
 					},
@@ -189,5 +182,5 @@ const itemList = {
 };
 
 $(document).ready(function() {
-	itemList.init();
+	similarWords.init();
 });
