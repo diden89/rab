@@ -69,7 +69,7 @@ $avatar = empty($this->session->userdata('user_img')) ? 'unknown.png' : $this->s
 			<aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-dark-info">
 				<a href="<?php echo base_url(); ?>" class="brand-link">
 					<!-- <img src="<?php echo base_url('images/logo.png'); ?>" alt="Brand Logo" class="brand-image"> -->
-					<span class="brand-text font-weight-light" style="">Automatic TM Watch Engine</span>
+					<span class="brand-text font-weight-light" style=""><?= NOOBS_TITLE_1 ?></span>
 				</a>
 				<div class="sidebar">
 					<div class="user-panel mt-3 pb-3 mb-3 d-flex">

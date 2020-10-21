@@ -5,7 +5,7 @@
  * ---------------------------------------------------------------
  */
 	$noobs_title = 'Apliaksi RAB';
-	$noobs_title_1 = 'Automatic TM Watch Engine';
+	$noobs_title_1 = 'Aplikasi RAB';
 	$noobs_title_2 = 'Selamat Datang di Aplikasi RAB';
 
 /*!
