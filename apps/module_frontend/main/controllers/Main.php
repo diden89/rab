@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 /*!
- * @package Merek Dagang
+ * @package RAB
  * @copyright Noobscript
  * @author Sikelopes
  * @version 1.0

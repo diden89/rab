@@ -1,4 +1,4 @@
-# Merek Dagang HKI Admin Panel
+# RAB Admin Panel
 
 Module - Module
 1. [ANDI] Desain halaman login, pembuatan module pengaturan user (change password) pada header, merapihkan halaman dashboard.

@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*!
- * @package Merek Dagang
+ * @package RAB
  * @copyright Noobscript
  * @author Sikelopes
  * @edit Diden89

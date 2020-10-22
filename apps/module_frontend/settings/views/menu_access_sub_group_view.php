@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*!
- * @package Merek Dagang
+ * @package RAB
  * @copyright Noobscript
  * @author diden89
  * @version 1.0
@@ -38,7 +38,7 @@
 								</thead>
 								<tbody></tbody>
 							</table>
-							<div class="btn-group" role="group" aria-label="Merek Dagang Button Group">
+							<div class="btn-group" role="group" aria-label="RAB Button Group">
 								<input type="hidden" name="action" value="store_data">
 								<button type="submit" id="btnSave" class="btn merekdagang-grid-btn btn-primary btn-md" disabled on><i class="fas fa-save"></i> Save</button>
 							</div>

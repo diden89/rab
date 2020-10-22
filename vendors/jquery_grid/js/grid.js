@@ -1,5 +1,5 @@
 /*!
- * @package Merek Dagang
+ * @package RAB
  * @copyright Noobscript
  * @author Andy1t
  * @version 1.0
@@ -206,7 +206,7 @@
 			var marginCLass = 'btn-grid-merekdagang-margin';
 
 			if (group) {
-				html += '<div class="btn-group" role="group" aria-label="Merek Dagang Button Group">';
+				html += '<div class="btn-group" role="group" aria-label="RAB Button Group">';
 				marginCLass = '';
 			}
 

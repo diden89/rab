@@ -1,5 +1,5 @@
 /*!
- * @package Merek Dagang
+ * @package RAB
  * @copyright Noobscript
  * @author diden89
  * @version 1.0
