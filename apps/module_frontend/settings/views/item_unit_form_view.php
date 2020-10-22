@@ -10,18 +10,18 @@
  */
 ?>
 
-<form role="form" id="addWord" autocomplete="off">
-	<input type="hidden" name="action" value="store_data_word">
+<form role="form" id="addUnit" autocomplete="off">
+	<input type="hidden" name="action" value="store_data_item_unit">
 
-	<?php if (isset($txt_word)): ?>
+	<?php if (isset($txt_unit)): ?>
 		<input type="hidden" name="mode" value="edit">
 		<input type="hidden" name="txt_id" value="<?php echo $txt_id; ?>">
 	<?php endif; ?>
 	
 	<div class="form-group row">
-		<label for="caption" class="col-3 col-form-label">Words</label>
+		<label for="caption" class="col-3 col-form-label">Unit Name</label>
 		<div class="col-9">
-			<input type="text" id="txtWord" name="txt_word" class="form-control" required="required" value="<?php echo isset($txt_word) ? $txt_word : ''; ?>">
+			<input type="text" id="txtUnit" name="txt_unit" class="form-control" required="required" value="<?php echo isset($txt_unit) ? $txt_unit : ''; ?>">
 		</div>
 	</div>
 </form>

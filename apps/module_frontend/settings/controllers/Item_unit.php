@@ -6,7 +6,7 @@
  * @edit Diden89
  * @version 1.0
  * @access Public
- * @path /ahp_merekdagang_frontend/apps/module_frontend/trademark/controllers/Item_unit.php
+ * @path /ahp_merekdagang_frontend/apps/module_frontend/settings/controllers/Item_unit.php
  */
 
 class Item_unit extends NOOBS_Controller
@@ -14,29 +14,29 @@ class Item_unit extends NOOBS_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('trademark/ignored_words_model', 'db_ignored_words');
+		$this->load->model('settings/item_unit_model', 'db_item_unit');
 	}
 
 	public function index()
 	{
-		$this->store_params['header_title'] = 'Ignored Words';
+		$this->store_params['header_title'] = 'Item Unit';
 		$this->store_params['breadcrumb'] = array(
 			array('', 'Home'),
-			array('trademark/ignored_words', 'Ignored Words')
+			array('settings/item_unit', 'Item Unit')
 		);
 
 		$this->store_params['source_bot'] = array(
-			'<script src="'.base_url('scripts/trademark/ignored_words.js').'"></script>'
+			'<script src="'.base_url('scripts/settings/item_unit.js').'"></script>'
 		);
 
-		$this->store_params['words'] = [];
+		$this->store_params['unit'] = [];
 
-		$load_data_word = $this->db_ignored_words->load_data_word();
+		$load_data_item_unit = $this->db_item_unit->load_data_item_unit();
 
-		if ($load_data_word->num_rows() > 0)
+		if ($load_data_item_unit->num_rows() > 0)
 		{
 			$num = 0;
-			$result = $load_data_word->result();
+			$result = $load_data_item_unit->result();
 
 			foreach ($result as $k => $v)
 			{
@@ -45,33 +45,33 @@ class Item_unit extends NOOBS_Controller
 				$v->num = $num;
 			}
 
-			$this->store_params['words'] = $result;
+			$this->store_params['unit'] = $result;
 		}
 
-		$this->view('ignored_words_view');
+		$this->view('item_unit_view');
 	}
 
-	public function load_word_form()
+	public function load_item_unit_form()
 	{
-		if (isset($_POST['action']) && $_POST['action'] == 'load_word_form')
+		if (isset($_POST['action']) && $_POST['action'] == 'load_item_unit_form')
 		{
 			$post = $this->input->post(NULL, TRUE);
 
-			$this->_view('ignored_words_form_view', $post);
+			$this->_view('item_unit_form_view', $post);
 		}
 		else $this->show_404();
 	}
 
-	public function load_data_word()
+	public function load_data_item_unit()
 	{
-		if (isset($_POST['action']) && $_POST['action'] == 'load_data_word')
+		if (isset($_POST['action']) && $_POST['action'] == 'load_data_item_unit')
 		{
 			$post = $this->input->post(NULL, TRUE);
-			$load_data_word = $this->db_ignored_words->load_data_word($post);
+			$load_data_item_unit = $this->db_item_unit->load_data_item_unit($post);
 
-			if ($load_data_word->num_rows() > 0) 
+			if ($load_data_item_unit->num_rows() > 0) 
 			{
-				$result = $load_data_word->result();
+				$result = $load_data_item_unit->result();
 				$number = 1;
 
 				foreach ($result as $k => $v)
@@ -88,16 +88,16 @@ class Item_unit extends NOOBS_Controller
 		else $this->show_404();
 	}
 
-	public function store_data_word()
+	public function store_data_item_unit()
 	{
-		if (isset($_POST['action']) && $_POST['action'] == 'store_data_word')
+		if (isset($_POST['action']) && $_POST['action'] == 'store_data_item_unit')
 		{
 			$post = $this->input->post(NULL, TRUE);
-			$store_data_word = $this->db_ignored_words->store_data_word($post);
+			$store_data_item_unit = $this->db_item_unit->store_data_item_unit($post);
 
-			if ($store_data_word->num_rows() > 0) 
+			if ($store_data_item_unit->num_rows() > 0) 
 			{
-				$result = $store_data_word->result();
+				$result = $store_data_item_unit->result();
 				$number = 1;
 
 				foreach ($result as $k => $v)
@@ -114,16 +114,16 @@ class Item_unit extends NOOBS_Controller
 		else $this->show_404();
 	}
 
-	public function delete_data_word()
+	public function delete_data_item_unit()
 	{
-		if (isset($_POST['action']) && $_POST['action'] == 'delete_data_word')
+		if (isset($_POST['action']) && $_POST['action'] == 'delete_data_item_unit')
 		{
 			$post = $this->input->post(NULL, TRUE);
-			$delete_data_word = $this->db_ignored_words->delete_data_word($post);
+			$delete_data_item_unit = $this->db_item_unit->delete_data_item_unit($post);
 
-			if ($delete_data_word->num_rows() > 0) 
+			if ($delete_data_item_unit->num_rows() > 0) 
 			{
-				$result = $delete_data_word->result();
+				$result = $delete_data_item_unit->result();
 				$number = 1;
 
 				foreach ($result as $k => $v)

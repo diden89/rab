@@ -6,67 +6,67 @@
  * @edit Diden89
  * @version 1.0
  * @access Public
- * @path /ahp_merekdagang_frontend/apps/module_frontend/trademark/models/Ignored_words_model.php
+ * @path /ahp_merekdagang_frontend/apps/module_frontend/trademark/models/Item_unit_model.php
  */
 
-class Ignored_words_model extends NOOBS_Model
+class Item_unit_model extends NOOBS_Model
 {
-	public function load_data_word($params = array())
+	public function load_data_item_unit($params = array())
 	{
-		if (isset($params['txt_word']) && ! empty($params['txt_word']))
+		if (isset($params['txt_unit']) && ! empty($params['txt_unit']))
 		{
-			$this->db->where('iw_word', strtoupper($params['txt_word']));
+			$this->db->where('un_name', strtoupper($params['txt_unit']));
 		}
 
 		if (isset($params['txt_id']) && ! empty($params['txt_id']))
 		{
-			$this->db->where('iw_id', strtoupper($params['txt_id']));
+			$this->db->where('un_id', strtoupper($params['txt_id']));
 		}
 
-		$this->db->select("iw_id AS id, iw_word AS words", FALSE);
-		$this->db->where('iw_is_active', 'Y');
-		$this->db->order_by('iw_word', 'ASC');
+		$this->db->select("un_id AS id, un_name", FALSE);
+		$this->db->where('un_is_active', 'Y');
+		$this->db->order_by('un_name', 'ASC');
 
-		return $this->db->get('ignored_words');
+		return $this->db->get('unit');
  	}
 
 	public function store_data_word($params = array())
 	{
-		$this->table = 'ignored_words';
+		$this->table = 'unit';
 
 		if (isset($params['mode']) && $params['mode'] == 'edit')
 		{
 			$id = $params['txt_id'];
 
-			$this->edit(['iw_word' => strtoupper($params['txt_word'])], "iw_id = {$id}");
+			$this->edit(['un_word' => strtoupper($params['txt_unit'])], "un_id = {$id}");
 		}
-		else $this->add(['iw_word' => strtoupper($params['txt_word'])]);
+		else $this->add(['un_word' => strtoupper($params['txt_unit'])]);
 
-		return $this->load_data_word();
+		return $this->load_data_item_unit();
 	}
 
 	public function delete_data_word($params = array())
 	{
-		$this->table = 'ignored_words';
+		$this->table = 'unit';
 
-		$this->edit(['iw_is_active' => 'N'], "iw_id = {$params['txt_id']}");
+		$this->edit(['un_is_active' => 'N'], "un_id = {$params['txt_id']}");
 		
-		return $this->load_data_word();
+		return $this->load_data_item_unit();
 	}
 
 	public function load_data($params = array())
 	{
-		$this->db->where('iw_word', strtoupper($params['txt_word']));
-		$this->db->where('iw_is_active', 'Y');
+		$this->db->where('un_word', strtoupper($params['txt_unit']));
+		$this->db->where('un_is_active', 'Y');
 
-		return $this->db->get('ignored_words');
+		return $this->db->get('unit');
  	}
 
 	public function delete_data($params = array())
 	{
-		$this->table = 'ignored_words';
+		$this->table = 'unit';
 
-		$this->db->where('iw_id', $params['txt_id']);
+		$this->db->where('un_id', $params['txt_id']);
 
 		$qry = $this->db->get($this->table);
 
@@ -74,28 +74,28 @@ class Ignored_words_model extends NOOBS_Model
 		{
 			$row = $qry->row();
 
-			$exp = explode(';', $row->iw_similar_letter);
+			$exp = explode(';', $row->un_similar_letter);
 			$data = [];
 
 			foreach ($exp as $k => $v)
 			{
-				if ($v == $params['txt_word']) continue;
+				if ($v == $params['txt_unit']) continue;
 
 				$data[] = $v;
 			}
 
-			$this->edit(['iw_similar_letter' => implode(';', $data)], "iw_id = {$params['txt_id']}");
+			$this->edit(['un_similar_letter' => implode(';', $data)], "un_id = {$params['txt_id']}");
 
-			return $this->load_data(['txt_word' => $row->iw_word]);
+			return $this->load_data(['txt_unit' => $row->un_word]);
 		}
 		return FALSE;
 	}
 
 	public function store_data($params = array())
 	{
-		$this->table = 'ignored_words';
+		$this->table = 'unit';
 
-		$this->db->where('iw_word', $params['txt_word']);
+		$this->db->where('un_word', $params['txt_unit']);
 
 		$qry = $this->db->get($this->table);
 
@@ -103,9 +103,9 @@ class Ignored_words_model extends NOOBS_Model
 		{
 			$row = $qry->row();
 
-			$this->edit(['iw_similar_letter' => $row->iw_similar_letter.';'.$params['txt_similar_letter']], "iw_id = {$row->iw_id}");
+			$this->edit(['un_similar_letter' => $row->un_similar_letter.';'.$params['txt_similar_letter']], "un_id = {$row->un_id}");
 
-			return $this->load_data(['txt_word' => $row->iw_word]);
+			return $this->load_data(['txt_unit' => $row->un_word]);
 		}
 		return FALSE;
 	}

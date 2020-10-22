@@ -8,25 +8,24 @@
  * @path /ahp_merekdagang_frontend/scripts/trademark/similar_letters.js
  */
 
-const similarWords = {
-	selectedWord: '',
+const itemUnit = {
 	init: function() {
 		const me = this;
 
-		$('#btnSearchWord').click(function(e) {
+		$('#btnSearchUnit').click(function(e) {
 			e.preventDefault();
 			me.loadDataWord(this);
 		});
 
-		$('#txtWord').keydown(function(e) {
+		$('#txtUnit').keydown(function(e) {
 			const keyCode = (e.keyCode ? e.keyCode : e.which);
 
 			if (keyCode == 13) {
-				$('#btnSearchWord').trigger('click');
+				$('#btnSearchUnit').trigger('click');
 			}
 		});
 
-		$('#btnAddWord').click(function(e) {
+		$('#btnAddUnit').click(function(e) {
 			e.preventDefault();
 			me.showWord(this);
 		});
@@ -41,10 +40,10 @@ const similarWords = {
 			dataType: 'JSON',
 			data: {
 				action: 'load_data_word',
-				txt_word: $('#txtWord').val()
+				txt_word: $('#txtUnit').val()
 			},
 			success: function(result) {
-				$('#ignoredWordsDataTable tbody').html('');
+				$('#itemUnitDataTable tbody').html('');
 
 				if (result.success !== false) me._generateWordDataTable(result.data);
 				else if (typeof(result.msg) !== 'undefined') toastr.error(result.msg);
@@ -56,7 +55,7 @@ const similarWords = {
 		});
 	},
 	_generateWordDataTable: (data) => {
-		const $this = $('#ignoredWordsDataTable tbody');
+		const $this = $('#itemUnitDataTable tbody');
 
 		$this.html('');
 
@@ -68,8 +67,8 @@ const similarWords = {
 			body += '<td>' + item.words + '</td>';
 			body += '<td>';
 				body += '<div class="btn-group btn-group-sm" role="group" aria-label="Action Button">';
-					body += '<button type="button" class="btn btn-success" data-id="' + item.id + '" data-words="' + item.words + '" onclick="similarWords.showWord(this, \'edit\');"><i class="fas fa-edit"></i></button>';
-					body += '<button type="button" class="btn btn-danger" data-id="' + item.id + '" data-words="' + item.words + '" onclick="similarWords.deleteDataWord(this);"><i class="fas fa-trash-alt"></i></button>';
+					body += '<button type="button" class="btn btn-success" data-id="' + item.id + '" data-words="' + item.words + '" onclick="itemUnit.showWord(this, \'edit\');"><i class="fas fa-edit"></i></button>';
+					body += '<button type="button" class="btn btn-danger" data-id="' + item.id + '" data-words="' + item.words + '" onclick="itemUnit.deleteDataWord(this);"><i class="fas fa-trash-alt"></i></button>';
 				body += '</div>';
 			body += '</td>';
 			body += '</tr>';
@@ -166,7 +165,7 @@ const similarWords = {
 						txt_id: $this.data('id')
 					},
 					success: function(result) {
-						$('#ignoredWordsDataTable tbody').html('');
+						$('#itemUnitDataTable tbody').html('');
 						
 						if (result.success) me._generateWordDataTable(result.data);
 						else if (typeof(result.msg) !== 'undefined') toastr.error(result.msg);
@@ -182,5 +181,5 @@ const similarWords = {
 };
 
 $(document).ready(function() {
-	similarWords.init();
+	itemUnit.init();
 });
