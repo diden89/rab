@@ -1,4 +1,5 @@
 <?php
+// echo phpinfo();
 /*!
  * ---------------------------------------------------------------
  * DO NOT USE NON ALPHA-NUMERIC CHARACTER!
@@ -42,6 +43,21 @@
 					$noobs_db_hostname[] = 'localhost';
 					$noobs_db_username[] = 'root';
 					$noobs_db_password[] = 'apolokoa';
+					$noobs_db_pconnect[] = TRUE;
+					$noobs_db_database[] = 'dbrab';
+					$noobs_db_driver[] = 'mysqli';
+					$noobs_db_active[] = 'default';
+					$noobs_expiration = 0;
+					$noobs_update_time = 300;
+					$noobs_env = 'development';
+					$noobs_vendordir = 'vendors';
+					$noobs_sessdir = 'C:\Users\administrator\Downloads\tmp';
+				break;
+
+				case 'postmaster@localhost ':
+					$noobs_db_hostname[] = 'localhost';
+					$noobs_db_username[] = 'root';
+					$noobs_db_password[] = '';
 					$noobs_db_pconnect[] = TRUE;
 					$noobs_db_database[] = 'dbrab';
 					$noobs_db_driver[] = 'mysqli';
