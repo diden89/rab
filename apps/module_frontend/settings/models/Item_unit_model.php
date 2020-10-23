@@ -38,9 +38,9 @@ class Item_unit_model extends NOOBS_Model
 		{
 			$id = $params['txt_id'];
 
-			$this->edit(['un_name' => strtoupper($params['txt_unit'])], "un_id = {$id}");
+			$this->edit(['un_name' => $params['txt_unit']], "un_id = {$id}");
 		}
-		else $this->add(['un_name' => strtoupper($params['txt_unit'])]);
+		else $this->add(['un_name' => $params['txt_unit']]);
 
 		return $this->load_data_item_unit();
 	}
