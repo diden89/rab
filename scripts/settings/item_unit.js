@@ -35,7 +35,7 @@ const itemUnit = {
 		const $this = $(el);
 
 		$.ajax({
-			url: siteUrl('setitngs/item_unit/load_data_item_unit'),
+			url: siteUrl('settings/item_unit/load_data_item_unit'),
 			type: 'POST',
 			dataType: 'JSON',
 			data: {

@@ -15,7 +15,7 @@ class Item_unit_model extends NOOBS_Model
 	{
 		if (isset($params['txt_unit']) && ! empty($params['txt_unit']))
 		{
-			$this->db->where('un_name', strtoupper($params['txt_unit']));
+			$this->db->like('un_name', strtoupper($params['txt_unit']));
 		}
 
 		if (isset($params['txt_id']) && ! empty($params['txt_id']))

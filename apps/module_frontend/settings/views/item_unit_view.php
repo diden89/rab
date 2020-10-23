@@ -28,7 +28,7 @@
 								</div>
 							</div>
 							<div class="col-3">
-								<button id="btnAddUnit" class="btn btn-block btn-primary btn-flat" type="button" title="Add Unit"><i class="fas fa-plus"></i> Add</button>
+								<button id="btnAddUnit" class="btn btn-block btn-lg btn-primary btn-flat" type="button" title="Add Unit"><i class="fas fa-plus"></i> Add</button>
 							</div>
 						</div>
 						<hr />
