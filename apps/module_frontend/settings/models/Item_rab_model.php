@@ -27,9 +27,10 @@ class Item_rab_model extends NOOBS_Model
 		$this->db->from("item_rab ir");
 		$this->db->join("unit un","ir.ir_un_id = un.un_id","LEFT");
 		$this->db->where('ir.ir_is_active', 'Y');
+		$this->db->where('un.un_is_active', 'Y');
 		$this->db->order_by('ir.ir_seq', 'ASC');
 
-		return $this->db->get();
+		return $this->create_result($params);
  	}
 
 	public function store_data_item($params = array())
@@ -48,7 +49,7 @@ class Item_rab_model extends NOOBS_Model
 		return $this->load_data_item_rab();
 	}
 
-	public function delete_data_item($params = array())
+	public function delete_data($params = array())
 	{
 		$this->table = 'item_rab';
 

@@ -1,193 +1,269 @@
 /*!
  * @package RAB
  * @copyright Noobscript
- * @author Sikelopes
- * @edit Diden89
+ * @author Andy1t
  * @version 1.0
  * @access Public
- * @path /ahp_merekdagang_frontend/scripts/settings/similar_letters.js
+ * @link /ahp_merekdagang_frontend/scripts/settings/brand.js
  */
 
-const itemList = {
-	selectedData: '',
-	init: function() {
-		const me = this;
-
-		$('#btnSearchItem').click(function(e) {
-			e.preventDefault();
-			me.loadDataItem(this);
-		});
-
-		$('#txtList').keydown(function(e) {
-			const keyCode = (e.keyCode ? e.keyCode : e.which);
-
-			if (keyCode == 13) {
-				$('#btnSearchItem').trigger('click');
-			}
-		});
-
-		$('#btnAddItem').click(function(e) {
-			e.preventDefault();
-			me.showItem(this);
-		});
-	},
-	loadDataItem: function(el) {
-		const me = this;
-		const $this = $(el);
-
-		$.ajax({
-			url: siteUrl('settings/item_rab/load_data_item_rab'),
-			type: 'POST',
-			dataType: 'JSON',
-			data: {
-				action: 'load_data_item_rab',
-				txt_item: $('#txtList').val()
-			},
-			success: function(result) {
-				$('#ignoredItemDataTable tbody').html('');
-
-				if (result.success !== false) me._generateItemDataTable(result.data);
-				else if (typeof(result.msg) !== 'undefined') toastr.error(result.msg);
-				else toastr.error(msgErr);
-			},
-			error: function(error) {
-				toastr.error(msgErr);
-			}
-		});
-	},
-	_generateItemDataTable: (data) => {
-		const $this = $('#ignoredItemDataTable tbody');
-
-		$this.html('');
-
-		let body = '';
-
-		$.each(data, (idx, item) => {
-			var price = $.number(item.ir_price);
-			body += '<tr>';
-			body += '<td>' + item.no + '</td>';
-			body += '<td>' + item.ir_item_name + '</td>';
-			body += '<td>' + item.un_name + '</td>';
-			body += '<td>' + item.ir_seq + '</td>';
-			body += '<td>';
-				body += '<div class="btn-group btn-group-sm" role="group" aria-label="Action Button">';
-					body += '<button type="button" class="btn btn-success" data-id="' + item.id + '" data-item="' + item.ir_item_name + '" onclick="itemList.showItem(this, \'edit\');"><i class="fas fa-edit"></i></button>';
-					body += '<button type="button" class="btn btn-danger" data-id="' + item.id + '" data-item="' + item.ir_item_name + '" onclick="itemList.deleteDataItem(this);"><i class="fas fa-trash-alt"></i></button>';
-				body += '</div>';
-			body += '</td>';
-			body += '</tr>';
-		});
-
-		$this.html(body);
-	},
-	showItem: function(el, mode) {
-		const me = this;
-		let params = {action: 'load_item_form'};
-		let title = 'Add New';
-
-		if (typeof(mode) !== 'undefined') {
-			params.mode = mode;
-			title = 'Edit';
-			params.txt_item = $(el).data('item');
-			params.txt_id = $(el).data('id');
-		}
-		else
-		{
-			params.mode = 'add';
-		}
-
-		$.popup({
-			title: title + ' Item',
-			id: 'showItem',
-			size: 'medium',
+$(document).ready(function() {
+	var RAB = {
+		gridRabItem : $('#gridRab').grid({
+			serverSide: true,
+			striped: true,
 			proxy: {
-				url: siteUrl('settings/item_rab/load_item_form'),
-				params: params
+				url: siteUrl('settings/item_rab/load_data_item_rab'),
+				method: 'post',
+				data: {
+					action: 'load_data_item_rab'
+				},
 			},
-			buttons: [{
-				btnId: 'saveData',
-				btnText:'Save',
-				btnClass: 'info',
-				btnIcon: 'far fa-check-circle',
-				onclick: function(popup) {
-					const form  = popup.find('form');
-
-					if ($.validation(form)) {
-						const formData = new FormData(form[0]);
-
-						$.ajax({
-							url: siteUrl('settings/item_rab/store_data_item'),
-							type: 'POST',
-							dataType: 'JSON',
-							data: formData,
-							processData: false,
-							contentType: false,
-	         				cache: false,
-							success: function(result) {
-								if (result.success) {
-									toastr.success(msgSaveOk);
-									me._generateItemDataTable(result.data);
-								} else if (typeof(result.msg) !== 'undefined') toastr.error(result.msg);
-								else toastr.error(msgErr);
-
-								popup.close();
-
-							},
-							error: function(error) {
-								toastr.error(msgErr);
+			columns: [
+				{
+					title: 'No', 
+					data: 'no',
+					searchable: false,
+					orderable: false,
+					css: {
+						'text-align': 'center'
+					}
+				},
+				{
+					title: 'Item Name',
+					data: 'ir_item_name'
+				},
+				{
+					title: 'Item Unit',
+					data: 'un_name'
+				},
+				{
+					title: 'Sequence',
+					data: 'ir_seq'
+				},
+				{
+					title: 'Action',
+					size: 'medium',
+					type: 'buttons',
+					group: true,
+					css: {
+						'text-align' : 'center',
+						'width' : '200px'
+					},
+					content: [
+						{
+							text: 'Edit',
+							class: 'btn-success',
+							id: 'btnEdit',
+							icon: 'far fa-edit',
+							click: function(row, rowData) {
+								RAB.popup('edit', 'Edit', rowData);
 							}
+						},
+						{
+							text: 'Delete',
+							class: 'btn-danger',
+							id: 'btnDelete',
+							icon: 'far fa-trash-alt',
+							click: function(row, rowData) {
+								Swal.fire({
+									title: 'Are you sure?',
+									text: "Data that has been deleted cannot be restored!",
+									type: 'warning',
+									showCancelButton: true,
+									confirmButtonColor: '#17a2b8',
+									cancelButtonColor: '#d33',
+									confirmButtonText: 'Yes, delete this data!'
+								}).then((result) => {
+									if (result.value) {
+										$.ajax({
+											url: siteUrl('settings/item_rab/delete_data'),
+											type: 'POST',
+											dataType: 'JSON',
+											data: {
+												action: 'delete_data',
+												txt_id: rowData.ir_id
+											},
+											success: function(result) {
+												if (result.success) {
+													toastr.success("Data succesfully deleted.");
+												} else if (typeof(result.msg) !== 'undefined') {
+													toastr.error(result.msg);
+												} else {
+													toastr.error(msgErr);
+												}
+												
+												RAB.gridRabItem.reloadData({
+													txt_brand_name: $('#txtBrandName').val(),
+													txt_receive_date: $('#txtReceiveDate').val()
+												});
+											},
+											error: function(error) {
+												toastr.error(msgErr);
+											}
+										});
+									}
+								});
+							}
+						}
+					]
+				}
+			],
+			listeners: {
+				ondblclick: function(row, rowData, idx) {
+					RAB.popup('edit', 'Edit', rowData);
+				}
+			}
+		}),
+		popup: function(mode = 'add', title = 'Add', data = false) {
+			$.popup({
+				title: title + ' RAB Item',
+				id: mode + 'RabPopup',
+				size: 'medium',
+				proxy: {
+					url: siteUrl('settings/item_rab/popup_modal'),
+					params: {
+						action: 'popup_modal',
+						mode: mode,
+						data: data
+					}
+				},
+				buttons: [{
+					btnId: 'saveData',
+					btnText:'Save',
+					btnClass: 'info',
+					btnIcon: 'fas fa-check-circle',
+					onclick: function(popup) {
+						var form  = popup.find('form');
+						if ($.validation(form)) {
+							var formData = new FormData(form[0]);
+							$.ajax({
+								url: siteUrl('settings/item_rab/store_data'),
+								type: 'POST',
+								dataType: 'JSON',
+								data: formData,
+								processData: false,
+								contentType: false,
+		         				cache: false,
+		         				enctype: 'multipart/form-data',
+								success: function(result) {
+									if (result.success) {
+										toastr.success(msgSaveOk);
+									} else if (typeof(result.msg) !== 'undefined') {
+										toastr.error(result.msg);
+									} else {
+										toastr.error(msgErr);
+									}
+
+									RAB.gridRabItem.reloadData({
+										txt_brand_name: $('#txtBrandName').val(),
+										txt_receive_date: $('#txtReceiveDate').val()
+									});
+
+									popup.close();
+
+								},
+								error: function(error) {
+									toastr.error(msgErr);
+								}
+							});
+						}
+					}
+				}, {
+					btnId: 'closePopup',
+					btnText:'Tutup',
+					btnClass: 'secondary',
+					btnIcon: 'fas fa-times',
+					onclick: function(popup) {
+						popup.close();
+					}
+				}],
+				listeners: {
+					onshow: function(popup) {
+						$('#receiveDate').inputmask('dd-mm-yyyy', { 'placeholder': 'DD-MM-YYYY' });
+						$('#receiveDate').noobsdaterangepicker({
+							parentEl: "#" + popup[0].id + " .modal-body",
+							showDropdowns: true,
+							singleDatePicker: true
+						});
+
+						$('#brandReminder').inputmask('dd-mm-yyyy', { 'placeholder': 'DD-MM-YYYY' });
+						$('#brandReminder').noobsdaterangepicker({
+							parentEl: "#" + popup[0].id + " .modal-body",
+							showDropdowns: true,
+							singleDatePicker: true
+						});
+
+						$('#expiryDate').inputmask('dd-mm-yyyy', { 'placeholder': 'DD-MM-YYYY' });
+						$('#expiryDate').noobsdaterangepicker({
+							parentEl: "#" + popup[0].id + " .modal-body",
+							showDropdowns: true,
+							singleDatePicker: true
 						});
 					}
 				}
-			}, {
-				btnId: 'closePopup',
-				btnText:'Close',
-				btnClass: 'secondary',
-				btnIcon: 'fas fa-times',
-				onclick: function(popup) {
-					popup.close();
-				}
-			}]
-		});
-	},
-	deleteDataItem: function(el) {
-		const me = this;
-		const $this = $(el);
-
-		Swal.fire({
-			title: 'Are you sure?',
-			text: "Data that has been deleted cannot be restored!",
-			type: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#17a2b8',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Yes, delete this data!'
-		}).then((result) => {
-			if (result.value) {
-				$.ajax({
-					url: siteUrl('settings/item_rab/delete_data_item'),
-					type: 'POST',
-					dataType: 'JSON',
-					data: {
-						action: 'delete_data_item',
-						txt_id: $this.data('id')
-					},
-					success: function(result) {
-						$('#ignoredItemDataTable tbody').html('');
-						
-						if (result.success) me._generateItemDataTable(result.data);
-						else if (typeof(result.msg) !== 'undefined') toastr.error(result.msg);
-						else toastr.error(msgErr);
-					},
-					error: function(error) {
-						toastr.error(msgErr);
+			});
+		},
+		viewPopupItemDetail: function(data) {
+			$.popup({
+				title: 'Data Detail',
+				id: 'dataDetailPopup',
+				size: 'large',
+				proxy: {
+					url: siteUrl('settings/item_rab/popup_item_detail'),
+					params: {
+						action: 'popup_item_detail',
+						mode: 'view',
+						data: data
 					}
-				});
-			}
-		});
-	}
-};
+				},
+				buttons: [{
+					btnId: 'closePopup',
+					btnText:'Tutup',
+					btnClass: 'secondary',
+					btnIcon: 'fas fa-times',
+					onclick: function(popup) {
+						popup.close();
+					}
+				}]
+			});
+		}
+	};
 
-$(document).ready(function() {
-	itemList.init();
+	$('#txtReceiveDate').noobsdaterangepicker({
+		showDropdowns: true,
+		autoUpdateInput: false,
+		locale: {
+			cancelLabel: 'Clear'
+		}
+	});
+
+	$('#btnAdd').click(function(e) {
+		e.preventDefault();
+
+		RAB.popup();
+	});
+
+	$('#btnSearch').click(function(e) {
+		e.preventDefault();
+
+		RAB.gridRabItem.reloadData({
+			txt_brand_name: $('#txtBrandName').val(),
+			txt_receive_date: $('#txtReceiveDate').val()
+		});
+	});
+
+	$('#txtBrandName').keydown(function(e) {
+    	var keyCode = (e.keyCode ? e.keyCode : e.which);
+	    if (keyCode == 13) {
+	        $('#btnSearch').trigger('click');
+	    }
+	});
+
+	$('#btnUploadExcel').click(function(e) {
+		e.preventDefault();
+
+		RAB.popupUploadExcel();
+	});
+
 });

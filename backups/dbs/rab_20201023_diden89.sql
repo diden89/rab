@@ -11,7 +11,7 @@
  Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 23/10/2020 11:20:02
+ Date: 23/10/2020 14:39:44
 */
 
 SET NAMES utf8mb4;
@@ -36,6 +36,33 @@ CREATE TABLE `item_list`  (
 -- Records of item_list
 -- ----------------------------
 INSERT INTO `item_list` VALUES (8, 'Batu Bata', 400.00, 1, 'Y', '1', '2020-10-22 01:47:47');
+
+-- ----------------------------
+-- Table structure for item_rab
+-- ----------------------------
+DROP TABLE IF EXISTS `item_rab`;
+CREATE TABLE `item_rab`  (
+  `ir_id` int NOT NULL AUTO_INCREMENT,
+  `ir_item_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ir_un_id` int NULL DEFAULT NULL,
+  `ir_seq` int NULL DEFAULT NULL,
+  `ir_is_active` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT 'Y',
+  `last_user` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `last_datetime` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`ir_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of item_rab
+-- ----------------------------
+INSERT INTO `item_rab` VALUES (9, 'Pondasi + Sloof', 12, 1, 'Y', '1', '2020-10-23 13:38:42');
+INSERT INTO `item_rab` VALUES (10, 'Tapak Gajah + Kolom', 8, 2, 'Y', '1', '2020-10-23 12:28:07');
+INSERT INTO `item_rab` VALUES (11, 'Ring Balok', 7, 3, 'Y', '1', '2020-10-23 12:28:15');
+INSERT INTO `item_rab` VALUES (12, 'Ring Balok', 7, 4, 'Y', '1', '2020-10-23 12:29:16');
+INSERT INTO `item_rab` VALUES (13, 'Dinding + Plester', 9, 5, 'Y', '1', '2020-10-23 12:29:23');
+INSERT INTO `item_rab` VALUES (14, 'Talang Beton', 7, 6, 'Y', '1', '2020-10-23 12:29:51');
+INSERT INTO `item_rab` VALUES (15, 'Dak', 10, 7, 'Y', '1', '2020-10-23 12:29:57');
+INSERT INTO `item_rab` VALUES (16, 'Atap', 9, 8, 'Y', '1', '2020-10-23 14:38:41');
 
 -- ----------------------------
 -- Table structure for log_access_group
@@ -164,6 +191,46 @@ INSERT INTO `log_item_list` VALUES (7, 'yer', 150000.00, 1, 'N', 1, '2020-10-22 
 INSERT INTO `log_item_list` VALUES (5, 'toko', 150000.00, 1, 'N', 1, '2020-10-22 01:47:15', 1, 'edit', '2020-10-22 01:47:15', 9);
 INSERT INTO `log_item_list` VALUES (3, 'tes', 1000000.00, 1, 'N', 1, '2020-10-22 01:47:18', 1, 'edit', '2020-10-22 01:47:18', 10);
 INSERT INTO `log_item_list` VALUES (8, 'Batu Bata', 400.00, 1, 'Y', 1, '2020-10-22 01:47:47', 1, 'add', '2020-10-22 01:47:47', 11);
+
+-- ----------------------------
+-- Table structure for log_item_rab
+-- ----------------------------
+DROP TABLE IF EXISTS `log_item_rab`;
+CREATE TABLE `log_item_rab`  (
+  `ir_id` int NOT NULL,
+  `ir_item_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ir_un_id` int NULL DEFAULT NULL,
+  `ir_seq` int NULL DEFAULT NULL,
+  `ir_is_active` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT 'Y',
+  `last_user` int NULL DEFAULT NULL,
+  `last_datetime` datetime(0) NULL DEFAULT NULL,
+  `log_user_id` int NULL DEFAULT NULL,
+  `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `log_datetime` datetime(0) NOT NULL,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`log_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of log_item_rab
+-- ----------------------------
+INSERT INTO `log_item_rab` VALUES (9, 'Pondasi + Sloof', 7, NULL, 'Y', 1, '2020-10-23 12:27:24', 1, 'add', '2020-10-23 12:27:24', 12);
+INSERT INTO `log_item_rab` VALUES (10, 'Tapak Gajah + Kolom', 8, NULL, 'Y', 1, '2020-10-23 12:28:07', 1, 'add', '2020-10-23 12:28:07', 13);
+INSERT INTO `log_item_rab` VALUES (11, 'Ring Balok', 7, NULL, 'Y', 1, '2020-10-23 12:28:15', 1, 'add', '2020-10-23 12:28:15', 14);
+INSERT INTO `log_item_rab` VALUES (12, 'Ring Balok', 7, NULL, 'Y', 1, '2020-10-23 12:29:16', 1, 'add', '2020-10-23 12:29:16', 15);
+INSERT INTO `log_item_rab` VALUES (13, 'Dinding + Plester', 9, NULL, 'Y', 1, '2020-10-23 12:29:23', 1, 'add', '2020-10-23 12:29:23', 16);
+INSERT INTO `log_item_rab` VALUES (14, 'Talang Beton', 7, NULL, 'Y', 1, '2020-10-23 12:29:51', 1, 'add', '2020-10-23 12:29:51', 17);
+INSERT INTO `log_item_rab` VALUES (15, 'Dak', 10, NULL, 'Y', 1, '2020-10-23 12:29:57', 1, 'add', '2020-10-23 12:29:57', 18);
+INSERT INTO `log_item_rab` VALUES (16, 'Atap', 9, NULL, 'Y', 1, '2020-10-23 12:30:05', 1, 'add', '2020-10-23 12:30:05', 19);
+INSERT INTO `log_item_rab` VALUES (17, 'km&amp;sup2;', NULL, NULL, 'Y', 1, '2020-10-23 12:37:04', 1, 'add', '2020-10-23 12:37:04', 20);
+INSERT INTO `log_item_rab` VALUES (17, 'km&amp;sup2;', NULL, NULL, 'N', 1, '2020-10-23 12:49:00', 1, 'edit', '2020-10-23 12:49:00', 21);
+INSERT INTO `log_item_rab` VALUES (18, 'wedasd', 5, 1, 'Y', 1, '2020-10-23 13:32:08', 1, 'add', '2020-10-23 13:32:08', 22);
+INSERT INTO `log_item_rab` VALUES (19, 'ges', 4, 9, 'Y', 1, '2020-10-23 13:34:11', 1, 'add', '2020-10-23 13:34:11', 23);
+INSERT INTO `log_item_rab` VALUES (20, 'Tapak Gajah + Kolom', 10, 2, 'Y', 1, '2020-10-23 13:36:11', 1, 'add', '2020-10-23 13:36:11', 24);
+INSERT INTO `log_item_rab` VALUES (9, 'Pondasi + Sloof', 8, 1, 'Y', 1, '2020-10-23 13:38:30', 1, 'edit', '2020-10-23 13:38:30', 25);
+INSERT INTO `log_item_rab` VALUES (9, 'Pondasi + Sloof', 12, 1, 'Y', 1, '2020-10-23 13:38:42', 1, 'edit', '2020-10-23 13:38:42', 26);
+INSERT INTO `log_item_rab` VALUES (19, 'ges', 4, 9, 'N', 1, '2020-10-23 13:44:04', 1, 'edit', '2020-10-23 13:44:04', 27);
+INSERT INTO `log_item_rab` VALUES (16, 'Atap', 9, 8, 'N', 1, '2020-10-23 14:38:41', 1, 'edit', '2020-10-23 14:38:41', 28);
 
 -- ----------------------------
 -- Table structure for log_menu_access_group
@@ -309,6 +376,68 @@ INSERT INTO `log_menu_access_group` VALUES (131, 1, 39, 'Y', 1, '2020-10-22 01:5
 INSERT INTO `log_menu_access_group` VALUES (142, 1, 49, 'Y', 1, '2020-10-22 01:51:42', 1, 'edit', '2020-10-22 01:51:42', 121);
 INSERT INTO `log_menu_access_group` VALUES (143, 1, 50, 'Y', 1, '2020-10-22 01:51:42', 1, 'edit', '2020-10-22 01:51:42', 122);
 INSERT INTO `log_menu_access_group` VALUES (144, 1, 51, 'Y', 1, '2020-10-22 01:51:42', 1, 'add', '2020-10-22 01:51:42', 123);
+INSERT INTO `log_menu_access_group` VALUES (145, 1, 52, 'Y', 1, '2020-10-23 11:31:22', 1, 'add', '2020-10-23 11:31:22', 124);
+INSERT INTO `log_menu_access_group` VALUES (125, 1, 2, 'Y', 1, '2020-10-23 11:31:22', 1, 'edit', '2020-10-23 11:31:22', 125);
+INSERT INTO `log_menu_access_group` VALUES (126, 1, 36, 'Y', 1, '2020-10-23 11:31:22', 1, 'edit', '2020-10-23 11:31:22', 126);
+INSERT INTO `log_menu_access_group` VALUES (127, 1, 33, 'Y', 1, '2020-10-23 11:31:22', 1, 'edit', '2020-10-23 11:31:22', 127);
+INSERT INTO `log_menu_access_group` VALUES (128, 1, 41, 'Y', 1, '2020-10-23 11:31:22', 1, 'edit', '2020-10-23 11:31:22', 128);
+INSERT INTO `log_menu_access_group` VALUES (136, 1, 44, 'Y', 1, '2020-10-23 11:31:22', 1, 'edit', '2020-10-23 11:31:22', 129);
+INSERT INTO `log_menu_access_group` VALUES (137, 1, 45, 'Y', 1, '2020-10-23 11:31:22', 1, 'edit', '2020-10-23 11:31:22', 130);
+INSERT INTO `log_menu_access_group` VALUES (133, 1, 37, 'Y', 1, '2020-10-23 11:31:22', 1, 'edit', '2020-10-23 11:31:22', 131);
+INSERT INTO `log_menu_access_group` VALUES (3, 1, 3, 'Y', 1, '2020-10-23 11:31:23', 1, 'edit', '2020-10-23 11:31:23', 132);
+INSERT INTO `log_menu_access_group` VALUES (130, 1, 38, 'Y', 1, '2020-10-23 11:31:23', 1, 'edit', '2020-10-23 11:31:23', 133);
+INSERT INTO `log_menu_access_group` VALUES (131, 1, 39, 'Y', 1, '2020-10-23 11:31:23', 1, 'edit', '2020-10-23 11:31:23', 134);
+INSERT INTO `log_menu_access_group` VALUES (142, 1, 49, 'Y', 1, '2020-10-23 11:31:23', 1, 'edit', '2020-10-23 11:31:23', 135);
+INSERT INTO `log_menu_access_group` VALUES (143, 1, 50, 'Y', 1, '2020-10-23 11:31:23', 1, 'edit', '2020-10-23 11:31:23', 136);
+INSERT INTO `log_menu_access_group` VALUES (144, 1, 51, 'Y', 1, '2020-10-23 11:31:23', 1, 'edit', '2020-10-23 11:31:23', 137);
+INSERT INTO `log_menu_access_group` VALUES (145, 1, 52, 'Y', 1, '2020-10-23 11:41:19', 1, 'edit', '2020-10-23 11:41:19', 138);
+INSERT INTO `log_menu_access_group` VALUES (146, 1, 53, 'Y', 1, '2020-10-23 11:41:19', 1, 'add', '2020-10-23 11:41:19', 139);
+INSERT INTO `log_menu_access_group` VALUES (125, 1, 2, 'Y', 1, '2020-10-23 11:41:19', 1, 'edit', '2020-10-23 11:41:19', 140);
+INSERT INTO `log_menu_access_group` VALUES (126, 1, 36, 'Y', 1, '2020-10-23 11:41:19', 1, 'edit', '2020-10-23 11:41:19', 141);
+INSERT INTO `log_menu_access_group` VALUES (127, 1, 33, 'Y', 1, '2020-10-23 11:41:19', 1, 'edit', '2020-10-23 11:41:19', 142);
+INSERT INTO `log_menu_access_group` VALUES (128, 1, 41, 'Y', 1, '2020-10-23 11:41:19', 1, 'edit', '2020-10-23 11:41:19', 143);
+INSERT INTO `log_menu_access_group` VALUES (136, 1, 44, 'Y', 1, '2020-10-23 11:41:19', 1, 'edit', '2020-10-23 11:41:19', 144);
+INSERT INTO `log_menu_access_group` VALUES (137, 1, 45, 'Y', 1, '2020-10-23 11:41:19', 1, 'edit', '2020-10-23 11:41:19', 145);
+INSERT INTO `log_menu_access_group` VALUES (133, 1, 37, 'Y', 1, '2020-10-23 11:41:19', 1, 'edit', '2020-10-23 11:41:19', 146);
+INSERT INTO `log_menu_access_group` VALUES (3, 1, 3, 'Y', 1, '2020-10-23 11:41:20', 1, 'edit', '2020-10-23 11:41:20', 147);
+INSERT INTO `log_menu_access_group` VALUES (130, 1, 38, 'Y', 1, '2020-10-23 11:41:20', 1, 'edit', '2020-10-23 11:41:20', 148);
+INSERT INTO `log_menu_access_group` VALUES (131, 1, 39, 'Y', 1, '2020-10-23 11:41:20', 1, 'edit', '2020-10-23 11:41:20', 149);
+INSERT INTO `log_menu_access_group` VALUES (142, 1, 49, 'Y', 1, '2020-10-23 11:41:20', 1, 'edit', '2020-10-23 11:41:20', 150);
+INSERT INTO `log_menu_access_group` VALUES (143, 1, 50, 'Y', 1, '2020-10-23 11:41:20', 1, 'edit', '2020-10-23 11:41:20', 151);
+INSERT INTO `log_menu_access_group` VALUES (144, 1, 51, 'Y', 1, '2020-10-23 11:41:20', 1, 'edit', '2020-10-23 11:41:20', 152);
+INSERT INTO `log_menu_access_group` VALUES (145, 1, 52, 'Y', 1, '2020-10-23 12:10:53', 1, 'edit', '2020-10-23 12:10:53', 153);
+INSERT INTO `log_menu_access_group` VALUES (146, 1, 53, 'Y', 1, '2020-10-23 12:10:54', 1, 'edit', '2020-10-23 12:10:54', 154);
+INSERT INTO `log_menu_access_group` VALUES (125, 1, 2, 'Y', 1, '2020-10-23 12:10:54', 1, 'edit', '2020-10-23 12:10:54', 155);
+INSERT INTO `log_menu_access_group` VALUES (126, 1, 36, 'Y', 1, '2020-10-23 12:10:54', 1, 'edit', '2020-10-23 12:10:54', 156);
+INSERT INTO `log_menu_access_group` VALUES (127, 1, 33, 'Y', 1, '2020-10-23 12:10:54', 1, 'edit', '2020-10-23 12:10:54', 157);
+INSERT INTO `log_menu_access_group` VALUES (128, 1, 41, 'Y', 1, '2020-10-23 12:10:54', 1, 'edit', '2020-10-23 12:10:54', 158);
+INSERT INTO `log_menu_access_group` VALUES (136, 1, 44, 'Y', 1, '2020-10-23 12:10:54', 1, 'edit', '2020-10-23 12:10:54', 159);
+INSERT INTO `log_menu_access_group` VALUES (137, 1, 45, 'Y', 1, '2020-10-23 12:10:54', 1, 'edit', '2020-10-23 12:10:54', 160);
+INSERT INTO `log_menu_access_group` VALUES (133, 1, 37, 'Y', 1, '2020-10-23 12:10:54', 1, 'edit', '2020-10-23 12:10:54', 161);
+INSERT INTO `log_menu_access_group` VALUES (3, 1, 3, 'Y', 1, '2020-10-23 12:10:54', 1, 'edit', '2020-10-23 12:10:54', 162);
+INSERT INTO `log_menu_access_group` VALUES (130, 1, 38, 'Y', 1, '2020-10-23 12:10:54', 1, 'edit', '2020-10-23 12:10:54', 163);
+INSERT INTO `log_menu_access_group` VALUES (131, 1, 39, 'Y', 1, '2020-10-23 12:10:55', 1, 'edit', '2020-10-23 12:10:55', 164);
+INSERT INTO `log_menu_access_group` VALUES (142, 1, 49, 'Y', 1, '2020-10-23 12:10:55', 1, 'edit', '2020-10-23 12:10:55', 165);
+INSERT INTO `log_menu_access_group` VALUES (143, 1, 50, 'Y', 1, '2020-10-23 12:10:55', 1, 'edit', '2020-10-23 12:10:55', 166);
+INSERT INTO `log_menu_access_group` VALUES (144, 1, 51, 'Y', 1, '2020-10-23 12:10:55', 1, 'edit', '2020-10-23 12:10:55', 167);
+INSERT INTO `log_menu_access_group` VALUES (147, 1, 54, 'Y', 1, '2020-10-23 12:10:55', 1, 'add', '2020-10-23 12:10:55', 168);
+INSERT INTO `log_menu_access_group` VALUES (145, 1, 52, 'Y', 1, '2020-10-23 12:16:46', 1, 'edit', '2020-10-23 12:16:46', 169);
+INSERT INTO `log_menu_access_group` VALUES (146, 1, 53, 'Y', 1, '2020-10-23 12:16:46', 1, 'edit', '2020-10-23 12:16:46', 170);
+INSERT INTO `log_menu_access_group` VALUES (125, 1, 2, 'Y', 1, '2020-10-23 12:16:46', 1, 'edit', '2020-10-23 12:16:46', 171);
+INSERT INTO `log_menu_access_group` VALUES (126, 1, 36, 'Y', 1, '2020-10-23 12:16:46', 1, 'edit', '2020-10-23 12:16:46', 172);
+INSERT INTO `log_menu_access_group` VALUES (127, 1, 33, 'Y', 1, '2020-10-23 12:16:47', 1, 'edit', '2020-10-23 12:16:47', 173);
+INSERT INTO `log_menu_access_group` VALUES (128, 1, 41, 'Y', 1, '2020-10-23 12:16:47', 1, 'edit', '2020-10-23 12:16:47', 174);
+INSERT INTO `log_menu_access_group` VALUES (136, 1, 44, 'Y', 1, '2020-10-23 12:16:47', 1, 'edit', '2020-10-23 12:16:47', 175);
+INSERT INTO `log_menu_access_group` VALUES (137, 1, 45, 'Y', 1, '2020-10-23 12:16:47', 1, 'edit', '2020-10-23 12:16:47', 176);
+INSERT INTO `log_menu_access_group` VALUES (133, 1, 37, 'Y', 1, '2020-10-23 12:16:47', 1, 'edit', '2020-10-23 12:16:47', 177);
+INSERT INTO `log_menu_access_group` VALUES (3, 1, 3, 'Y', 1, '2020-10-23 12:16:47', 1, 'edit', '2020-10-23 12:16:47', 178);
+INSERT INTO `log_menu_access_group` VALUES (130, 1, 38, 'Y', 1, '2020-10-23 12:16:47', 1, 'edit', '2020-10-23 12:16:47', 179);
+INSERT INTO `log_menu_access_group` VALUES (131, 1, 39, 'Y', 1, '2020-10-23 12:16:47', 1, 'edit', '2020-10-23 12:16:47', 180);
+INSERT INTO `log_menu_access_group` VALUES (142, 1, 49, 'Y', 1, '2020-10-23 12:16:47', 1, 'edit', '2020-10-23 12:16:47', 181);
+INSERT INTO `log_menu_access_group` VALUES (143, 1, 50, 'Y', 1, '2020-10-23 12:16:47', 1, 'edit', '2020-10-23 12:16:47', 182);
+INSERT INTO `log_menu_access_group` VALUES (144, 1, 51, 'Y', 1, '2020-10-23 12:16:47', 1, 'edit', '2020-10-23 12:16:47', 183);
+INSERT INTO `log_menu_access_group` VALUES (147, 1, 54, 'Y', 1, '2020-10-23 12:16:47', 1, 'edit', '2020-10-23 12:16:47', 184);
+INSERT INTO `log_menu_access_group` VALUES (148, 1, 55, 'Y', 1, '2020-10-23 12:16:48', 1, 'add', '2020-10-23 12:16:48', 185);
 
 -- ----------------------------
 -- Table structure for log_menu_access_sub_group
@@ -386,6 +515,14 @@ INSERT INTO `log_ref_menu` VALUES (48, 4, 'BRM List', 'BRM List', 'trademark/brm
 INSERT INTO `log_ref_menu` VALUES (49, 2, 'Master Data', 'Master Data', NULL, 'fas fa-table', 3, 'Y', 1, '2020-10-21 23:57:12', 1, 'add', '2020-10-21 23:57:12', 10);
 INSERT INTO `log_ref_menu` VALUES (50, 49, 'Item List', 'Item List', 'settings/item_list', 'fas fa-list', 1, 'Y', 1, '2020-10-21 23:58:26', 1, 'add', '2020-10-21 23:58:26', 11);
 INSERT INTO `log_ref_menu` VALUES (51, 49, 'Item Unit', 'Item Unit', 'settings/item_unit', 'fas fa-boxes', 2, 'Y', 1, '2020-10-22 01:51:26', 1, 'add', '2020-10-22 01:51:26', 12);
+INSERT INTO `log_ref_menu` VALUES (52, NULL, 'PROJECTS', 'DATA PROJECTS', NULL, 'fas fa-briefcase', 1, 'Y', 1, '2020-10-23 11:31:10', 1, 'add', '2020-10-23 11:31:10', 13);
+INSERT INTO `log_ref_menu` VALUES (52, NULL, 'Projects', 'Data Projects', NULL, 'fas fa-briefcase', 1, 'Y', 1, '2020-10-23 11:31:38', 1, 'edit', '2020-10-23 11:31:38', 14);
+INSERT INTO `log_ref_menu` VALUES (52, NULL, 'Master Data', 'Master Data', NULL, 'fas fa-briefcase', 1, 'Y', 1, '2020-10-23 11:40:02', 1, 'edit', '2020-10-23 11:40:02', 15);
+INSERT INTO `log_ref_menu` VALUES (53, 52, 'RAB', 'RAB Data', 'master_data', 'fas fa-building', 1, 'Y', 1, '2020-10-23 11:41:11', 1, 'add', '2020-10-23 11:41:11', 16);
+INSERT INTO `log_ref_menu` VALUES (53, 52, 'RAB', 'RAB Data', 'master_data/rab', 'fas fa-building', 1, 'Y', 1, '2020-10-23 11:43:51', 1, 'edit', '2020-10-23 11:43:51', 17);
+INSERT INTO `log_ref_menu` VALUES (54, 49, 'Template RAB', 'Template RAB', 'settings/rab_template', 'fas fa-ruler-vertical', 3, 'Y', 1, '2020-10-23 12:10:43', 1, 'add', '2020-10-23 12:10:43', 18);
+INSERT INTO `log_ref_menu` VALUES (54, 2, 'Template RAB', 'Template RAB', 'settings/rab_template', 'fas fa-ruler-vertical', 4, 'Y', 1, '2020-10-23 12:15:59', 1, 'edit', '2020-10-23 12:15:59', 19);
+INSERT INTO `log_ref_menu` VALUES (55, 54, 'Item RAB', 'Item Data RAB', 'settings/item_rab', 'fas fa-pencil-ruler', 1, 'Y', 1, '2020-10-23 12:16:39', 1, 'add', '2020-10-23 12:16:39', 20);
 
 -- ----------------------------
 -- Table structure for log_unit
@@ -412,6 +549,24 @@ INSERT INTO `log_unit` VALUES (3, 'TRUK', 'Y', '1', '2020-10-23 11:14:14', 1, 'a
 INSERT INTO `log_unit` VALUES (2, 'KUBIK', 'Y', '1', '2020-10-23 11:15:17', 1, 'edit', '2020-10-23 11:15:17', 3);
 INSERT INTO `log_unit` VALUES (2, 'KUBIK', 'N', '1', '2020-10-23 11:18:58', 1, 'edit', '2020-10-23 11:18:59', 4);
 INSERT INTO `log_unit` VALUES (3, 'TRUK', 'N', '1', '2020-10-23 11:19:01', 1, 'edit', '2020-10-23 11:19:01', 5);
+INSERT INTO `log_unit` VALUES (4, 'TRUK', 'Y', '1', '2020-10-23 11:27:25', 1, 'add', '2020-10-23 11:27:25', 6);
+INSERT INTO `log_unit` VALUES (5, 'BATANG', 'Y', '1', '2020-10-23 11:27:38', 1, 'add', '2020-10-23 11:27:38', 7);
+INSERT INTO `log_unit` VALUES (6, 'KG', 'Y', '1', '2020-10-23 11:28:51', 1, 'add', '2020-10-23 11:28:51', 8);
+INSERT INTO `log_unit` VALUES (7, '/M LARI', 'Y', '1', '2020-10-23 12:27:01', 1, 'add', '2020-10-23 12:27:01', 9);
+INSERT INTO `log_unit` VALUES (8, '/KOLOM', 'Y', '1', '2020-10-23 12:27:11', 1, 'add', '2020-10-23 12:27:11', 10);
+INSERT INTO `log_unit` VALUES (9, 'M2', 'Y', '1', '2020-10-23 12:28:29', 1, 'add', '2020-10-23 12:28:29', 11);
+INSERT INTO `log_unit` VALUES (10, 'M2 = LARI', 'Y', '1', '2020-10-23 12:28:42', 1, 'add', '2020-10-23 12:28:42', 12);
+INSERT INTO `log_unit` VALUES (11, '/UNIT KM/WC', 'Y', '1', '2020-10-23 12:28:56', 1, 'add', '2020-10-23 12:28:56', 13);
+INSERT INTO `log_unit` VALUES (12, '/UNIT RUMAH', 'Y', '1', '2020-10-23 12:29:00', 1, 'add', '2020-10-23 12:29:00', 14);
+INSERT INTO `log_unit` VALUES (9, 'M&lt;SUP&gt;2&lt;/SUP&gt;', 'Y', '1', '2020-10-23 12:31:16', 1, 'edit', '2020-10-23 12:31:16', 15);
+INSERT INTO `log_unit` VALUES (9, 'M&amp;SUP2;', 'Y', '1', '2020-10-23 12:34:20', 1, 'edit', '2020-10-23 12:34:20', 16);
+INSERT INTO `log_unit` VALUES (9, 'M&amp;#178;', 'Y', '1', '2020-10-23 12:39:32', 1, 'edit', '2020-10-23 12:39:32', 17);
+INSERT INTO `log_unit` VALUES (13, 'm$sup2;', 'Y', '1', '2020-10-23 12:40:52', 1, 'add', '2020-10-23 12:40:52', 18);
+INSERT INTO `log_unit` VALUES (13, 'm&amp;sup2', 'Y', '1', '2020-10-23 12:41:10', 1, 'edit', '2020-10-23 12:41:10', 19);
+INSERT INTO `log_unit` VALUES (13, 'm&amp;sup2', 'N', '1', '2020-10-23 12:46:07', 1, 'edit', '2020-10-23 12:46:07', 20);
+INSERT INTO `log_unit` VALUES (9, 'M&amp;#178;', 'N', '1', '2020-10-23 12:46:09', 1, 'edit', '2020-10-23 12:46:09', 21);
+INSERT INTO `log_unit` VALUES (14, 'm&amp;sup2;', 'Y', '1', '2020-10-23 12:46:19', 1, 'add', '2020-10-23 12:46:19', 22);
+INSERT INTO `log_unit` VALUES (7, '/M LARI', 'N', '1', '2020-10-23 13:44:45', 1, 'edit', '2020-10-23 13:44:45', 23);
 
 -- ----------------------------
 -- Table structure for log_user_detail
@@ -506,7 +661,7 @@ CREATE TABLE `menu_access_group`  (
 -- ----------------------------
 -- Records of menu_access_group
 -- ----------------------------
-INSERT INTO `menu_access_group` VALUES (3, 1, 3, 'Y', 1, '2020-10-22 01:51:42');
+INSERT INTO `menu_access_group` VALUES (3, 1, 3, 'Y', 1, '2020-10-23 12:16:47');
 INSERT INTO `menu_access_group` VALUES (92, 2, 1, 'Y', 1, '2020-09-23 18:05:01');
 INSERT INTO `menu_access_group` VALUES (93, 2, 4, 'Y', 1, '2020-09-23 18:05:02');
 INSERT INTO `menu_access_group` VALUES (94, 2, 5, 'Y', 1, '2020-09-23 18:05:02');
@@ -518,18 +673,22 @@ INSERT INTO `menu_access_group` VALUES (110, 4, 4, 'Y', 1, '2020-09-24 08:18:27'
 INSERT INTO `menu_access_group` VALUES (111, 4, 5, 'Y', 1, '2020-09-24 08:18:27');
 INSERT INTO `menu_access_group` VALUES (112, 4, 35, 'Y', 1, '2020-09-24 08:18:27');
 INSERT INTO `menu_access_group` VALUES (113, 4, 40, 'Y', 1, '2020-09-24 08:18:28');
-INSERT INTO `menu_access_group` VALUES (125, 1, 2, 'Y', 1, '2020-10-22 01:51:42');
-INSERT INTO `menu_access_group` VALUES (126, 1, 36, 'Y', 1, '2020-10-22 01:51:42');
-INSERT INTO `menu_access_group` VALUES (127, 1, 33, 'Y', 1, '2020-10-22 01:51:42');
-INSERT INTO `menu_access_group` VALUES (128, 1, 41, 'Y', 1, '2020-10-22 01:51:42');
-INSERT INTO `menu_access_group` VALUES (130, 1, 38, 'Y', 1, '2020-10-22 01:51:42');
-INSERT INTO `menu_access_group` VALUES (131, 1, 39, 'Y', 1, '2020-10-22 01:51:42');
-INSERT INTO `menu_access_group` VALUES (133, 1, 37, 'Y', 1, '2020-10-22 01:51:42');
-INSERT INTO `menu_access_group` VALUES (136, 1, 44, 'Y', 1, '2020-10-22 01:51:42');
-INSERT INTO `menu_access_group` VALUES (137, 1, 45, 'Y', 1, '2020-10-22 01:51:42');
-INSERT INTO `menu_access_group` VALUES (142, 1, 49, 'Y', 1, '2020-10-22 01:51:42');
-INSERT INTO `menu_access_group` VALUES (143, 1, 50, 'Y', 1, '2020-10-22 01:51:42');
-INSERT INTO `menu_access_group` VALUES (144, 1, 51, 'Y', 1, '2020-10-22 01:51:42');
+INSERT INTO `menu_access_group` VALUES (125, 1, 2, 'Y', 1, '2020-10-23 12:16:46');
+INSERT INTO `menu_access_group` VALUES (126, 1, 36, 'Y', 1, '2020-10-23 12:16:46');
+INSERT INTO `menu_access_group` VALUES (127, 1, 33, 'Y', 1, '2020-10-23 12:16:47');
+INSERT INTO `menu_access_group` VALUES (128, 1, 41, 'Y', 1, '2020-10-23 12:16:47');
+INSERT INTO `menu_access_group` VALUES (130, 1, 38, 'Y', 1, '2020-10-23 12:16:47');
+INSERT INTO `menu_access_group` VALUES (131, 1, 39, 'Y', 1, '2020-10-23 12:16:47');
+INSERT INTO `menu_access_group` VALUES (133, 1, 37, 'Y', 1, '2020-10-23 12:16:47');
+INSERT INTO `menu_access_group` VALUES (136, 1, 44, 'Y', 1, '2020-10-23 12:16:47');
+INSERT INTO `menu_access_group` VALUES (137, 1, 45, 'Y', 1, '2020-10-23 12:16:47');
+INSERT INTO `menu_access_group` VALUES (142, 1, 49, 'Y', 1, '2020-10-23 12:16:47');
+INSERT INTO `menu_access_group` VALUES (143, 1, 50, 'Y', 1, '2020-10-23 12:16:47');
+INSERT INTO `menu_access_group` VALUES (144, 1, 51, 'Y', 1, '2020-10-23 12:16:47');
+INSERT INTO `menu_access_group` VALUES (145, 1, 52, 'Y', 1, '2020-10-23 12:16:46');
+INSERT INTO `menu_access_group` VALUES (146, 1, 53, 'Y', 1, '2020-10-23 12:16:46');
+INSERT INTO `menu_access_group` VALUES (147, 1, 54, 'Y', 1, '2020-10-23 12:16:47');
+INSERT INTO `menu_access_group` VALUES (148, 1, 55, 'Y', 1, '2020-10-23 12:16:48');
 
 -- ----------------------------
 -- Table structure for menu_access_sub_group
@@ -673,6 +832,10 @@ INSERT INTO `ref_menu` VALUES (48, 4, 'BRM List', 'BRM List', 'trademark/brm_lis
 INSERT INTO `ref_menu` VALUES (49, 2, 'Master Data', 'Master Data', NULL, 'fas fa-table', 3, 'Y', 1, '2020-10-21 23:57:12');
 INSERT INTO `ref_menu` VALUES (50, 49, 'Item List', 'Item List', 'settings/item_list', 'fas fa-list', 1, 'Y', 1, '2020-10-21 23:58:26');
 INSERT INTO `ref_menu` VALUES (51, 49, 'Item Unit', 'Item Unit', 'settings/item_unit', 'fas fa-boxes', 2, 'Y', 1, '2020-10-22 01:51:26');
+INSERT INTO `ref_menu` VALUES (52, NULL, 'Master Data', 'Master Data', NULL, 'fas fa-briefcase', 1, 'Y', 1, '2020-10-23 11:40:02');
+INSERT INTO `ref_menu` VALUES (53, 52, 'RAB', 'RAB Data', 'master_data/rab', 'fas fa-building', 1, 'Y', 1, '2020-10-23 11:43:51');
+INSERT INTO `ref_menu` VALUES (54, 2, 'Template RAB', 'Template RAB', 'settings/rab_template', 'fas fa-ruler-vertical', 4, 'Y', 1, '2020-10-23 12:15:59');
+INSERT INTO `ref_menu` VALUES (55, 54, 'Item RAB', 'Item Data RAB', 'settings/item_rab', 'fas fa-pencil-ruler', 1, 'Y', 1, '2020-10-23 12:16:39');
 
 -- ----------------------------
 -- Table structure for unit
@@ -680,7 +843,7 @@ INSERT INTO `ref_menu` VALUES (51, 49, 'Item Unit', 'Item Unit', 'settings/item_
 DROP TABLE IF EXISTS `unit`;
 CREATE TABLE `unit`  (
   `un_id` int NOT NULL AUTO_INCREMENT,
-  `un_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `un_name` varchar(255) CHARACTER SET utf16 COLLATE utf16_bin NULL DEFAULT NULL,
   `un_is_active` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT 'Y',
   `last_user` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
@@ -693,6 +856,15 @@ CREATE TABLE `unit`  (
 INSERT INTO `unit` VALUES (1, 'PCS', 'Y', '1', '2020-10-22 00:38:26');
 INSERT INTO `unit` VALUES (2, 'KUBIK', 'N', '1', '2020-10-23 11:18:58');
 INSERT INTO `unit` VALUES (3, 'TRUK', 'N', '1', '2020-10-23 11:19:01');
+INSERT INTO `unit` VALUES (4, 'TRUK', 'Y', '1', '2020-10-23 11:27:25');
+INSERT INTO `unit` VALUES (5, 'BATANG', 'Y', '1', '2020-10-23 11:27:38');
+INSERT INTO `unit` VALUES (6, 'KG', 'Y', '1', '2020-10-23 11:28:51');
+INSERT INTO `unit` VALUES (7, '/M LARI', 'Y', '1', '2020-10-23 13:44:45');
+INSERT INTO `unit` VALUES (8, '/KOLOM', 'Y', '1', '2020-10-23 12:27:11');
+INSERT INTO `unit` VALUES (9, 'M&#178;', 'Y', '1', '2020-10-23 12:46:09');
+INSERT INTO `unit` VALUES (10, 'M&#178; = LARI', 'Y', '1', '2020-10-23 12:28:42');
+INSERT INTO `unit` VALUES (11, '/UNIT KM/WC', 'Y', '1', '2020-10-23 12:28:56');
+INSERT INTO `unit` VALUES (12, '/UNIT RUMAH', 'Y', '1', '2020-10-23 12:29:00');
 
 -- ----------------------------
 -- Table structure for user_detail

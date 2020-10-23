@@ -32,38 +32,34 @@ class Item_rab extends NOOBS_Controller
 
 		$this->store_params['item'] = [];
 
-		$load_data_item_rab = $this->db_item_rab->load_data_item_rab();
+		// $load_data_item_rab = $this->db_item_rab->load_data_item_rab();
 
-		if ($load_data_item_rab->num_rows() > 0)
-		{
-			$num = 0;
-			$result = $load_data_item_rab->result();
+		// if ($load_data_item_rab->num_rows() > 0)
+		// {
+		// 	$num = 0;
+		// 	$result = $load_data_item_rab->result();
 
-			foreach ($result as $k => $v)
-			{
-				$num++;
+		// 	foreach ($result as $k => $v)
+		// 	{
+		// 		$num++;
 
-				$v->num = $num;
-			}
+		// 		$v->num = $num;
+		// 	}
 
-			$this->store_params['item'] = $result;
-		}
+		// 	$this->store_params['item'] = $result;
+		// }
 
 		$this->view('item_rab_view');
 	}
 
-	public function load_item_form()
+	public function popup_modal()
 	{
-		if (isset($_POST['action']) && $_POST['action'] == 'load_item_form')
+		$post = $this->input->post(NULL, TRUE);
+
+		if (isset($post['action']) && ! empty($post['action']) && $post['action'] == 'popup_modal')
 		{
-			$post = $this->input->post(NULL, TRUE);
-
+			unset($post['action']);
 			$post['option'] = $this->db_item_rab->get_option_unit()->result();
-			if($post['mode'] == 'edit')
-			{
-				$post['data'] = $this->db_item_rab->load_data_item_rab($post['txt_id'])->row();
-			}
-
 			$this->_view('item_rab_form_view', $post);
 		}
 		else $this->show_404();
@@ -76,47 +72,46 @@ class Item_rab extends NOOBS_Controller
 			$post = $this->input->post(NULL, TRUE);
 			$load_data_item_rab = $this->db_item_rab->load_data_item_rab($post);
 
-			if ($load_data_item_rab->num_rows() > 0) 
+			$number = 1;
+
+			foreach ($load_data_item_rab->data as $k => $v)
 			{
-				$result = $load_data_item_rab->result();
-				$number = 1;
+				$v->no = $number;
 
-				foreach ($result as $k => $v)
-				{
-					$v->no = $number;
-
-					$number++;
-				}
-
-				echo json_encode(array('success' => TRUE, 'data' => $result));
+				$number++;
 			}
-			else echo json_encode(array('success' => FALSE, 'msg' => 'Data not found!'));
+			
+			echo json_encode($load_data_item_rab);
 		}
 		else $this->show_404();
 	}
 
-	public function store_data_item()
+	public function store_data()
 	{
-		if (isset($_POST['action']) && $_POST['action'] == 'store_data_item')
+		$post = $this->input->post(NULL, TRUE);
+
+		if (isset($post['action']) && ! empty($post['action']) && $post['action'] == 'store_data')
 		{
-			$post = $this->input->post(NULL, TRUE);
-			$store_data_item = $this->db_item_rab->store_data_item($post);
+			unset($post['action']);
 
-			if ($store_data_item->num_rows() > 0) 
-			{
-				$result = $store_data_item->result();
-				$number = 1;
+			$store_data = $this->db_item_rab->store_data_item($post);
 
-				foreach ($result as $k => $v)
-				{
-					$v->no = $number;
+			echo json_encode(array('success' => $store_data));
+		}
+		else $this->show_404();
+	}
 
-					$number++;
-				}
+	public function delete_data()
+	{
+		$post = $this->input->post(NULL, TRUE);
 
-				echo json_encode(array('success' => TRUE, 'data' => $result));
-			}
-			else echo json_encode(array('success' => FALSE, 'msg' => 'Data not found!'));
+		if (isset($post['action']) && ! empty($post['action']) && $post['action'] == 'delete_data')
+		{
+			unset($post['action']);
+
+			$delete_data = $this->db_item_rab->delete_data($post);
+
+			echo json_encode(array('success' => $delete_data));
 		}
 		else $this->show_404();
 	}
