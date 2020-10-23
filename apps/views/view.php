@@ -17,7 +17,7 @@ $avatar = empty($this->session->userdata('user_img')) ? 'unknown.png' : $this->s
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title><?php echo $title; ?></title>
-		<link rel="shortcut icon" href="<?php echo base_url('images/favicon.png'); ?>">
+		<link rel="shortcut icon" href="<?php echo base_url('images/favicon.ico'); ?>">
 		<link rel="stylesheet" href="<?php echo get_template_url(); ?>plugins/fontawesome-free/css/all.css">
 		<link rel="stylesheet" href="<?php echo base_url('vendors/ionicons/2.0.1/css/ionicons.css'); ?>">
 		<link rel="stylesheet" href="<?php echo base_url('vendors/fonts/audiowide/font.css'); ?>">
