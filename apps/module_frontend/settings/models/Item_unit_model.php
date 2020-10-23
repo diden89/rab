@@ -30,7 +30,7 @@ class Item_unit_model extends NOOBS_Model
 		return $this->db->get('unit');
  	}
 
-	public function store_data_word($params = array())
+	public function store_data_item_unit($params = array())
 	{
 		$this->table = 'unit';
 
@@ -38,14 +38,14 @@ class Item_unit_model extends NOOBS_Model
 		{
 			$id = $params['txt_id'];
 
-			$this->edit(['un_word' => strtoupper($params['txt_unit'])], "un_id = {$id}");
+			$this->edit(['un_name' => strtoupper($params['txt_unit'])], "un_id = {$id}");
 		}
-		else $this->add(['un_word' => strtoupper($params['txt_unit'])]);
+		else $this->add(['un_name' => strtoupper($params['txt_unit'])]);
 
 		return $this->load_data_item_unit();
 	}
 
-	public function delete_data_word($params = array())
+	public function delete_data_item_unit($params = array())
 	{
 		$this->table = 'unit';
 
@@ -56,7 +56,7 @@ class Item_unit_model extends NOOBS_Model
 
 	public function load_data($params = array())
 	{
-		$this->db->where('un_word', strtoupper($params['txt_unit']));
+		$this->db->where('un_name', strtoupper($params['txt_unit']));
 		$this->db->where('un_is_active', 'Y');
 
 		return $this->db->get('unit');
@@ -86,7 +86,7 @@ class Item_unit_model extends NOOBS_Model
 
 			$this->edit(['un_similar_letter' => implode(';', $data)], "un_id = {$params['txt_id']}");
 
-			return $this->load_data(['txt_unit' => $row->un_word]);
+			return $this->load_data(['txt_unit' => $row->un_name]);
 		}
 		return FALSE;
 	}
@@ -95,7 +95,7 @@ class Item_unit_model extends NOOBS_Model
 	{
 		$this->table = 'unit';
 
-		$this->db->where('un_word', $params['txt_unit']);
+		$this->db->where('un_name', $params['txt_unit']);
 
 		$qry = $this->db->get($this->table);
 
@@ -105,7 +105,7 @@ class Item_unit_model extends NOOBS_Model
 
 			$this->edit(['un_similar_letter' => $row->un_similar_letter.';'.$params['txt_similar_letter']], "un_id = {$row->un_id}");
 
-			return $this->load_data(['txt_unit' => $row->un_word]);
+			return $this->load_data(['txt_unit' => $row->un_name]);
 		}
 		return FALSE;
 	}

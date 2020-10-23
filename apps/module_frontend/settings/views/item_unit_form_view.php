@@ -19,8 +19,8 @@
 	<?php endif; ?>
 	
 	<div class="form-group row">
-		<label for="caption" class="col-3 col-form-label">Unit Name</label>
-		<div class="col-9">
+		<label for="caption" class="col-4 col-form-label">Unit Name</label>
+		<div class="col-8">
 			<input type="text" id="txtUnit" name="txt_unit" class="form-control" required="required" value="<?php echo isset($txt_unit) ? $txt_unit : ''; ?>">
 		</div>
 	</div>

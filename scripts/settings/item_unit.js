@@ -5,7 +5,7 @@
  * @edit Diden89
  * @version 1.0
  * @access Public
- * @path /ahp_merekdagang_frontend/scripts/trademark/similar_letters.js
+ * @path /ahp_merekdagang_frontend/scripts/settings/similar_letters.js
  */
 
 const itemUnit = {
@@ -14,7 +14,7 @@ const itemUnit = {
 
 		$('#btnSearchUnit').click(function(e) {
 			e.preventDefault();
-			me.loadDataWord(this);
+			me.loadDataUnit(this);
 		});
 
 		$('#txtUnit').keydown(function(e) {
@@ -27,25 +27,25 @@ const itemUnit = {
 
 		$('#btnAddUnit').click(function(e) {
 			e.preventDefault();
-			me.showWord(this);
+			me.showUnit(this);
 		});
 	},
-	loadDataWord: function(el) {
+	loadDataUnit: function(el) {
 		const me = this;
 		const $this = $(el);
 
 		$.ajax({
-			url: siteUrl('trademark/ignored_words/load_data_word'),
+			url: siteUrl('setitngs/item_unit/load_data_item_unit'),
 			type: 'POST',
 			dataType: 'JSON',
 			data: {
-				action: 'load_data_word',
-				txt_word: $('#txtUnit').val()
+				action: 'load_data_item_unit',
+				txt_unit: $('#txtUnit').val()
 			},
 			success: function(result) {
 				$('#itemUnitDataTable tbody').html('');
 
-				if (result.success !== false) me._generateWordDataTable(result.data);
+				if (result.success !== false) me._generateUnitDataTable(result.data);
 				else if (typeof(result.msg) !== 'undefined') toastr.error(result.msg);
 				else toastr.error(msgErr);
 			},
@@ -54,7 +54,7 @@ const itemUnit = {
 			}
 		});
 	},
-	_generateWordDataTable: (data) => {
+	_generateUnitDataTable: (data) => {
 		const $this = $('#itemUnitDataTable tbody');
 
 		$this.html('');
@@ -64,11 +64,11 @@ const itemUnit = {
 		$.each(data, (idx, item) => {
 			body += '<tr>';
 			body += '<td>' + item.no + '</td>';
-			body += '<td>' + item.words + '</td>';
+			body += '<td>' + item.un_name + '</td>';
 			body += '<td>';
 				body += '<div class="btn-group btn-group-sm" role="group" aria-label="Action Button">';
-					body += '<button type="button" class="btn btn-success" data-id="' + item.id + '" data-words="' + item.words + '" onclick="itemUnit.showWord(this, \'edit\');"><i class="fas fa-edit"></i></button>';
-					body += '<button type="button" class="btn btn-danger" data-id="' + item.id + '" data-words="' + item.words + '" onclick="itemUnit.deleteDataWord(this);"><i class="fas fa-trash-alt"></i></button>';
+					body += '<button type="button" class="btn btn-success" data-id="' + item.id + '" data-unit="' + item.unit + '" onclick="itemUnit.showUnit(this, \'edit\');"><i class="fas fa-edit"></i></button>';
+					body += '<button type="button" class="btn btn-danger" data-id="' + item.id + '" data-unit="' + item.unit + '" onclick="itemUnit.deleteDataUnit(this);"><i class="fas fa-trash-alt"></i></button>';
 				body += '</div>';
 			body += '</td>';
 			body += '</tr>';
@@ -76,24 +76,24 @@ const itemUnit = {
 
 		$this.html(body);
 	},
-	showWord: function(el, mode) {
+	showUnit: function(el, mode) {
 		const me = this;
-		let params = {action: 'load_word_form'};
+		let params = {action: 'load_item_unit_form'};
 		let title = 'Add new';
 
 		if (typeof(mode) !== 'undefined') {
 			params.mode = mode;
 			title = 'Edit';
-			params.txt_word = $(el).data('words');
+			params.txt_unit = $(el).data('unit');
 			params.txt_id = $(el).data('id');
 		}
 
 		$.popup({
-			title: title + ' Words',
-			id: 'showWord',
+			title: title + ' Unit',
+			id: 'showUnit',
 			size: 'small',
 			proxy: {
-				url: siteUrl('trademark/ignored_words/load_word_form'),
+				url: siteUrl('settings/item_unit/load_item_unit_form'),
 				params: params
 			},
 			buttons: [{
@@ -108,7 +108,7 @@ const itemUnit = {
 						const formData = new FormData(form[0]);
 
 						$.ajax({
-							url: siteUrl('trademark/ignored_words/store_data_word'),
+							url: siteUrl('settings/item_unit/store_data_item_unit'),
 							type: 'POST',
 							dataType: 'JSON',
 							data: formData,
@@ -118,7 +118,7 @@ const itemUnit = {
 							success: function(result) {
 								if (result.success) {
 									toastr.success(msgSaveOk);
-									me._generateWordDataTable(result.data);
+									me._generateUnitDataTable(result.data);
 								} else if (typeof(result.msg) !== 'undefined') toastr.error(result.msg);
 								else toastr.error(msgErr);
 
@@ -142,7 +142,7 @@ const itemUnit = {
 			}]
 		});
 	},
-	deleteDataWord: function(el) {
+	deleteDataUnit: function(el) {
 		const me = this;
 		const $this = $(el);
 
@@ -157,17 +157,17 @@ const itemUnit = {
 		}).then((result) => {
 			if (result.value) {
 				$.ajax({
-					url: siteUrl('trademark/ignored_words/delete_data_word'),
+					url: siteUrl('settings/item_unit/delete_data_item_unit'),
 					type: 'POST',
 					dataType: 'JSON',
 					data: {
-						action: 'delete_data_word',
+						action: 'delete_data_item_unit',
 						txt_id: $this.data('id')
 					},
 					success: function(result) {
 						$('#itemUnitDataTable tbody').html('');
 						
-						if (result.success) me._generateWordDataTable(result.data);
+						if (result.success) me._generateUnitDataTable(result.data);
 						else if (typeof(result.msg) !== 'undefined') toastr.error(result.msg);
 						else toastr.error(msgErr);
 					},
