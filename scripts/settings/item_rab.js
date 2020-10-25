@@ -178,30 +178,6 @@ $(document).ready(function() {
 						popup.close();
 					}
 				}],
-				listeners: {
-					onshow: function(popup) {
-						$('#receiveDate').inputmask('dd-mm-yyyy', { 'placeholder': 'DD-MM-YYYY' });
-						$('#receiveDate').noobsdaterangepicker({
-							parentEl: "#" + popup[0].id + " .modal-body",
-							showDropdowns: true,
-							singleDatePicker: true
-						});
-
-						$('#brandReminder').inputmask('dd-mm-yyyy', { 'placeholder': 'DD-MM-YYYY' });
-						$('#brandReminder').noobsdaterangepicker({
-							parentEl: "#" + popup[0].id + " .modal-body",
-							showDropdowns: true,
-							singleDatePicker: true
-						});
-
-						$('#expiryDate').inputmask('dd-mm-yyyy', { 'placeholder': 'DD-MM-YYYY' });
-						$('#expiryDate').noobsdaterangepicker({
-							parentEl: "#" + popup[0].id + " .modal-body",
-							showDropdowns: true,
-							singleDatePicker: true
-						});
-					}
-				}
 			});
 		},
 		viewPopupItemDetail: function(data) {
