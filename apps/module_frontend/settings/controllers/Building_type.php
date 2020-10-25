@@ -19,10 +19,10 @@ class Building_type extends NOOBS_Controller
 
 	public function index()
 	{
-		$this->store_params['header_title'] = 'Item RAB';
+		$this->store_params['header_title'] = 'Building Type';
 		$this->store_params['breadcrumb'] = array(
 			array('', 'Home'),
-			array('settings/building_type', 'Item RAB')
+			array('settings/building_type', 'Building Type')
 		);
 
 		$this->store_params['source_bot'] = array(

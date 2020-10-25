@@ -12,6 +12,7 @@ $(document).ready(function() {
 		gridBuildingType : $('#gridBuilding').grid({
 			serverSide: true,
 			striped: true,
+			autoWidth : true,
 			proxy: {
 				url: siteUrl('settings/building_type/load_data_building_type'),
 				method: 'post',
@@ -25,6 +26,7 @@ $(document).ready(function() {
 					data: 'no',
 					searchable: false,
 					orderable: false,
+					width : 50,
 					css: {
 						'text-align': 'center'
 					}
