@@ -14,7 +14,7 @@
  Date: 23/10/2020 14:39:44
 */
 
-SET NAMES utf8mb4;
+SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
@@ -23,14 +23,14 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `item_list`;
 CREATE TABLE `item_list`  (
   `il_id` int NOT NULL AUTO_INCREMENT,
-  `il_item_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `il_item_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `il_price` decimal(10, 2) NULL DEFAULT NULL,
   `il_un_id` int NULL DEFAULT NULL,
-  `il_is_active` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT 'Y',
-  `last_user` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `il_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
+  `last_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`il_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of item_list
@@ -43,14 +43,14 @@ INSERT INTO `item_list` VALUES (8, 'Batu Bata', 400.00, 1, 'Y', '1', '2020-10-22
 DROP TABLE IF EXISTS `item_rab`;
 CREATE TABLE `item_rab`  (
   `ir_id` int NOT NULL AUTO_INCREMENT,
-  `ir_item_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ir_item_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `ir_un_id` int NULL DEFAULT NULL,
   `ir_seq` int NULL DEFAULT NULL,
-  `ir_is_active` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT 'Y',
-  `last_user` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ir_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
+  `last_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`ir_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of item_rab
@@ -131,7 +131,7 @@ CREATE TABLE `log_access_sub_group`  (
   `asg_ug_id` int NULL DEFAULT NULL,
   `asg_usg_id` int NULL DEFAULT NULL,
   `asg_rm_id` int NULL DEFAULT NULL,
-  `asg_is_active` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT 'Y',
+  `asg_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
   `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
   `log_user_id` int UNSIGNED NOT NULL,
@@ -139,7 +139,7 @@ CREATE TABLE `log_access_sub_group`  (
   `log_datetime` datetime(0) NOT NULL,
   `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of log_access_sub_group
@@ -164,10 +164,10 @@ INSERT INTO `log_access_sub_group` VALUES (19, 1, 1, 39, 'Y', 1, '2020-09-26 19:
 DROP TABLE IF EXISTS `log_item_list`;
 CREATE TABLE `log_item_list`  (
   `il_id` int NOT NULL,
-  `il_item_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `il_item_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `il_price` decimal(10, 2) NULL DEFAULT NULL,
   `il_un_id` int NULL DEFAULT NULL,
-  `il_is_active` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT 'Y',
+  `il_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
   `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
   `log_user_id` int NULL DEFAULT NULL,
@@ -175,7 +175,7 @@ CREATE TABLE `log_item_list`  (
   `log_datetime` datetime(0) NOT NULL,
   `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of log_item_list
@@ -198,10 +198,10 @@ INSERT INTO `log_item_list` VALUES (8, 'Batu Bata', 400.00, 1, 'Y', 1, '2020-10-
 DROP TABLE IF EXISTS `log_item_rab`;
 CREATE TABLE `log_item_rab`  (
   `ir_id` int NOT NULL,
-  `ir_item_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ir_item_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `ir_un_id` int NULL DEFAULT NULL,
   `ir_seq` int NULL DEFAULT NULL,
-  `ir_is_active` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT 'Y',
+  `ir_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
   `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
   `log_user_id` int NULL DEFAULT NULL,
@@ -209,7 +209,7 @@ CREATE TABLE `log_item_rab`  (
   `log_datetime` datetime(0) NOT NULL,
   `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of log_item_rab
@@ -530,16 +530,16 @@ INSERT INTO `log_ref_menu` VALUES (55, 54, 'Item RAB', 'Item Data RAB', 'setting
 DROP TABLE IF EXISTS `log_unit`;
 CREATE TABLE `log_unit`  (
   `un_id` int NOT NULL,
-  `un_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `un_is_active` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `last_user` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `un_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `un_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `last_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
   `log_user_id` int NULL DEFAULT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
   `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of log_unit
@@ -843,12 +843,12 @@ INSERT INTO `ref_menu` VALUES (55, 54, 'Item RAB', 'Item Data RAB', 'settings/it
 DROP TABLE IF EXISTS `unit`;
 CREATE TABLE `unit`  (
   `un_id` int NOT NULL AUTO_INCREMENT,
-  `un_name` varchar(255) CHARACTER SET utf16 COLLATE utf16_bin NULL DEFAULT NULL,
-  `un_is_active` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT 'Y',
-  `last_user` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `un_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `un_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
+  `last_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`un_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of unit
