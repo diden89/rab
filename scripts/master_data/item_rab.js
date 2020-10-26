@@ -4,7 +4,7 @@
  * @author Andy1t
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/scripts/settings/brand.js
+ * @link /ahp_merekdagang_frontend/scripts/master_data/brand.js
  */
 
 $(document).ready(function() {
@@ -13,7 +13,7 @@ $(document).ready(function() {
 			serverSide: true,
 			striped: true,
 			proxy: {
-				url: siteUrl('settings/item_rab/load_data_item_rab'),
+				url: siteUrl('master_data/item_rab/load_data_item_rab'),
 				method: 'post',
 				data: {
 					action: 'load_data_item_rab'
@@ -77,7 +77,7 @@ $(document).ready(function() {
 								}).then((result) => {
 									if (result.value) {
 										$.ajax({
-											url: siteUrl('settings/item_rab/delete_data'),
+											url: siteUrl('master_data/item_rab/delete_data'),
 											type: 'POST',
 											dataType: 'JSON',
 											data: {
@@ -121,7 +121,7 @@ $(document).ready(function() {
 				id: mode + 'RabPopup',
 				size: 'medium',
 				proxy: {
-					url: siteUrl('settings/item_rab/popup_modal'),
+					url: siteUrl('master_data/item_rab/popup_modal'),
 					params: {
 						action: 'popup_modal',
 						mode: mode,
@@ -138,7 +138,7 @@ $(document).ready(function() {
 						if ($.validation(form)) {
 							var formData = new FormData(form[0]);
 							$.ajax({
-								url: siteUrl('settings/item_rab/store_data'),
+								url: siteUrl('master_data/item_rab/store_data'),
 								type: 'POST',
 								dataType: 'JSON',
 								data: formData,
@@ -186,7 +186,7 @@ $(document).ready(function() {
 				id: 'dataDetailPopup',
 				size: 'large',
 				proxy: {
-					url: siteUrl('settings/item_rab/popup_item_detail'),
+					url: siteUrl('master_data/item_rab/popup_item_detail'),
 					params: {
 						action: 'popup_item_detail',
 						mode: 'view',

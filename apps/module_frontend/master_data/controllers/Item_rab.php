@@ -6,7 +6,7 @@
  * @edit Diden89
  * @version 1.0
  * @access Public
- * @path /rab/apps/module_frontend/settings/controllers/Item_rab.php
+ * @path /rab/apps/module_frontend/master_data/controllers/Item_rab.php
  */
 
 class Item_rab extends NOOBS_Controller
@@ -14,7 +14,7 @@ class Item_rab extends NOOBS_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('settings/item_rab_model', 'db_item_rab');
+		$this->load->model('master_data/item_rab_model', 'db_item_rab');
 	}
 
 	public function index()
@@ -22,12 +22,12 @@ class Item_rab extends NOOBS_Controller
 		$this->store_params['header_title'] = 'Item RAB';
 		$this->store_params['breadcrumb'] = array(
 			array('', 'Home'),
-			array('settings/item_rab', 'Item RAB')
+			array('master_data/item_rab', 'Item RAB')
 		);
 
 		$this->store_params['source_bot'] = array(
 			'<script src="'.base_url('vendors/jquery-number-master/jquery.number.js').'"></script>',
-			'<script src="'.base_url('scripts/settings/item_rab.js').'"></script>',
+			'<script src="'.base_url('scripts/master_data/item_rab.js').'"></script>',
 		);
 
 		$this->store_params['item'] = [];
