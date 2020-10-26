@@ -90,7 +90,7 @@ $(document).ready(function() {
 											dataType: 'JSON',
 											data: {
 												action: 'delete_data',
-												txt_id: rowData.ir_id
+												txt_id: rowData.id
 											},
 											success: function(result) {
 												if (result.success) {
