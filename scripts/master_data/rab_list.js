@@ -31,23 +31,23 @@ $(document).ready(function() {
 				},
 				{
 					title: 'Item Name',
-					data: 'ir_item_name'
+					data: 'work'
 				},
 				{
 					title: 'RAB Unit',
-					data: 'rab_un_name'
+					data: 'unit_rab'
 				},
 				{
 					title: 'Material',
-					data: 'ir_seq'
+					data: 'material'
 				},
 				{
 					title: 'Volume',
-					data: 'ir_seq'
+					data: 'volume'
 				},
 				{
 					title: 'Unit',
-					data: 'ir_seq'
+					data: 'unit_item'
 				},
 				{
 					title: 'Action',

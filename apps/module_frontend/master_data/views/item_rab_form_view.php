@@ -24,6 +24,12 @@
 				</div>
 			</div>
 			<div class="form-group row">
+				<label for="caption" class="col-sm-4 col-form-label">Sequence</label>
+				<div class="col-sm-8">
+					<input type="text" name="ir_seq" class="form-control" id="seq" value="<?php echo $mode == 'edit' && $data !== FALSE ? $data['ir_seq'] : '' ?>" required="required" <?php echo $mode == 'edit' ? '' : ''; ?>>
+				</div>
+			</div>
+			<div class="form-group row">
 				<label for="url" class="col-sm-4 col-form-label">Unit</label>
 				<div class="col-sm-8">
 					<select class="form-control select2"  name="ir_un_id" id="txt_unit">
@@ -37,12 +43,6 @@
 					</select>
 				</div>
 			</div>		
-			<div class="form-group row">
-				<label for="caption" class="col-sm-4 col-form-label">Sequence</label>
-				<div class="col-sm-8">
-					<input type="text" name="ir_seq" class="form-control" id="seq" value="<?php echo $mode == 'edit' && $data !== FALSE ? $data['ir_seq'] : '' ?>" required="required" <?php echo $mode == 'edit' ? '' : ''; ?>>
-				</div>
-			</div>
 		</div>		
 	</div>
 </form>

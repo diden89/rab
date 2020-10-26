@@ -42,7 +42,6 @@
 									<tr role="row">
 										<th width="10">No</th>
 										<th>Item Name</th>
-										<th>Item Price</th>
 										<th>Item Unit</th>
 										<th width="100">Action</th>
 									</tr>
@@ -52,7 +51,6 @@
 										<tr>
 											<td><?php echo $v->num; ?></td>
 											<td><?php echo $v->il_item_name; ?></td>
-											<td><?php echo number_format($v->il_price); ?></td>
 											<td><?php echo $v->un_name; ?></td>
 											<td>
 												<div class="btn-group btn-group-sm" role="group" aria-label="Action Button">

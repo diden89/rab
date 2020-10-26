@@ -23,12 +23,12 @@ class Rab_list_model extends NOOBS_Model
 			$this->db->where('rl.rl_id', strtoupper($params['txt_id']));
 		}
 
-		$this->db->select("rl.rl_id as id,rl.rl_volume as volume,il.il_item_name, ir.ir_item_name as material, un_rl.un_name as unit_rab,un_il.un_name as unit_item", FALSE);
+		$this->db->select("rl.rl_id as id,rl.rl_ir_id,rl.rl_il_id, ir.ir_un_id as ir_un_id,il.il_un_id as il_un_id,rl.rl_volume as volume,il.il_item_name as material, ir.ir_item_name as work, un_rl.un_name as unit_rab,un_il.un_name as unit_item,rl.rl_un_id", FALSE);
 		$this->db->from("rab_list rl");
-		$this->db->join("unit un_rl","il.il_un_id = un_rl.un_id","LEFT");
 		$this->db->join("item_rab ir","ir.ir_id = rl.rl_ir_id","LEFT");
 		$this->db->join("item_list il","il.il_id = rl.rl_il_id","LEFT");
-		$this->db->join("unit un_il","un_il.un_id = il.il_un_id","LEFT");
+		$this->db->join("unit un_rl","ir.ir_un_id = un_rl.un_id","LEFT");
+		$this->db->join("unit un_il","un_il.un_id = rl.rl_un_id","LEFT");
 		$this->db->where('rl.rl_is_active', 'Y');
 		// $this->db->where('un_rl.un_is_active', 'Y');
 		$this->db->order_by('ir.ir_seq', 'ASC');
@@ -41,9 +41,10 @@ class Rab_list_model extends NOOBS_Model
 		$this->table = 'rab_list';
 
 		$new_params = array(
-			'rl_item_name' => $params['rl_item_name'],
-			'rl_seq' => $params['rl_seq'],
-			'rl_un_id' => $params['rl_un_id']
+			'rl_ir_id' => $params['rl_ir_id'],
+			'rl_il_id' => $params['rl_il_id'],
+			'rl_un_id' => $params['rl_un_id'],
+			'rl_volume' => $params['rl_volume']
 		);
 
 		if ($params['mode'] == 'add') $this->add($new_params, TRUE);
@@ -69,10 +70,10 @@ class Rab_list_model extends NOOBS_Model
 		return $this->db->get('rab_list');
  	}
 
- 	public function get_option_unit()
+ 	public function get_option_unit($where = array(), $table = "")
 	{
-		$this->db->where('un_is_active', 'Y');
+		$this->db->where($where);
 
-		return $this->db->get('unit');
+		return $this->db->get($table);
  	}
 }

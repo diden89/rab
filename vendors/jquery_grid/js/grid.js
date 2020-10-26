@@ -61,7 +61,7 @@
 			processing: true,
 			serverSide: settings.serverSide,
 			searching: true,
-			pageLength: typeof (newOptions.pageLength) !== 'undefined' ? newOptions.pageLength : 5,
+			pageLength: typeof (newOptions.pageLength) !== 'undefined' ? newOptions.pageLength : 25,
 			responsive: true,
 			// scrollY: '50vh',
 			// scrollX: true,

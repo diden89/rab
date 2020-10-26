@@ -42,7 +42,11 @@ class Rab_list extends NOOBS_Controller
 		if (isset($post['action']) && ! empty($post['action']) && $post['action'] == 'popup_modal')
 		{
 			unset($post['action']);
-			$post['option'] = $this->db_rab_list->get_option_unit()->result();
+
+			$post['option_rab'] = $this->db_rab_list->get_option_unit(array('ir_is_active' => 'Y'),'item_rab')->result();
+			$post['option_item'] = $this->db_rab_list->get_option_unit(array('il_is_active' => 'Y'),'item_list')->result();
+			$post['option_unit'] = $this->db_rab_list->get_option_unit(array('un_is_active' => 'Y'),'unit')->result();
+
 			$this->_view('rab_list_form_view', $post);
 		}
 		else $this->show_404();

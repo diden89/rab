@@ -38,7 +38,6 @@ class Item_list_model extends NOOBS_Model
 
 		$new_params = array(
 			'il_item_name' => $params['il_item_name'],
-			'il_price' => $params['il_price'],
 			'il_un_id' => $params['il_un_id']
 		);
 
@@ -68,6 +67,7 @@ class Item_list_model extends NOOBS_Model
  	public function get_option_unit()
 	{
 		$this->db->where('un_is_active', 'Y');
+		$this->db->order_by('un_name', 'ASC');
 
 		return $this->db->get('unit');
  	}

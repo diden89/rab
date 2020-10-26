@@ -14,12 +14,12 @@
 	<div class="col-12">
 		<div class="card">
 			<div class="card-header">
-				<h3 class="card-title">Item RAB Data</h3>
+				<h3 class="card-title">RAB List Data</h3>
 			</div>
 			<div class="card-body">
 				<div class="row">
 					<div class="col-12">
-						<h4>RAB Item</h4>
+						<h4>RAB List</h4>
 						<div class="row">
 							<div class="input-group col-9">
 								<input type="text" id="txtList" class="form-control" placeholder="Search data..." aria-describedby="btnSearchWord">
