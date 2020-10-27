@@ -26,7 +26,7 @@
 					<div class="col-8">
 						<h4>RAB</h4>
 						<div class="excel-data-table-container">
-							<form id="addAccessGroup">
+							<form id="addRabBuilding">
 							<table class="rab-table table table-striped" id="example1">
 								<thead>
 									<th scope="col">Item Name</th>

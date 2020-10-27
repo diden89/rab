@@ -6,22 +6,52 @@
  * @access Public
  * @link /ahp_merekdagang_frontend/scripts/master_data/rab_building.js
  */
+function addCommas(nStr) //format number
+{
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
 
+function sum_rab(id,vol)
+{
+	var measure = $('#measure'+id).val();
+		sum_total = measure * vol;
+		$('#sum'+id).val(addCommas(sum_total));
+}
 
 const _generate_rab_data = (data) => {
 	let strRabData = '';
 
 
 	$.each(data, (k, v) => {
-		strRabData += '<tr data-id="' + v.rm_id + '" data-parent="' + v.rm_parent_id + '">';
+		var meas = addCommas(v.measure);
+		var summ = addCommas(v.summary);
+		strRabData += '<tr>';
 			strRabData += '<td><b>' + v.work + '</b></td>'
 			strRabData += '<td><b>' + v.unit_rab + '</b></td>'
 			strRabData += '<td><b>' + v.material + '</b></td>'
 			strRabData += '<td><b>' + v.volume + '</b></td>'
 			strRabData += '<td><b>' + v.unit_item + '</b></td>'
-			strRabData += '<td><input type="text" width="50px" class="form-control" value="'+ v.rb_measure +'" name="measure"></td>';
-			strRabData += '<td><input type="text" width="50px" class="form-control" value="'+ v.rb_measure +'" name="summary"></td>';
+			strRabData += '<td><input type="text" width="50px" class="form-control" value="'+ meas +'" name="measure[]" id="measure'+v.id+'" onchange="sum_rab('+v.id+','+v.volume+')"></td>';
+			strRabData += '<td><input type="text" readOnly width="50px" class="form-control" value="'+ summ +'" name="summary[]" id="sum'+v.id+'"></td>';
+			strRabData += '<input type="hidden" value="'+ v.id +'" name="rl_id[]">';
+			strRabData += '<input type="hidden" value="'+ v.rb_id +'" name="rb_id[]">';
+			strRabData += '<input type="hidden" value="'+ bt_id +'" name="bt_id[]">';
 		strRabData += '</tr>';
+
+		// var measure = $('measure'+v.id).val();
+		// sum_total = v.measure * v.volume;
+		// $('measure'+v.id).on('keydown',function(){
+		// 	$('sum'+v.id).val(sum_total);
+		// });
+		// console.log(sum_total)
 	});
 
 	$('.rab-table').find('tbody').append(strRabData);
@@ -40,7 +70,7 @@ function loadDataRab(bt_id)
 		success: function (result) {
 			if (result.success) {
 				$('.rab-table').find('tbody').html('');
-				$('.rab-table').find('tbody').append('<input type="hidden" value="'+bt_id+'" name="bt_id">');
+				// $('.rab-table').find('tbody').append('<input type="hidden" value="'+bt_id+'" name="bt_id">');
 				_generate_rab_data(result.data);
 			} else if (typeof (result.msg) !== 'undefined') {
 				toastr.error(result.msg);
@@ -99,7 +129,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#addAccessGroup').submit(function(e){
+	$('#addRabBuilding').submit(function(e){
 		e.preventDefault(); 
 
 		$.ajax({
@@ -114,7 +144,7 @@ $(document).ready(function() {
 			success: function(result) {
 				if (result.success) {
 					toastr.success(msgSaveOk);
-					loadTreeMenuData(result.ug_id);
+					loadDataRab(result.id);
 
 				} else if (typeof(result.msg) !== 'undefined') {
 					toastr.error(result.msg);

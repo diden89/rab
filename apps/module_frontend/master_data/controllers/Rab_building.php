@@ -56,24 +56,58 @@ class Rab_building extends NOOBS_Controller
 		{
 			$success = FALSE;
 			
-			$get_rab_building = $this->db_r_building->get_rab_building($_POST['bt_id']);
 			$get_all_rab = $this->db_r_building->get_all_rab()->result();
 
 			$rab_list = array();
 
+			$i=0;
 			foreach ($get_all_rab as $k => $v) 
 			{
-				// if ($get_rab_building !== FALSE && in_array($v->id, $get_rab_building)) 
-				// {
-				// 	$rab_list[] = $v;
-				// }
-				// else
-				// {
-					$rab_list[] = $v;
-				// }
-			}
+				$get_rab_building = $this->db_r_building->get_rab_building(array('rb.rb_rl_id' => $v->id,'rb.rb_bt_id' => $_POST['bt_id']));
 
-			// print_r($rab_list);exit;
+				if($get_rab_building->num_rows() > 0)
+				{
+					$get_r_b = $get_rab_building->row();
+					
+					$rab_list[$i] = array(
+						'id' => $get_r_b->id,
+						'rb_id' => $get_r_b->rb_id,
+			            'rl_ir_id' => $get_r_b->rl_ir_id, 
+			            'rl_il_id' => $get_r_b->rl_il_id,
+			            'ir_un_id' => $get_r_b->ir_un_id,
+			            'il_un_id' => $get_r_b->il_un_id,
+			            'volume' => $get_r_b->volume,
+			            'material' => $get_r_b->material,
+			            'work' => $get_r_b->work,
+			            'unit_rab' => $get_r_b->unit_rab,
+			            'unit_item' => $get_r_b->unit_item,
+			            'rl_un_id' => $get_r_b->rl_un_id,
+			            'measure' => $get_r_b->rb_measure,
+			            'summary' => $get_r_b->rb_summary
+					);
+				}
+				else
+				{
+					$rab_list[$i] = array(
+						'id' => $v->id,
+						'rb_id' => "",
+			            'rl_ir_id' => $v->rl_ir_id, 
+			            'rl_il_id' => $v->rl_il_id,
+			            'ir_un_id' => $v->ir_un_id,
+			            'il_un_id' => $v->il_un_id,
+			            'volume' => $v->volume,
+			            'material' => $v->material,
+			            'work' => $v->work,
+			            'unit_rab' => $v->unit_rab,
+			            'unit_item' => $v->unit_item,
+			            'rl_un_id' => $v->rl_un_id,
+			            'measure' => "",
+			            'summary' => ""
+					);
+				}
+			
+					$i++;
+			}
 
 			if (count($rab_list) > 0) echo json_encode(array('success' => TRUE, 'data' => $rab_list));
 			else echo json_encode(array('success' => TRUE));
@@ -83,14 +117,26 @@ class Rab_building extends NOOBS_Controller
 	public function store_data()
 	{
 		$post = $this->input->post(NULL, TRUE);
-		
+		print_r($post);exit;
 		if (isset($post['action']) && ! empty($post['action']) && $post['action'] == 'store_data')
 		{
 			unset($post['action']);
-
-			if(isset($post['mag_id']))
+			$k = 0;
+			foreach($post['rb_id'] as $rb_id)
 			{
-				$delete = $this->db_r_building->delete_access_group($post);
+				if($rb_id !== "")
+				{
+
+				}
+				else
+				{
+
+				}
+				$k++;
+			}
+			if(isset($post['rb_id']))
+			{
+				$update = $this->db_r_building->delete_rab_building($post);
 
 				$params = array();
 				$store_data = TRUE;
