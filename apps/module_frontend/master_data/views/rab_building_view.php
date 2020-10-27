@@ -18,20 +18,24 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-4">
-						<h4>Group List</h4>
+						<h4>Building Type</h4>
 						<div class="list-group" id="listGroup">
-							<p class="text-muted">Menu Access Group</p>
+							<p class="text-muted">RAB Building List</p>
 						</div>
 					</div>
 					<div class="col-8">
-						<h4>Menu Access</h4>
+						<h4>RAB</h4>
 						<div class="excel-data-table-container">
 							<form id="addAccessGroup">
-							<table class="collaptable table table-striped" id="example1">
+							<table class="rab-table table table-striped" id="example1">
 								<thead>
-									<th scope="col"><a href="javascript:void(0);" class="act-button-expand" style="color: white;"><i class="fas fa-angle-double-down"></i></a></th>
-									<th scope="col">Caption</th>
-									<th scope="col" style="text-align:center;">Action</th>
+									<th scope="col">Item Name</th>
+									<th scope="col">RAB Unit</th>
+									<th scope="col">Material</th>
+									<th scope="col">Volume</th>
+									<th scope="col">Unit</th>
+									<th scope="col">Measure</th>
+									<th scope="col">Summary</th>
 								</thead>
 								<tbody></tbody>
 							</table>
