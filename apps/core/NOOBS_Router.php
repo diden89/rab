@@ -5,7 +5,7 @@
  * @author Sikelopes
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/core/NOOBS_Router.php
+ * @link /rab_frontend/apps/core/NOOBS_Router.php
  */
 
 /* load the MX_Router class */

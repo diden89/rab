@@ -5,7 +5,7 @@
  * @author Sikelopes
  * @version 1.0
  * @access Public
- * @path /ahp_merekdagang_frontend/apps/module_frontend/trademark/models/Similar_letters_model.php
+ * @path /rab_frontend/apps/module_frontend/trademark/models/Similar_letters_model.php
  */ 
 
 class Similar_letters_model extends NOOBS_Model

@@ -4,7 +4,7 @@
  * @author diden89
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/scripts/master_data/rab_building.js
+ * @link /rab_frontend/scripts/master_data/rab_building.js
  */
 function addCommas(nStr) //format number
 {

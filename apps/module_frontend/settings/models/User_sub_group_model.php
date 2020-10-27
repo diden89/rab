@@ -5,7 +5,7 @@
  * @author diden89
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/module_frontend/settings/models/User_model.php
+ * @link /rab_frontend/apps/module_frontend/settings/models/User_model.php
  */
 
 class User_sub_group_model extends NOOBS_Model

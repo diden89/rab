@@ -5,7 +5,7 @@
  * @author Andy1t
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/module_frontend/trademark/controllers/Brm_list.php
+ * @link /rab_frontend/apps/module_frontend/trademark/controllers/Brm_list.php
  */
 
 class Brm_list extends NOOBS_Controller 

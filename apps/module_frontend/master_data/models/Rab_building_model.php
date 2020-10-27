@@ -5,7 +5,7 @@
  * @author diden89
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/module_frontend/settings/models/Rab_building_model.php
+ * @link /rab_frontend/apps/module_frontend/settings/models/Rab_building_model.php
  */
 
 class Rab_building_model extends NOOBS_Model

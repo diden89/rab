@@ -6,7 +6,7 @@
  * @edit Diden89
  * @version 1.0
  * @access Public
- * @path /ahp_merekdagang_frontend/apps/module_frontend/trademark/models/Item_unit_model.php
+ * @path /rab_frontend/apps/module_frontend/trademark/models/Item_unit_model.php
  */
 
 class Item_unit_model extends NOOBS_Model

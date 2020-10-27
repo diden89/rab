@@ -5,7 +5,7 @@
  * @author Andy1t
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/module_frontend/trademark/controllers/Invented_brand.php
+ * @link /rab_frontend/apps/module_frontend/trademark/controllers/Invented_brand.php
  */
 
 class Invented_brand extends NOOBS_Controller

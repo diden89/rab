@@ -5,7 +5,7 @@
  * @author Andy1t
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/module_frontend/trademark/controllers/Brand.php
+ * @link /rab_frontend/apps/module_frontend/trademark/controllers/Brand.php
  */
 
 class Brand extends NOOBS_Controller

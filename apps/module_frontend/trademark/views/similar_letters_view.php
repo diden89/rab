@@ -5,7 +5,7 @@
  * @author Sikelopes
  * @version 1.0
  * @access Public
- * @path /ahp_merekdagang_frontend/apps/module_frontend/trademark/views/similar_letters_view.php
+ * @path /rab_frontend/apps/module_frontend/trademark/views/similar_letters_view.php
  */
 ?>
 

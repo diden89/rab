@@ -4,7 +4,7 @@
  * @author diden89
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/scripts/projects/projects_data.js
+ * @link /rab_frontend/scripts/projects/projects_data.js
  */
 
 const _generate_menu = (data) => {
@@ -86,7 +86,7 @@ const _generate_tree_menu = (datas, parentId, idx) => {
 function loadTreeMenuData(ug_id) 
 {
 	$.ajax({
-		url: siteUrl('projects/menu_access_group/get_data'),
+		url: siteUrl('projects/projects_data/get_data'),
 		type: 'POST',
 		dataType: 'JSON',
 		data: {
@@ -112,31 +112,41 @@ function loadTreeMenuData(ug_id)
 
 function loadData(data,callback) 
 {
-	var listGroup = $('#listGroup');
+	$('.data-projects').find('tbody').html('');
 
-	listGroup.html('');
+	var listGroup = '';
+	
+	$.each(data, (k, v) => {
+		listGroup += '<tr class="click-list" style="cursor:pointer;">';
+		listGroup += '<td>'+ v.p_name+'</td>';
+		listGroup += '<td>'+ v.p_location+'</td>';
+		listGroup += '<td>';
+				listGroup += '<div class="btn-group btn-group-sm" role="group" aria-label="Action Button">';
+					listGroup += '<button type="button" class="btn btn-success" data-id="' + v.p_id + '" data-item="' + v.p_name + '" onclick="itemList.showItem(this, \'edit\');"><i class="fas fa-edit"></i></button>';
+					listGroup += '<button type="button" class="btn btn-danger" data-id="' + v.p_id + '" data-item="' + v.p_name + '" onclick="itemList.deleteDataItem(this);"><i class="fas fa-trash-alt"></i></button>';
+				listGroup += '</div>';
+			listGroup += '</td>';
+		listGroup += '</tr>';
+	});
+	
+	$('.data-projects').find('tbody').append(listGroup);
 
-	for (var x in data) {
-		var newData = data[x];
-
-		listGroup.append('<a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#" aria-controls="profile" data-id="' + newData.ug_id + '">' + newData.ug_caption + '</a>');
-	}
 	callback();
 }
 
 
 $(document).ready(function() {
 	$.ajax({
-		url: siteUrl('projects/menu_access_group/get_user_group'),
+		url: siteUrl('projects/projects_data/get_data'),
 		type: 'POST',
 		dataType: 'JSON',
 		data: {
-			action: 'get_user_group'
+			action: 'get_data'
 		},
 		success: function (result) {
 			if (result.success) {
 				loadData(result.data, function() {
-					$('#listGroup a').on('click', function (e) {
+					$('.click-list').on('click', function (e) {
 						e.preventDefault();
 						$('#btnSave').attr('disabled', false);
 						ug_id = $(this).attr('data-id');
@@ -159,7 +169,7 @@ $(document).ready(function() {
 		e.preventDefault(); 
 
 		$.ajax({
-			url: siteUrl('projects/menu_access_group/store_data'),
+			url: siteUrl('projects/projects_data/store_data'),
 			type: 'POST',
 			dataType: 'JSON',
 			data: new FormData(this),

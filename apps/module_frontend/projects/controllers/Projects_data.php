@@ -5,7 +5,7 @@
  * @author diden89
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/module_frontend/projects/controllers/Projects_data.php
+ * @link /rab_frontend/apps/module_frontend/projects/controllers/Projects_data.php
  */
 
 class Projects_data extends NOOBS_Controller 
@@ -43,9 +43,9 @@ class Projects_data extends NOOBS_Controller
 		if (isset($_POST['action']) && $_POST['action'] == 'get_data')
 		{
 			$success = FALSE;
-			$get_user_group = $this->db_projects_data->get_data_projects(array('ug_is_active' => 'Y'));
+			$get_data = $this->db_projects_data->get_data(array('p_is_active' => 'Y'));
 
-			if ($get_user_group && $get_user_group->num_rows() > 0) echo json_encode(array('success' => TRUE, 'data' => $get_user_group->result()));
+			if ($get_data && $get_data->num_rows() > 0) echo json_encode(array('success' => TRUE, 'data' => $get_data->result()));
 			else echo json_encode(array('success' => TRUE));
 		} else $this->show_404();
 	}

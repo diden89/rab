@@ -5,7 +5,7 @@
  * @edit Diden89
  * @version 1.0
  * @access Public
- * @path /ahp_merekdagang_frontend/scripts/settings/similar_letters.js
+ * @path /rab_frontend/scripts/settings/similar_letters.js
  */
 
 const itemUnit = {

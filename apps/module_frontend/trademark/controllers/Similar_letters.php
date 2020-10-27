@@ -5,7 +5,7 @@
  * @author Sikelopes
  * @version 1.0
  * @access Public
- * @path /ahp_merekdagang_frontend/apps/module_frontend/trademark/controllers/Similar_letters.php
+ * @path /rab_frontend/apps/module_frontend/trademark/controllers/Similar_letters.php
  */
 
 class Similar_letters extends NOOBS_Controller

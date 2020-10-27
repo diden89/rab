@@ -6,7 +6,7 @@
  * @edit Diden89
  * @version 1.0
  * @access Public
- * @path /ahp_merekdagang_frontend/apps/module_frontend/settings/controllers/Item_unit.php
+ * @path /rab_frontend/apps/module_frontend/settings/controllers/Item_unit.php
  */
 
 class Item_unit extends NOOBS_Controller

@@ -5,7 +5,7 @@
  * @author Andy1t
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/module_frontend/trademark/models/Brand_gov_model.php
+ * @link /rab_frontend/apps/module_frontend/trademark/models/Brand_gov_model.php
  */
 
 class Brand_gov_model extends NOOBS_Model

@@ -5,7 +5,7 @@
  * @author Andy1t
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/module_frontend/trademark/controllers/Brand_gov.php
+ * @link /rab_frontend/apps/module_frontend/trademark/controllers/Brand_gov.php
  */
 
 class Brand_gov extends NOOBS_Controller

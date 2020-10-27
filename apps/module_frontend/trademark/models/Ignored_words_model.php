@@ -6,7 +6,7 @@
  * @edit Diden89
  * @version 1.0
  * @access Public
- * @path /ahp_merekdagang_frontend/apps/module_frontend/trademark/models/Ignored_words_model.php
+ * @path /rab_frontend/apps/module_frontend/trademark/models/Ignored_words_model.php
  */
 
 class Ignored_words_model extends NOOBS_Model

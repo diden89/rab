@@ -5,15 +5,15 @@
  * @author diden89
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/module_frontend/settings/models/User_model.php
+ * @link /rab_frontend/apps/module_frontend/projects/models/Projects_data_model.php
  */
 
-class Menu_access_group_model extends NOOBS_Model
+class Projects_data_model extends NOOBS_Model
 {
-	public function get_user_group($where=array())
+	public function get_data($where=array())
 	{
 		$this->db->where($where);
-		return $this->db->get('user_group');
+		return $this->db->get('projects');
 	}
 
 	public function get_access_group($where=array())

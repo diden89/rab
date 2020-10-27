@@ -5,7 +5,7 @@
  * @author Sikelopes
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/core/NOOBS_Model.php
+ * @link /rab_frontend/apps/core/NOOBS_Model.php
  */
 
 class NOOBS_Model extends CI_Model {

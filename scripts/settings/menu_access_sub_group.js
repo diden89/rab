@@ -4,7 +4,7 @@
  * @author diden89
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/scripts/settings/user.js
+ * @link /rab_frontend/scripts/settings/user.js
  */
 
 const _generate_menu = (data) => {

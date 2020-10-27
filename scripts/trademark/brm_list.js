@@ -5,7 +5,7 @@
  * @edit Diden89
  * @version 1.0
  * @access Public
- * @path /ahp_merekdagang_frontend/scripts/trademark/brm_list.js
+ * @path /rab_frontend/scripts/trademark/brm_list.js
  */
 
 const brmList = {

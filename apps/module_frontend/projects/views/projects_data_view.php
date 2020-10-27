@@ -5,7 +5,7 @@
  * @author diden89
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/module_frontend/settings/views/user_view.php
+ * @link /rab_frontend/apps/module_frontend/settings/views/user_view.php
  */
 ?>
 
@@ -18,13 +18,27 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-4">
-						<h4>Group List</h4>
+						<!-- <h4>Group List</h4>
 						<div class="list-group" id="listGroup">
 							<p class="text-muted">Menu Access Group</p>
+						</div> -->
+						<h4>Projects</h4>
+						<div class="excel-data-table-container">
+							<table class="data-projects table table-striped" id="example1">
+								<thead>
+									<th scope="col">Projects Name</th>
+									<th scope="col">Location</th>
+									<th scope="col" style="text-align:center;">Action</th>
+								</thead>
+								<tbody></tbody>
+							</table>
+							<div class="btn-group" role="group" aria-label="RAB Button Group">
+								<button type="submit" id="btnSave" class="btn merekdagang-grid-btn btn-primary btn-md"><i class="fas fa-plus"></i> Add</button>
+							</div>
 						</div>
 					</div>
 					<div class="col-8">
-						<h4>Menu Access</h4>
+						<h4>Item List Projects</h4>
 						<div class="excel-data-table-container">
 							<form id="addAccessGroup">
 							<table class="collaptable table table-striped" id="example1">

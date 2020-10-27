@@ -4,7 +4,7 @@
  * @author Andy1t
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/scripts/trademark/invented_brand.js
+ * @link /rab_frontend/scripts/trademark/invented_brand.js
  */
 
 $(document).ready(function() {

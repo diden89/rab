@@ -4,7 +4,7 @@
  * @author Andy1t
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/scripts/trademark/dictionary.js
+ * @link /rab_frontend/scripts/trademark/dictionary.js
  */
 
 $(document).ready(function() {

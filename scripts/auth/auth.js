@@ -4,7 +4,7 @@
  * @author Sikelopes
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/scripts/auth/auth.js
+ * @link /rab_frontend/scripts/auth/auth.js
  */
 
 $(document).ready(function() {

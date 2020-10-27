@@ -5,7 +5,7 @@
  * @author Sikelopes
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/core/NOOBS_Controller.php
+ * @link /rab_frontend/apps/core/NOOBS_Controller.php
  */
 
 class NOOBS_Controller extends CI_Controller {

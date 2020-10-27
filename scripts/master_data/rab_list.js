@@ -4,7 +4,7 @@
  * @author Andy1t
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/scripts/master_data/brand.js
+ * @link /rab_frontend/scripts/master_data/brand.js
  */
 
 $(document).ready(function() {

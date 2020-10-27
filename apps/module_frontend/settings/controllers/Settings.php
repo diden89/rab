@@ -5,7 +5,7 @@
  * @author Andy1t
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/module_frontend/settings/controllers/Settings.php
+ * @link /rab_frontend/apps/module_frontend/settings/controllers/Settings.php
  */
 
 class Setting extends NOOBS_Controller {

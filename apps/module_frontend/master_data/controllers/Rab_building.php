@@ -5,7 +5,7 @@
  * @author diden89
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/module_frontend/master_data/controllers/Rab_building.php
+ * @link /rab_frontend/apps/module_frontend/master_data/controllers/Rab_building.php
  */
 
 class Rab_building extends NOOBS_Controller 

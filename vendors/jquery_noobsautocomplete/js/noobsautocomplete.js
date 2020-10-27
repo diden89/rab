@@ -4,7 +4,7 @@
  * @author Andy1t
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/vendors/jquery_noobsautocomplete/js/noobsautocomplete.js
+ * @link /rab_frontend/vendors/jquery_noobsautocomplete/js/noobsautocomplete.js
  */
 
 (function(global, $, undefined) {

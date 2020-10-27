@@ -6,7 +6,7 @@
  * @edit Diden89
  * @version 1.0
  * @access Public
- * @path /ahp_merekdagang_frontend/apps/module_frontend/trademark/views/brm_list_view.php
+ * @path /rab_frontend/apps/module_frontend/trademark/views/brm_list_view.php
  */
 ?>
 

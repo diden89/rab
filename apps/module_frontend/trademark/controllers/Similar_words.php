@@ -5,7 +5,7 @@
  * @author Andy1t
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/module_frontend/trademark/controllers/Similar_words.php
+ * @link /rab_frontend/apps/module_frontend/trademark/controllers/Similar_words.php
  */
 
 class Similar_words extends NOOBS_Controller

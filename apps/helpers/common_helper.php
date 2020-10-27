@@ -5,7 +5,7 @@
  * @author Sikelopes
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/helpers/common_helper.php
+ * @link /rab_frontend/apps/helpers/common_helper.php
  */
 
 /**

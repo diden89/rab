@@ -4,7 +4,7 @@
  * @author Sikelopes
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/vendors/jquery_treegrid/js/treegrid.js
+ * @link /rab_frontend/vendors/jquery_treegrid/js/treegrid.js
  */
 
 var countTreeGrid = 0;

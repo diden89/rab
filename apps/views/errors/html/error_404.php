@@ -5,7 +5,7 @@
  * @author Andy1t
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/views/errors/html/error_404.php
+ * @link /rab_frontend/apps/views/errors/html/error_404.php
  */
 ?>
 <div class="error-page">

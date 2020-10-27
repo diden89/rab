@@ -5,7 +5,7 @@
  * @author diden89
  * @version 1.0
  * @access Public
- * @link /ahp_merekdagang_frontend/apps/module_frontend/settings/controllers/User.php
+ * @link /rab_frontend/apps/module_frontend/settings/controllers/User.php
  */
 
 class Menu extends NOOBS_Controller 
