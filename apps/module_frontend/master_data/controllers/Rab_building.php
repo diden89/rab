@@ -117,7 +117,7 @@ class Rab_building extends NOOBS_Controller
 	public function store_data()
 	{
 		$post = $this->input->post(NULL, TRUE);
-		print_r($post);exit;
+		// print_r($post);exit;
 		if (isset($post['action']) && ! empty($post['action']) && $post['action'] == 'store_data')
 		{
 			unset($post['action']);
@@ -126,59 +126,29 @@ class Rab_building extends NOOBS_Controller
 			{
 				if($rb_id !== "")
 				{
+					$n_params['id'] = $rb_id;
+					$n_params['mode'] = $post['mode'][$k];
+					$params['rb_bt_id'] = $post['bt_id'];
+					$params['rb_rl_id'] = $post['rl_id'][$k];
+					$params['rb_measure'] = str_replace(",","",$post['measure'][$k]);
+					$params['rb_summary'] = str_replace(",","",$post['summary'][$k]);
 
+					$this->db_r_building->store_data($params,$n_params);
 				}
 				else
 				{
+					$n_params['mode'] = $post['mode'][$k];
+					$params['rb_bt_id'] = $post['bt_id'];
+					$params['rb_rl_id'] = $post['rl_id'][$k];
+					$params['rb_measure'] = str_replace(",","",$post['measure'][$k]);
+					$params['rb_summary'] = str_replace(",","",$post['summary'][$k]);
 
+					$this->db_r_building->store_data($params,$n_params);
 				}
 				$k++;
 			}
-			if(isset($post['rb_id']))
-			{
-				$update = $this->db_r_building->delete_rab_building($post);
 
-				$params = array();
-				$store_data = TRUE;
-				if(isset($post['rm_id'])){
-					foreach ($post['rm_id'] as $k => $v) {
-						$params = array(
-							'mag_ug_id' => $post['ug_id'],
-							'mag_rm_id' => $v,
-						);
-						$cek_ag = $this->db_r_building->cek_access_group($params);
-						if($cek_ag->num_rows() > 0)
-						{
-							$get_ag = $cek_ag->row();
-							$params['mode'] = 'edit';
-							$params['mag_id'] = $get_ag->mag_id;
-							
-							// print_r($params);
-							$store_data = $this->db_r_building->store_data($params);
-						}
-						else
-						{
-							$params['mode'] = 'add';
-							$store_data = $this->db_r_building->store_data($params);
-						}
-					}
-				}
-			}
-			else
-			{
-				foreach ($post['rm_id'] as $k => $v) {
-					$params = array(
-						'mag_ug_id' => $post['ug_id'],
-						'mag_rm_id' => $v,
-						'mode' => 'add',
-					);
-					
-					$params['mode'] = 'add';
-					$store_data = $this->db_r_building->store_data($params);	
-				}
-			}
-
-			echo json_encode(array('success' => $store_data,'ug_id' => $post['ug_id']));
+			echo json_encode(array('success' => TRUE,'id' => $post['bt_id']));
 		}
 		else $this->show_404();
 	}

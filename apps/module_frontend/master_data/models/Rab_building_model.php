@@ -74,15 +74,11 @@ class Rab_building_model extends NOOBS_Model
 		return $this->db->get('ref_menu');
 	}
 
-	public function store_data($params = array())
+	public function store_data($params = array(),$nParams = array())
 	{
-		$this->table = 'menu_access_group';
-		$new_params = array(
-			'mag_ug_id' => $params['mag_ug_id'],
-			'mag_rm_id' => $params['mag_rm_id'],
-		);
+		$this->table = 'rab_building';
 
-		if ($params['mode'] == 'add') return $this->add($new_params, TRUE);
-		else return $this->edit($new_params, "mag_id = {$params['mag_id']}");
+		if ($nParams['mode'] == 'add') return $this->add($params, TRUE);
+		else return $this->edit($params, "rb_id = {$nParams['id']}");
 	}
 }
