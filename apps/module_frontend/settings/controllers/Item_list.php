@@ -63,7 +63,7 @@ class Item_list extends NOOBS_Controller
 			{
 				$post['data'] = $this->db_item_list->load_data_item_list($post['txt_id'])->row();
 			}
-
+	
 			$this->_view('item_list_form_view', $post);
 		}
 		else $this->show_404();

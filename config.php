@@ -37,7 +37,7 @@
 					$noobs_update_time = 300;
 					$noobs_env = 'development';
 					$noobs_vendordir = 'vendors';
-					$noobs_sessdir = 'C:\Users\dkosasih\Downloads\tmp';
+					$noobs_sessdir = 'C:\Users\administrator\Downloads\tmp';
 				break;
 				case 'diden89':
 					$noobs_db_hostname[] = 'localhost';

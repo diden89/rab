@@ -28,12 +28,6 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="description" class="col-sm-4 col-form-label">Price</label>
-				<div class="col-sm-8">
-					<input type="text" name="il_price" class="form-control" id="price" value="<?php echo $mode == 'edit' && $data !== FALSE ? $data->il_price : '' ?>" required="required" <?php echo $mode == 'edit' ? '' : ''; ?>>
-				</div>
-			</div>
-			<div class="form-group row">
 				<label for="url" class="col-sm-4 col-form-label">Unit</label>
 				<div class="col-sm-8">
 					<select class="form-control select2"  name="il_un_id" id="txt_unit">

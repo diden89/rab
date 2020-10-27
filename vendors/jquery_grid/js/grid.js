@@ -63,12 +63,12 @@
 			searching: true,
 			pageLength: typeof (newOptions.pageLength) !== 'undefined' ? newOptions.pageLength : 25,
 			responsive: true,
-			scrollY: '50vh',
-			scrollX: true,
+			// scrollY: '50vh',
+			// scrollX: true,
 			scrollCollapse: true,
 			autoWidth: false,
 			dom: 'ltpri',
-			lengthMenu: [ 25, 50, 100, 250, 500 ]
+			lengthMenu: [ 5, 10, 25, 50, 100, 250, 500 ]
 			// language: {
 			// 	processing: "Sedang memproses...",
 			// 	search: "Cari&nbsp;:",

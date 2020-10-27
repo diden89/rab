@@ -67,7 +67,6 @@ const itemList = {
 			body += '<tr>';
 			body += '<td>' + item.no + '</td>';
 			body += '<td>' + item.il_item_name + '</td>';
-			body += '<td>' + price + '</td>';
 			body += '<td>' + item.un_name + '</td>';
 			body += '<td>';
 				body += '<div class="btn-group btn-group-sm" role="group" aria-label="Action Button">';
@@ -99,7 +98,7 @@ const itemList = {
 		$.popup({
 			title: title + ' Item',
 			id: 'showItem',
-			size: 'medium',
+			size: 'small',
 			proxy: {
 				url: siteUrl('settings/item_list/load_item_form'),
 				params: params
