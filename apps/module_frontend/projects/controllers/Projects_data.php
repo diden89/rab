@@ -147,4 +147,19 @@ class Projects_data extends NOOBS_Controller
 		else $this->show_404();
 	}
 
+	public function delete_data()
+	{
+		$post = $this->input->post(NULL, TRUE);
+
+		if (isset($post['action']) && ! empty($post['action']) && $post['action'] == 'delete_data')
+		{
+			unset($post['action']);
+
+			$delete_data = $this->db_projects_data->delete_data($post,$post['mode']);
+
+			echo json_encode(array('success' => $delete_data));
+		}
+		else $this->show_404();
+	}
+
 }

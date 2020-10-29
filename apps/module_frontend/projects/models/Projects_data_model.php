@@ -57,4 +57,19 @@ class Projects_data_model extends NOOBS_Model
 
 		return $this->db->get($table);
  	}
+
+ 	public function delete_data($params = array(),$table)
+	{
+		$this->table = $table;
+		if($params['mode'] == 'projects')
+		{
+			$this->edit(['p_is_active' => 'N'], "p_id = {$params['txt_id']}");
+		}
+		else
+		{
+			$this->edit(['ps_is_active' => 'N'], "ps_id = {$params['txt_id']}");
+		}
+		return $this->load_data_item_rab();
+	}
+
 }
