@@ -33,27 +33,26 @@
 								<tbody></tbody>
 							</table>
 							<div class="btn-group" role="group" aria-label="RAB Button Group">
-								<button type="submit" id="btnSave" class="btn merekdagang-grid-btn btn-primary btn-md"><i class="fas fa-plus"></i> Add</button>
+								<button type="button" id="btnSave" onclick="popup_projects()" class="btn merekdagang-grid-btn btn-primary btn-md"><i class="fas fa-plus"></i> Add</button>
 							</div>
 						</div>
 					</div>
 					<div class="col-8">
 						<h4>Item List Projects</h4>
 						<div class="excel-data-table-container">
-							<form id="addAccessGroup">
-							<table class="collaptable table table-striped" id="example1">
+							<table class="projects-sub table table-striped" id="example1">
 								<thead>
-									<th scope="col"><a href="javascript:void(0);" class="act-button-expand" style="color: white;"><i class="fas fa-angle-double-down"></i></a></th>
-									<th scope="col">Caption</th>
+									<th scope="col">Projects</th>
+									<th scope="col">Building Type</th>
+									<th scope="col">Projects Sub</th>
 									<th scope="col" style="text-align:center;">Action</th>
 								</thead>
 								<tbody></tbody>
 							</table>
 							<div class="btn-group" role="group" aria-label="RAB Button Group">
 								<input type="hidden" name="action" value="store_data">
-								<button type="submit" id="btnSave" class="btn merekdagang-grid-btn btn-primary btn-md" disabled on><i class="fas fa-save"></i> Save</button>
+								<button type="button" id="btnSave" class="btn merekdagang-grid-btn btn-primary btn-md btn-sub" style="display: none;" onclick="popup_projects_sub()"><i class="fas fa-plus"></i> Add</button>
 							</div>
-							</form>
 						</div>
 					</div>
 				</div>

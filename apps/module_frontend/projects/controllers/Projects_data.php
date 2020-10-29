@@ -50,117 +50,99 @@ class Projects_data extends NOOBS_Controller
 		} else $this->show_404();
 	}
 
-	public function get_menu_data()
+	public function get_sub_data()
 	{
-		if (isset($_POST['action']) && $_POST['action'] == 'get_menu_data')
+		// print_r($_POST);exit;
+		if (isset($_POST['action']) && $_POST['action'] == 'get_sub_data')
 		{
 			$success = FALSE;
 			
-			$get_a_group = $this->db_projects_data->get_access_group(array('mag_is_active' => 'Y','mag_ug_id' => $_POST['ug_id']));
+			$get_sub = $this->db_projects_data->get_sub_data(array('ps.ps_is_active' => 'Y','ps.ps_p_id' => $_POST['p_id']));
 			
-			$get_menu = $this->db_projects_data->get_menu(array('rm_is_active' => 'Y'));
-			
-			$menu = array();
-
-			if($get_a_group->num_rows() > 0)
-			{
-				$get_group = array();
-				$t=0;
-				foreach($get_a_group->result() as $k => $v)
-				{
-					$get_group[$v->mag_id] = $v->mag_rm_id;
-					$t++;
-				}
-				
-				$i=0;
-				foreach($get_menu->result() as $gm => $mn)
-				{		
-					$check = array_search($mn->rm_id, $get_group) ? 'checked' : '';
-					$mag_id = array_search($mn->rm_id, $get_group) ? array_search($mn->rm_id, $get_group) : '';
-					$menu[$i] = (object) array(
-						'rm_id' => $mn->rm_id,
-						'rm_parent_id' =>$mn->rm_parent_id,
-						'rm_caption' =>$mn->rm_caption,
-						'mag_id' => $mag_id,
-						'checked' => $check,
-					);						
-					$i++;
-				}
-			}
-			else
-			{
-				$i=0;
-				foreach($get_menu->result() as $gm => $mn)
-				{		
-					$menu[$i] = (object) array(
-						'rm_id' => $mn->rm_id,
-						'rm_parent_id' =>$mn->rm_parent_id,
-						'rm_caption' =>$mn->rm_caption,
-						'mag_id' => '',
-						'checked' => '',
-					);						
-					$i++;
-				}
-			}
-
-			if (count($menu) > 0) echo json_encode(array('success' => TRUE, 'data' => $menu));
+			if ($get_sub->num_rows() > 0) echo json_encode(array('success' => TRUE, 'data' => $get_sub->result()));
 			else echo json_encode(array('success' => TRUE));
 		} else $this->show_404();
 	}
 
-	public function store_data()
+	public function popup_projects()
 	{
 		$post = $this->input->post(NULL, TRUE);
-		
-		if (isset($post['action']) && ! empty($post['action']) && $post['action'] == 'store_data')
+
+		if (isset($post['action']) && ! empty($post['action']) && $post['action'] == 'popup_modal')
 		{
 			unset($post['action']);
 
-			if(isset($post['mag_id']))
+			if($post['mode'] == 'edit')
 			{
-				$delete = $this->db_projects_data->delete_access_group($post);
+				$post['data'] = $this->db_projects_data->get_data(array('p_is_active' => 'Y','p_id' => $post['data']))->row();
+			}
 
-				$params = array();
-				$store_data = TRUE;
-				if(isset($post['rm_id'])){
-					foreach ($post['rm_id'] as $k => $v) {
-						$params = array(
-							'mag_ug_id' => $post['ug_id'],
-							'mag_rm_id' => $v,
-						);
-						$cek_ag = $this->db_projects_data->cek_access_group($params);
-						if($cek_ag->num_rows() > 0)
-						{
-							$get_ag = $cek_ag->row();
-							$params['mode'] = 'edit';
-							$params['mag_id'] = $get_ag->mag_id;
-							
-							// print_r($params);
-							$store_data = $this->db_projects_data->store_data($params);
-						}
-						else
-						{
-							$params['mode'] = 'add';
-							$store_data = $this->db_projects_data->store_data($params);
-						}
-					}
-				}
+			$this->_view('projects_data_form_view', $post);
+		}
+		else $this->show_404();
+	}
+
+	public function popup_projects_sub()
+	{
+		$post = $this->input->post(NULL, TRUE);
+
+		if (isset($post['action']) && ! empty($post['action']) && $post['action'] == 'popup_modal')
+		{
+			unset($post['action']);
+
+			$post['projects'] = $this->db_projects_data->get_option_unit(array('p_is_active' => 'Y'),'projects')->result();
+			$post['building'] = $this->db_projects_data->get_option_unit(array('bt_is_active' => 'Y'),'building_type')->result();
+
+			if($post['mode'] == 'edit')
+			{
+				$post['data'] = $this->db_projects_data->get_data(array('p_is_active' => 'Y','p_id' => $post['p_id']))->row();
+			}
+
+			$this->_view('projects_sub_data_form_view', $post);
+		}
+		else $this->show_404();
+	}
+
+	public function store_data_projects()
+	{
+		$post = $this->input->post(NULL, TRUE);
+		
+		if (isset($post['action']) && ! empty($post['action']) && $post['action'] == 'store_data_projects')
+		{
+			unset($post['action']);
+
+			if(isset($post['p_id']) && $post['p_id'] !== "")
+			{
+				$store_data = $this->db_projects_data->store_data_projects($post);
 			}
 			else
 			{
-				foreach ($post['rm_id'] as $k => $v) {
-					$params = array(
-						'mag_ug_id' => $post['ug_id'],
-						'mag_rm_id' => $v,
-						'mode' => 'add',
-					);
-					
-					$params['mode'] = 'add';
-					$store_data = $this->db_projects_data->store_data($params);	
-				}
+				$store_data = $this->db_projects_data->store_data_projects($post);	
 			}
 
-			echo json_encode(array('success' => $store_data,'ug_id' => $post['ug_id']));
+			echo json_encode(array('success' => $store_data,'p_id' => $post['p_id']));
+		}
+		else $this->show_404();
+	}
+
+	public function store_data_projects_sub()
+	{
+		$post = $this->input->post(NULL, TRUE);
+		
+		if (isset($post['action']) && ! empty($post['action']) && $post['action'] == 'store_data_projects_sub')
+		{
+			unset($post['action']);
+
+			if(isset($post['ps_id']) && $post['ps_id'] !== "")
+			{
+				$store_data = $this->db_projects_data->store_data_projects_sub($post);
+			}
+			else
+			{
+				$store_data = $this->db_projects_data->store_data_projects_sub($post);	
+			}
+
+			echo json_encode(array('success' => $store_data,'p_id' => $post['ps_p_id']));
 		}
 		else $this->show_404();
 	}

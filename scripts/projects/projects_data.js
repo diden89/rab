@@ -20,84 +20,172 @@ const _generate_menu = (data) => {
 	}); 
 };
 
-const _generate_tree_menu = (datas, parentId, idx) => {
-	let strMenu = '';
+const _generate_sub_data = (data) => {
+	let strSubData = '';
 
-	if (parentId == null || parentId == '' || parentId == ' ' || parentId == 0) {
-		parentId = null;
-	}
-
-	idx++;
-
-	$.each(datas, (k, v) => {
-		if (v.rm_parent_id == parentId) {
-			// console.log(parentId);
-			let children = _generate_tree_menu(datas, v.rm_id, idx);
-
-			if (children != '') {
-				strMenu += '<tr data-id="' + v.rm_id + '" data-parent="' + v.rm_parent_id + '">';
-					strMenu += '<td></td>';
-					strMenu += '<td><b>' + v.rm_caption + '</b></td>'
-					strMenu += '<td style="text-align:center;">';
-						if(v.mag_id != '')
-						{
-							strMenu += '<input name="mag_id[]" type="hidden" value="'+v.mag_id+'">';
-						}
-						strMenu += '<input name="rm_id[]" type="checkbox" value="'+v.rm_id+'" '+v.checked+'>';
-					strMenu += '</td >';
-				strMenu += '</tr>';
-
-				if (idx > 0) {
-					strMenu += children;
-				}
-			} else {
-				if (parentId != null && parentId != '') {
-					strMenu += '<tr data-id="' + v.rm_id + '" data-parent="' + v.rm_parent_id + '">';
-						strMenu += '<td><i class="fas fa-angle-double-right"></i></td>';
-						strMenu += '<td>' + v.rm_caption + '</td>';
-						strMenu += '<td style="text-align:center;">';
-							if(v.mag_id != '')
-							{
-								strMenu += '<input name="mag_id[]" type="hidden" value="'+v.mag_id+'">';
-							}
-							strMenu += '<input name="rm_id[]" type="checkbox" value="'+v.rm_id+'" '+v.checked+'>';
-						strMenu += '</td >';
-					strMenu += '</tr >';
-				} else {
-					strMenu += '<tr data-id="' + v.rm_id + '" data-parent="">';
-						strMenu += '<td><i class="fas fa-angle-double-right"></i></td>';
-						strMenu += '<td><b>' + v.rm_caption + '</b></td>'
-						strMenu += '<td style="text-align:center;">';
-							if(v.mag_id != '')
-							{
-								strMenu += '<input name="mag_id[]" type="hidden" value="'+v.mag_id+'">';
-							}
-						strMenu += '<input name="rm_id[]" type="checkbox" value="'+v.rm_id+'" '+v.checked+'>';
-						strMenu += '</td >';
-					strMenu += '</tr >';
-				}
-			}
-		}
+	$.each(data, (k, v) => {
+		
+		strSubData += '<tr>';
+			strSubData += '<td><b>' + v.p_name + '</b></td>'
+			strSubData += '<td><b>' + v.bt_building_type + '</b></td>'
+			strSubData += '<td><b>' + v.ps_name + '</b></td>'
+			strSubData += '<td style="text-align:center;">';
+				strSubData += '<div class="btn-group btn-group-sm" role="group" aria-label="Action Button">';
+					strSubData += '<button type="button" class="btn btn-success" data-id="' + v.ps_id + '" data-nama="' + v.ps_name + '" onclick="popup_projects_sub(\'edit\', \'Edit\',this);"><i class="fas fa-edit"></i></button>';
+					strSubData += '<button type="button" class="btn btn-danger" data-id="' + v.ps_id + '" data-nama="' + v.ps_name + '" onclick="itemList.deleteDataItem(this);"><i class="fas fa-trash-alt"></i></button>';
+				strSubData += '</div>';
+			strSubData += '</td>';
+			// strSubData += '<input type="hidden" value="'+ bt_id +'" name="bt_id[]">';
+		strSubData += '</tr>';
 	});
 
-	return strMenu;
+	$('.projects-sub').find('tbody').append(strSubData);
 };
 
-function loadTreeMenuData(ug_id) 
+function popup_projects(mode = 'add', title = 'Add', data = false)
+{
+	$.popup({
+		title: title + ' Projects',
+		id: mode + 'ProjectsPopup',
+		size: 'default',
+		proxy: {
+			url: siteUrl('projects/projects_data/popup_projects'),
+			params: {
+				action: 'popup_modal',
+				mode: mode,
+				data: data
+			}
+		},
+		buttons: [{
+			btnId: 'saveData',
+			btnText:'Save',
+			btnClass: 'info',
+			btnIcon: 'fas fa-check-circle',
+			onclick: function(popup) {
+				var form  = popup.find('form');
+				if ($.validation(form)) {
+					var formData = new FormData(form[0]);
+					$.ajax({
+						url: siteUrl('projects/projects_data/store_data_projects'),
+						type: 'POST',
+						dataType: 'JSON',
+						data: formData,
+						processData: false,
+						contentType: false,
+         				cache: false,
+         				enctype: 'multipart/form-data',
+						success: function(result) {
+							if (result.success) {
+								toastr.success(msgSaveOk);
+							} else if (typeof(result.msg) !== 'undefined') {
+								toastr.error(result.msg);
+							} else {
+								toastr.error(msgErr);
+							}
+
+							get_data();
+
+							popup.close();
+
+						},
+						error: function(error) {
+							toastr.error(msgErr);
+						}
+					});
+				}
+			}
+		}, {
+			btnId: 'closePopup',
+			btnText:'Tutup',
+			btnClass: 'secondary',
+			btnIcon: 'fas fa-times',
+			onclick: function(popup) {
+				popup.close();
+			}
+		}],
+	});
+}
+
+function popup_projects_sub(mode = 'add', title = 'Add', data = false)
+{
+	console.log(data);
+	$.popup({
+		title: title + ' Projects',
+		id: mode + 'ProjectsSubPopup',
+		size: 'default',
+		proxy: {
+			url: siteUrl('projects/projects_data/popup_projects_sub'),
+			params: {
+				action: 'popup_modal',
+				mode: mode,
+				data: data
+			}
+		},
+		buttons: [{
+			btnId: 'saveData',
+			btnText:'Save',
+			btnClass: 'info',
+			btnIcon: 'fas fa-check-circle',
+			onclick: function(popup) {
+				var form  = popup.find('form');
+				if ($.validation(form)) {
+					var formData = new FormData(form[0]);
+					$.ajax({
+						url: siteUrl('projects/projects_data/store_data_projects_sub'),
+						type: 'POST',
+						dataType: 'JSON',
+						data: formData,
+						processData: false,
+						contentType: false,
+         				cache: false,
+         				enctype: 'multipart/form-data',
+						success: function(result) {
+							if (result.success) {
+								toastr.success(msgSaveOk);
+							} else if (typeof(result.msg) !== 'undefined') {
+								toastr.error(result.msg);
+							} else {
+								toastr.error(msgErr);
+							}
+
+							loadProjectsSub(result.p_id);
+
+							popup.close();
+
+						},
+						error: function(error) {
+							toastr.error(msgErr);
+						}
+					});
+				}
+			}
+		}, {
+			btnId: 'closePopup',
+			btnText:'Tutup',
+			btnClass: 'secondary',
+			btnIcon: 'fas fa-times',
+			onclick: function(popup) {
+				popup.close();
+			}
+		}],
+	});
+}
+
+function loadProjectsSub(p_id) 
 {
 	$.ajax({
-		url: siteUrl('projects/projects_data/get_data'),
+		url: siteUrl('projects/projects_data/get_sub_data'),
 		type: 'POST',
 		dataType: 'JSON',
 		data: {
-			action: 'get_data',
-			ug_id: ug_id,
+			action: 'get_sub_data',
+			p_id: p_id,
 		},
 		success: function (result) {
 			if (result.success) {
-				$('.collaptable').find('tbody').html('');
-				$('.collaptable').find('tbody').append('<input type="hidden" value="'+ug_id+'" name="ug_id">');
-				_generate_menu(result.data);
+				$('.projects-sub').find('tbody').html('');
+				$('.projects-sub').find('tbody').append('<input type="hidden" value="'+p_id+'" name="p_id">');
+				_generate_sub_data(result.data);
 			} else if (typeof (result.msg) !== 'undefined') {
 				toastr.error(result.msg);
 			} else {
@@ -117,12 +205,12 @@ function loadData(data,callback)
 	var listGroup = '';
 	
 	$.each(data, (k, v) => {
-		listGroup += '<tr class="click-list" style="cursor:pointer;">';
-		listGroup += '<td>'+ v.p_name+'</td>';
+		listGroup += '<tr style="cursor:pointer;" data-id="' + v.p_id + '">';
+		listGroup += '<td  class="click-list">'+ v.p_name+'</td>';
 		listGroup += '<td>'+ v.p_location+'</td>';
 		listGroup += '<td>';
 				listGroup += '<div class="btn-group btn-group-sm" role="group" aria-label="Action Button">';
-					listGroup += '<button type="button" class="btn btn-success" data-id="' + v.p_id + '" data-item="' + v.p_name + '" onclick="itemList.showItem(this, \'edit\');"><i class="fas fa-edit"></i></button>';
+					listGroup += '<button type="button" class="btn btn-success" data-id="' + v.p_id + '" data-item="' + v.p_name + '" onclick="popup_projects(\'edit\', \'Edit\',' + v.p_id + ');"><i class="fas fa-edit"></i></button>';
 					listGroup += '<button type="button" class="btn btn-danger" data-id="' + v.p_id + '" data-item="' + v.p_name + '" onclick="itemList.deleteDataItem(this);"><i class="fas fa-trash-alt"></i></button>';
 				listGroup += '</div>';
 			listGroup += '</td>';
@@ -134,8 +222,8 @@ function loadData(data,callback)
 	callback();
 }
 
-
-$(document).ready(function() {
+function get_data()
+{
 	$.ajax({
 		url: siteUrl('projects/projects_data/get_data'),
 		type: 'POST',
@@ -148,9 +236,9 @@ $(document).ready(function() {
 				loadData(result.data, function() {
 					$('.click-list').on('click', function (e) {
 						e.preventDefault();
-						$('#btnSave').attr('disabled', false);
-						ug_id = $(this).attr('data-id');
-						loadTreeMenuData(ug_id);
+						$('.btn-sub').css('display','block');
+						p_id = $(this).attr('data-id');
+						loadProjectsSub(p_id);
 					});
 				});
 
@@ -164,12 +252,17 @@ $(document).ready(function() {
 			toastr.error(msgErr);
 		}
 	});
+}
 
-	$('#addAccessGroup').submit(function(e){
+$(document).ready(function() {
+	
+	get_data();
+
+	$('#AddData').submit(function(e){
 		e.preventDefault(); 
 
 		$.ajax({
-			url: siteUrl('projects/projects_data/store_data'),
+			url: siteUrl('projects/projects_data/store_data_projects'),
 			type: 'POST',
 			dataType: 'JSON',
 			data: new FormData(this),

@@ -16,46 +16,45 @@ class Projects_data_model extends NOOBS_Model
 		return $this->db->get('projects');
 	}
 
-	public function get_access_group($where=array())
+	public function get_sub_data($where=array())
 	{
+		$this->db->select('*');
+		$this->db->from('projects_sub ps');
+		$this->db->join('projects p','p.p_id = ps.ps_p_id','LEFT');
+		$this->db->join('building_type bt','bt.bt_id = ps.ps_bt_id','LEFT');
 		$this->db->where($where);
-		return $this->db->get('menu_access_group');
+		return $this->db->get();
 	}
 
-	public function cek_access_group($params=array())
+	public function store_data_projects($params = array())
 	{
-		$this->db->where($params);
-
-		return $this->db->get('menu_access_group');
-	}
-
-	public function delete_access_group($params=array())
-	{
-		$this->db->where('mag_ug_id',$params['ug_id']);
-		if(isset($params['rm_id']))
-		{
-			$this->db->where_not_in('mag_rm_id',$params['rm_id']);
-		}
-
-		return $this->db->delete('menu_access_group');
-	}
-	
-	public function get_menu($where=array())
-	{
-		$this->db->where($where);
-		$this->db->order_by('rm_sequence', 'asc');
-		return $this->db->get('ref_menu');
-	}
-
-	public function store_data($params = array())
-	{
-		$this->table = 'menu_access_group';
+		$this->table = 'projects';
 		$new_params = array(
-			'mag_ug_id' => $params['mag_ug_id'],
-			'mag_rm_id' => $params['mag_rm_id'],
+			'p_name' => $params['p_name'],
+			'p_location' => $params['p_location'],
 		);
 
 		if ($params['mode'] == 'add') return $this->add($new_params, TRUE);
-		else return $this->edit($new_params, "mag_id = {$params['mag_id']}");
+		else return $this->edit($new_params, "p_id = {$params['p_id']}");
 	}
+
+	public function store_data_projects_sub($params = array())
+	{
+		$this->table = 'projects_sub';
+		$new_params = array(
+			'ps_p_id' => $params['ps_p_id'],
+			'ps_bt_id' => $params['ps_bt_id'],
+			'ps_name' => $params['ps_name'],
+		);
+
+		if ($params['mode'] == 'add') return $this->add($new_params, TRUE);
+		else return $this->edit($new_params, "ps_id = {$params['ps_id']}");
+	}
+
+	public function get_option_unit($where = array(), $table = "")
+	{
+		$this->db->where($where);
+
+		return $this->db->get($table);
+ 	}
 }
