@@ -51,6 +51,7 @@ const _generate_rab_data = (data) => {
 			strRabData += '<td><input type="text" readOnly width="50px" class="form-control" value="'+ summ +'" name="summary[]" id="sum'+v.id+'"></td>';
 			strRabData += '<input type="hidden" value="'+ v.id +'" name="rl_id[]">';
 			strRabData += '<input type="hidden" value="'+ v.rb_id +'" name="rb_id[]">';
+			strRabData += '<input type="hidden" value="'+ v.rl_il_id +'" name="rl_il_id[]">';
 			// strRabData += '<input type="hidden" value="'+ bt_id +'" name="bt_id[]">';
 			strRabData += '<input type="hidden" value="'+ mode +'" name="mode[]">';
 		strRabData += '</tr>';

@@ -130,6 +130,7 @@ class Rab_building extends NOOBS_Controller
 					$n_params['mode'] = $post['mode'][$k];
 					$params['rb_bt_id'] = $post['bt_id'];
 					$params['rb_rl_id'] = $post['rl_id'][$k];
+					$params['rb_il_id'] = $post['rl_il_id'][$k];
 					$params['rb_measure'] = str_replace(",","",$post['measure'][$k]);
 					$params['rb_summary'] = str_replace(",","",$post['summary'][$k]);
 
@@ -140,6 +141,7 @@ class Rab_building extends NOOBS_Controller
 					$n_params['mode'] = $post['mode'][$k];
 					$params['rb_bt_id'] = $post['bt_id'];
 					$params['rb_rl_id'] = $post['rl_id'][$k];
+					$params['rb_il_id'] = $post['rl_il_id'][$k];
 					$params['rb_measure'] = str_replace(",","",$post['measure'][$k]);
 					$params['rb_summary'] = str_replace(",","",$post['summary'][$k]);
 
