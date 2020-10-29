@@ -43,7 +43,7 @@ class Projects_data extends NOOBS_Controller
 		if (isset($_POST['action']) && $_POST['action'] == 'get_data')
 		{
 			$success = FALSE;
-			$get_data = $this->db_projects_data->get_data(array('p_is_active' => 'Y'));
+			$get_data = $this->db_projects_data->get_data();
 
 			if ($get_data && $get_data->num_rows() > 0) echo json_encode(array('success' => TRUE, 'data' => $get_data->result()));
 			else echo json_encode(array('success' => TRUE));
@@ -57,7 +57,7 @@ class Projects_data extends NOOBS_Controller
 		{
 			$success = FALSE;
 			
-			$get_sub = $this->db_projects_data->get_sub_data(array('ps.ps_is_active' => 'Y','ps.ps_p_id' => $_POST['p_id']));
+			$get_sub = $this->db_projects_data->get_sub_data(array('ps.ps_p_id' => $_POST['p_id']));
 			
 			if ($get_sub->num_rows() > 0) echo json_encode(array('success' => TRUE, 'data' => $get_sub->result()));
 			else echo json_encode(array('success' => TRUE));
@@ -74,7 +74,7 @@ class Projects_data extends NOOBS_Controller
 
 			if($post['mode'] == 'edit')
 			{
-				$post['data'] = $this->db_projects_data->get_data(array('p_is_active' => 'Y','p_id' => $post['data']))->row();
+				$post['data'] = $this->db_projects_data->get_data(array('p_id' => $post['data']))->row();
 			}
 
 			$this->_view('projects_data_form_view', $post);
@@ -85,7 +85,7 @@ class Projects_data extends NOOBS_Controller
 	public function popup_projects_sub()
 	{
 		$post = $this->input->post(NULL, TRUE);
-
+		
 		if (isset($post['action']) && ! empty($post['action']) && $post['action'] == 'popup_modal')
 		{
 			unset($post['action']);
@@ -95,9 +95,9 @@ class Projects_data extends NOOBS_Controller
 
 			if($post['mode'] == 'edit')
 			{
-				$post['data'] = $this->db_projects_data->get_data(array('p_is_active' => 'Y','p_id' => $post['p_id']))->row();
+				$post['data'] = $this->db_projects_data->get_sub_data(array('ps.ps_id' => $post['id']))->row();
 			}
-
+			
 			$this->_view('projects_sub_data_form_view', $post);
 		}
 		else $this->show_404();

@@ -31,8 +31,8 @@ const _generate_sub_data = (data) => {
 			strSubData += '<td><b>' + v.ps_name + '</b></td>'
 			strSubData += '<td style="text-align:center;">';
 				strSubData += '<div class="btn-group btn-group-sm" role="group" aria-label="Action Button">';
-					strSubData += '<button type="button" class="btn btn-success" data-id="' + v.ps_id + '" data-nama="' + v.ps_name + '" onclick="popup_projects_sub(\'edit\', \'Edit\',this);"><i class="fas fa-edit"></i></button>';
-					strSubData += '<button type="button" class="btn btn-danger" data-id="' + v.ps_id + '" data-nama="' + v.ps_name + '" onclick="delete_data(' + v.ps_id + ',\'projects\');"><i class="fas fa-trash-alt"></i></button>';
+					strSubData += '<button type="button" class="btn btn-success" data-id="' + v.ps_id + '" data-nama="' + v.ps_name + '" onclick="popup_projects_sub(\'edit\', \'Edit\',' + v.ps_id + ');"><i class="fas fa-edit"></i></button>';
+					strSubData += '<button type="button" class="btn btn-danger" data-id="' + v.ps_id + '" data-nama="' + v.ps_name + '" onclick="delete_data(' + v.p_id + ',' + v.ps_id + ',\'projects_sub\');"><i class="fas fa-trash-alt"></i></button>';
 				strSubData += '</div>';
 			strSubData += '</td>';
 			// strSubData += '<input type="hidden" value="'+ bt_id +'" name="bt_id[]">';
@@ -118,7 +118,7 @@ function popup_projects_sub(mode = 'add', title = 'Add', data = false)
 			params: {
 				action: 'popup_modal',
 				mode: mode,
-				data: data
+				id: data
 			}
 		},
 		buttons: [{
@@ -211,7 +211,7 @@ function loadData(data,callback)
 		listGroup += '<td>';
 				listGroup += '<div class="btn-group btn-group-sm" role="group" aria-label="Action Button">';
 					listGroup += '<button type="button" class="btn btn-success" data-id="' + v.p_id + '" data-item="' + v.p_name + '" onclick="popup_projects(\'edit\', \'Edit\',' + v.p_id + ');"><i class="fas fa-edit"></i></button>';
-					listGroup += '<button type="button" class="btn btn-danger" data-id="' + v.p_id + '" data-item="' + v.p_name + '" onclick="delete_data(' + v.p_id + ',\'projects\');"><i class="fas fa-trash-alt"></i></button>';
+					listGroup += '<button type="button" class="btn btn-danger" data-id="' + v.p_id + '" data-item="' + v.p_name + '" onclick="delete_data(' + v.p_id + ',\'\',\'projects\');"><i class="fas fa-trash-alt"></i></button>';
 				listGroup += '</div>';
 			listGroup += '</td>';
 		listGroup += '</tr>';
@@ -254,7 +254,7 @@ function get_data()
 	});
 }
 
-function delete_data(id,mode)
+function delete_data(p_id = "",ps_id = "", mode = "")
 {		
 // console.log(mode)					
 	Swal.fire({
@@ -273,21 +273,28 @@ function delete_data(id,mode)
 				dataType: 'JSON',
 				data: {
 					action: 'delete_data',
-					txt_id: id,
+					txt_p_id: p_id,
+					txt_ps_id: ps_id,
 					mode : mode
 
 				},
 				success: function(result) {
 					if (result.success) {
 						toastr.success("Data succesfully deleted.");
+						if(mode == 'projects')
+						{
+							get_data();
+						}
+						else
+						{
+							loadProjectsSub(p_id);
+						}
 					} else if (typeof(result.msg) !== 'undefined') {
 						toastr.error(result.msg);
 					} else {
 						toastr.error(msgErr);
 					}
 					
-					get_data();
-					loadProjectsSub(data);
 				},
 				error: function(error) {
 					toastr.error(msgErr);

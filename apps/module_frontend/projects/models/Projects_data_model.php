@@ -13,6 +13,7 @@ class Projects_data_model extends NOOBS_Model
 	public function get_data($where=array())
 	{
 		$this->db->where($where);
+		$this->db->where('p_is_active','Y');
 		return $this->db->get('projects');
 	}
 
@@ -22,6 +23,7 @@ class Projects_data_model extends NOOBS_Model
 		$this->db->from('projects_sub ps');
 		$this->db->join('projects p','p.p_id = ps.ps_p_id','LEFT');
 		$this->db->join('building_type bt','bt.bt_id = ps.ps_bt_id','LEFT');
+		$this->db->where('ps.ps_is_active','Y');
 		$this->db->where($where);
 		return $this->db->get();
 	}
@@ -63,13 +65,14 @@ class Projects_data_model extends NOOBS_Model
 		$this->table = $table;
 		if($params['mode'] == 'projects')
 		{
-			$this->edit(['p_is_active' => 'N'], "p_id = {$params['txt_id']}");
+			return $this->edit(['p_is_active' => 'N'], "p_id = {$params['txt_p_id']}");
+			// return $this->get_data();
 		}
 		else
 		{
-			$this->edit(['ps_is_active' => 'N'], "ps_id = {$params['txt_id']}");
+			return $this->edit(['ps_is_active' => 'N'], "ps_id = {$params['txt_ps_id']}");
+			// return $this->get_sub_data(array());
 		}
-		return $this->load_data_item_rab();
 	}
 
 }
