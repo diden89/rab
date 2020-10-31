@@ -10,7 +10,7 @@
 
 class Material_consumption_model extends NOOBS_Model
 {
-	public function get_data_material()
+	public function get_data_material($params = array())
 	{
 		$this->db->select('*');
 		$this->db->from('material_consumption mc');
@@ -19,6 +19,22 @@ class Material_consumption_model extends NOOBS_Model
 		$this->db->join('projects_sub ps','mc.mc_ps_id = ps.ps_id','LEFT');
 		$this->db->join('projects p','ps.ps_p_id = p.p_id','LEFT');
 		$this->db->where('mc.mc_is_active','Y');
+
+		if (isset($params['ps_id']) && ! empty($params['ps_id']))
+		{
+			$this->db->where('mc.mc_ps_id', strtoupper($params['ps_id']));
+		}
+
+		if (isset($params['years']) && ! empty($params['years']))
+		{
+			$this->db->where('YEAR(mc.mc_date_order)', strtoupper($params['years']));
+		}
+
+		if (isset($params['month']) && ! empty($params['month']))
+		{
+			$this->db->where('MONTH(mc.mc_date_order)', strtoupper($params['month']));
+		}
+
 		return $this->db->get();
 	}
 

@@ -107,18 +107,23 @@ function popup_projects(mode = 'add', title = 'Add', data = false)
 	});
 }
 
-function popup_projects_sub(mode = 'add', title = 'Add', data = false)
+function popup_material_consumption(mode = 'add', title = 'Add', data = false)
 {
+	var p_id = $('#p-id').val();
+	var ps_id = $('#ps-id').val();
+
 	$.popup({
-		title: title + ' Projects',
-		id: mode + 'ProjectsSubPopup',
-		size: 'default',
+		title: title + ' Material Consumption',
+		id: mode + 'MaterialConsPopup',
+		size: 'medium',
 		proxy: {
 			url: siteUrl('projects/material_consumption/popup_projects_sub'),
 			params: {
 				action: 'popup_modal',
 				mode: mode,
-				id: data
+				id: data,
+				p_id : p_id,
+				ps_id : ps_id
 			}
 		},
 		buttons: [{
@@ -171,32 +176,32 @@ function popup_projects_sub(mode = 'add', title = 'Add', data = false)
 	});
 }
 
-function loadProjectsSub(p_id) 
-{
-	$.ajax({
-		url: siteUrl('projects/material_consumption/get_sub_data'),
-		type: 'POST',
-		dataType: 'JSON',
-		data: {
-			action: 'get_sub_data',
-			p_id: p_id,
-		},
-		success: function (result) {
-			if (result.success) {
-				$('.projects-sub').find('tbody').html('');
-				$('.projects-sub').find('tbody').append('<input type="hidden" value="'+p_id+'" name="p_id">');
-				_generate_sub_data(result.data);
-			} else if (typeof (result.msg) !== 'undefined') {
-				toastr.error(result.msg);
-			} else {
-				toastr.error(msgErr);
-			}
-		},
-		error: function (error) {
-			toastr.error(msgErr);
-		}
-	});
-}
+// function loadProjectsSub(p_id) 
+// {
+// 	$.ajax({
+// 		url: siteUrl('projects/material_consumption/get_sub_data'),
+// 		type: 'POST',
+// 		dataType: 'JSON',
+// 		data: {
+// 			action: 'get_sub_data',
+// 			p_id: p_id,
+// 		},
+// 		success: function (result) {
+// 			if (result.success) {
+// 				$('.projects-sub').find('tbody').html('');
+// 				$('.projects-sub').find('tbody').append('<input type="hidden" value="'+p_id+'" name="p_id">');
+// 				_generate_sub_data(result.data);
+// 			} else if (typeof (result.msg) !== 'undefined') {
+// 				toastr.error(result.msg);
+// 			} else {
+// 				toastr.error(msgErr);
+// 			}
+// 		},
+// 		error: function (error) {
+// 			toastr.error(msgErr);
+// 		}
+// 	});
+// }
 
 function loadDataMaterial(data) 
 {
@@ -206,6 +211,7 @@ function loadDataMaterial(data)
 	
 	$.each(data, (k, v) => {
 		listGroup += '<tr>';
+		listGroup += '<td>'+ v.num+'</td>';
 		listGroup += '<td>'+ v.p_name+'</td>';
 		listGroup += '<td>'+ v.ps_name+'</td>';
 		listGroup += '<td>'+ v.mc_date_order+'</td>';
@@ -336,6 +342,7 @@ $(document).ready(function() {
 				if (result.success) {
 					toastr.success(msgSaveOk);
 					loadDataMaterial(result.data);
+					$('.btn-sub').css('display','block');
 
 				} else if (typeof(result.msg) !== 'undefined') {
 					toastr.error(result.msg);

@@ -65,12 +65,27 @@ class Material_consumption extends NOOBS_Controller
 
 	public function show_material()
 	{
+		// print_r($_POST);exit;
 		if (isset($_POST['action']) && $_POST['action'] == 'show_material')
 		{
 			$success = FALSE;
-			$get_data = $this->db_material_consumption->get_data_material();
+			$get_data = $this->db_material_consumption->get_data_material($_POST);
+			if($get_data && $get_data->num_rows() > 0)
+			{	
+				$data = $get_data->result();
+				$num = 0;
+				foreach($data as $k => $v)
+				{
+					$num++;
 
-			if ($get_data && $get_data->num_rows() > 0) echo json_encode(array('success' => TRUE, 'data' => $get_data->result()));
+					$v->num = $num;
+					$v->mc_date_order = date('d M Y, H:i:s',strtotime($v->mc_date_order));
+					$v->mc_price = number_format($v->mc_price);
+
+				}
+
+				echo json_encode(array('success' => TRUE, 'data' => $data));
+			}
 			else echo json_encode(array('success' => TRUE));
 		} else $this->show_404();
 	}
@@ -115,15 +130,16 @@ class Material_consumption extends NOOBS_Controller
 		{
 			unset($post['action']);
 
-			$post['projects'] = $this->db_material_consumption->get_option_unit(array('p_is_active' => 'Y'),'projects')->result();
-			$post['building'] = $this->db_material_consumption->get_option_unit(array('bt_is_active' => 'Y'),'building_type')->result();
+			$post['projects'] = $this->db_material_consumption->get_option_unit(array('p_is_active' => 'Y','p_id' => $post['p_id']),'projects')->result();
+			
+			$post['projects_sub'] = $this->db_material_consumption->get_option_unit(array('ps_is_active' => 'Y','ps_id' => $post['ps_id']),'projects_sub')->result();
 
 			if($post['mode'] == 'edit')
 			{
 				$post['data'] = $this->db_material_consumption->get_sub_data(array('ps.ps_id' => $post['id']))->row();
 			}
 			
-			$this->_view('projects_sub_data_form_view', $post);
+			$this->_view('material_consumption_form_view', $post);
 		}
 		else $this->show_404();
 	}

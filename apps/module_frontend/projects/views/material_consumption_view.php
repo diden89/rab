@@ -22,7 +22,7 @@
 							<h4>Filter Projects</h4>
 							<div class="form-group row">
 								<div class="col-sm-12">
-									<select class="form-control select2"  name="p_id" id="p-id">
+									<select class="form-control select2"  name="p_id" id="p-id" required="required">
 										<option value="">-Select-</option>
 										<?php
 											foreach($projects as $k => $v)
@@ -35,7 +35,7 @@
 							</div>
 							<div class="form-group row">
 								<div class="col-sm-12">
-									<select class="form-control select2 ps-id"  name="ps_id" id="ps-id">
+									<select class="form-control select2 ps-id"  name="ps_id" id="ps-id" required="required">
 										<option value="">-Select-</option>
 									</select>
 								</div>
@@ -84,6 +84,7 @@
 						<div class="excel-data-table-container">
 							<table class="material-consumption table table-striped" id="example1">
 								<thead>
+									<th>No</th>
 									<th>Projects</th>
 									<th>Projects Sub</th>
 									<th>Date Order</th>
@@ -97,7 +98,7 @@
 								<tbody></tbody>
 							</table>
 							<div class="btn-group" role="group" aria-label="RAB Button Group">
-								<button type="button" id="btnSave" class="btn merekdagang-grid-btn btn-primary btn-md btn-sub" style="display: none;" onclick="popup_projects_sub()"><i class="fas fa-plus"></i> Add</button>
+								<button type="button" id="btnAdd" class="btn merekdagang-grid-btn btn-primary btn-md btn-sub" style="display: none;" onclick="popup_material_consumption()"><i class="fas fa-plus"></i> Add</button>
 							</div>
 						</div>
 					</div>
