@@ -18,27 +18,65 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-4">
-						<h4>Filter Projects</h4>
-						<div class="form-group row">
-							<div class="col-sm-12">
-								<select class="form-control select2"  name="p_id" id="p-id">
-									<option value="">-Select-</option>
-									<?php
-										foreach($projects as $k => $v)
-										{
-											echo '<option value="'.$v->p_id.'">'.$v->p_name.'</option>';
-										}
-									?>
-								</select>
+						<form action="">
+							<h4>Filter Projects</h4>
+							<div class="form-group row">
+								<div class="col-sm-12">
+									<select class="form-control select2"  name="p_id" id="p-id">
+										<option value="">-Select-</option>
+										<?php
+											foreach($projects as $k => $v)
+											{
+												echo '<option value="'.$v->p_id.'">'.$v->p_name.'</option>';
+											}
+										?>
+									</select>
+								</div>
 							</div>
-						</div>
-						<div class="form-group row">
-							<div class="col-sm-12">
-								<select class="form-control select2 ps-id"  name="ps_id" id="ps-id">
-									<option value="">-Select-</option>
-								</select>
+							<div class="form-group row">
+								<div class="col-sm-12">
+									<select class="form-control select2 ps-id"  name="ps_id" id="ps-id">
+										<option value="">-Select-</option>
+									</select>
+								</div>
 							</div>
-						</div>
+							<div class="row">
+								<div class="col-6">
+									<div class="form-group row">
+										<div class="col-sm-12">
+											<select class="form-control select2"  name="p_id" id="p-id">
+												<option value="">-Years-</option>
+												<?php
+													for($i=date('Y')-3;$i<=date('Y');$i++)
+													{
+														echo '<option value="'.$i.'" '.($i == date('Y') ? 'selected':'').'>'.$i.'</option>';
+													}
+												?>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="form-group row">
+										<div class="col-sm-12">
+											<select class="form-control select2"  name="p_id" id="p-id">
+												<option value="">-Month-</option>
+												<?php
+													$bln=array(1=>"Januari","Februari","Maret","April","Mei","Juni","July","Agustus","September","Oktober","November","Desember");
+													
+													for($bulan=1; $bulan<=12; $bulan++){
+														echo '<option value='.$bulan.' '.($bulan == date('n') ? "selected":"").'>'.$bln[$bulan].'</option>';
+													}
+												?>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="btn-group" role="group" aria-label="Show Material">
+								<button type="submit" id="btnShow" onclick="popup_projects()" class="btn merekdagang-grid-btn btn-warning btn-md"><i class="fas fa-eye"></i> Show</button>
+							</div>
+						</form>
 					</div>
 					<div class="col-8">
 						<h4>Item List Projects</h4>
