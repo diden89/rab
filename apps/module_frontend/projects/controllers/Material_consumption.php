@@ -63,6 +63,18 @@ class Material_consumption extends NOOBS_Controller
 		} else $this->show_404();
 	}
 
+	public function show_material()
+	{
+		if (isset($_POST['action']) && $_POST['action'] == 'show_material')
+		{
+			$success = FALSE;
+			$get_data = $this->db_material_consumption->get_data_material();
+
+			if ($get_data && $get_data->num_rows() > 0) echo json_encode(array('success' => TRUE, 'data' => $get_data->result()));
+			else echo json_encode(array('success' => TRUE));
+		} else $this->show_404();
+	}
+
 	public function get_sub_data()
 	{
 		// print_r($_POST);exit;

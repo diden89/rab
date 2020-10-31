@@ -17,8 +17,8 @@
 			</div>
 			<div class="card-body">
 				<div class="row">
-					<div class="col-4">
-						<form action="">
+					<div class="col-2">
+						<form role="form" id="showMaterial" autocomplete="off">
 							<h4>Filter Projects</h4>
 							<div class="form-group row">
 								<div class="col-sm-12">
@@ -44,7 +44,7 @@
 								<div class="col-6">
 									<div class="form-group row">
 										<div class="col-sm-12">
-											<select class="form-control select2"  name="p_id" id="p-id">
+											<select class="form-control select2"  name="years" id="years">
 												<option value="">-Years-</option>
 												<?php
 													for($i=date('Y')-3;$i<=date('Y');$i++)
@@ -59,7 +59,7 @@
 								<div class="col-6">
 									<div class="form-group row">
 										<div class="col-sm-12">
-											<select class="form-control select2"  name="p_id" id="p-id">
+											<select class="form-control select2"  name="month" id="month">
 												<option value="">-Month-</option>
 												<?php
 													$bln=array(1=>"Januari","Februari","Maret","April","Mei","Juni","July","Agustus","September","Oktober","November","Desember");
@@ -74,24 +74,29 @@
 								</div>
 							</div>
 							<div class="btn-group" role="group" aria-label="Show Material">
-								<button type="submit" id="btnShow" onclick="popup_projects()" class="btn merekdagang-grid-btn btn-warning btn-md"><i class="fas fa-eye"></i> Show</button>
+								<input type="hidden" name="action" value="show_material">
+								<button type="submit" id="btnShow" class="btn merekdagang-grid-btn btn-warning btn-md"><i class="fas fa-eye"></i> Show</button>
 							</div>
 						</form>
 					</div>
-					<div class="col-8">
+					<div class="col-10">
 						<h4>Item List Projects</h4>
 						<div class="excel-data-table-container">
-							<table class="projects-sub table table-striped" id="example1">
+							<table class="material-consumption table table-striped" id="example1">
 								<thead>
-									<th scope="col">Projects</th>
-									<th scope="col">Building Type</th>
-									<th scope="col">Projects Sub</th>
-									<th scope="col" style="text-align:center;">Action</th>
+									<th>Projects</th>
+									<th>Projects Sub</th>
+									<th>Date Order</th>
+									<th>Material</th>
+									<th>Price</th>
+									<th>Quantity</th>
+									<th>Unit</th>									
+									<th >Total</th>
+									<th style="text-align:center;">Action</th>
 								</thead>
 								<tbody></tbody>
 							</table>
 							<div class="btn-group" role="group" aria-label="RAB Button Group">
-								<input type="hidden" name="action" value="store_data">
 								<button type="button" id="btnSave" class="btn merekdagang-grid-btn btn-primary btn-md btn-sub" style="display: none;" onclick="popup_projects_sub()"><i class="fas fa-plus"></i> Add</button>
 							</div>
 						</div>

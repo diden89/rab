@@ -10,11 +10,16 @@
 
 class Material_consumption_model extends NOOBS_Model
 {
-	public function get_data($where=array())
+	public function get_data_material()
 	{
-		$this->db->where($where);
-		$this->db->where('p_is_active','Y');
-		return $this->db->get('projects');
+		$this->db->select('*');
+		$this->db->from('material_consumption mc');
+		$this->db->join('item_list il','mc.mc_il_id = il.il_id','LEFT');
+		$this->db->join('unit un','mc.mc_un_id = un.un_id','LEFT');
+		$this->db->join('projects_sub ps','mc.mc_ps_id = ps.ps_id','LEFT');
+		$this->db->join('projects p','ps.ps_p_id = p.p_id','LEFT');
+		$this->db->where('mc.mc_is_active','Y');
+		return $this->db->get();
 	}
 
 	public function get_sub_data($where=array())

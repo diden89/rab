@@ -198,16 +198,22 @@ function loadProjectsSub(p_id)
 	});
 }
 
-function loadData(data,callback) 
+function loadDataMaterial(data) 
 {
 	$('.material-consumption').find('tbody').html('');
 
 	var listGroup = '';
 	
 	$.each(data, (k, v) => {
-		listGroup += '<tr style="cursor:pointer;" data-id="' + v.p_id + '">';
-		listGroup += '<td  class="click-list" id="' + v.p_id + '">'+ v.p_name+'</td>';
-		listGroup += '<td>'+ v.p_location+'</td>';
+		listGroup += '<tr>';
+		listGroup += '<td>'+ v.p_name+'</td>';
+		listGroup += '<td>'+ v.ps_name+'</td>';
+		listGroup += '<td>'+ v.mc_date_order+'</td>';
+		listGroup += '<td>'+ v.il_item_name+'</td>';
+		listGroup += '<td>'+ v.mc_price+'</td>';
+		listGroup += '<td>'+ v.mc_quantity+'</td>';
+		listGroup += '<td>'+ v.un_name+'</td>';
+		listGroup += '<td>'+ v.mc_total+'</td>';
 		listGroup += '<td>';
 				listGroup += '<div class="btn-group btn-group-sm" role="group" aria-label="Action Button">';
 					listGroup += '<button type="button" class="btn btn-success" data-id="' + v.p_id + '" data-item="' + v.p_name + '" onclick="popup_projects(\'edit\', \'Edit\',' + v.p_id + ');"><i class="fas fa-edit"></i></button>';
@@ -219,39 +225,6 @@ function loadData(data,callback)
 	
 	$('.material-consumption').find('tbody').append(listGroup);
 
-	callback();
-}
-
-function get_data()
-{
-	$.ajax({
-		url: siteUrl('projects/material_consumption/get_data'),
-		type: 'POST',
-		dataType: 'JSON',
-		data: {
-			action: 'get_data'
-		},
-		success: function (result) {
-			if (result.success) {
-				loadData(result.data, function() {
-					$('.click-list').on('click', function (e) {
-						e.preventDefault();
-						$('.btn-sub').css('display','block');
-						p_id = $(this).attr('id');
-						loadProjectsSub(p_id);
-					});
-				});
-
-			} else if (typeof (result.msg) !== 'undefined') {
-				toastr.error(result.msg);
-			} else {
-				toastr.error(msgErr);
-			}
-		},
-		error: function (error) {
-			toastr.error(msgErr);
-		}
-	});
 }
 
 function load_projects_sub(data)
@@ -347,11 +320,11 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#AddData').submit(function(e){
+	$('#showMaterial').submit(function(e){
 		e.preventDefault(); 
 
 		$.ajax({
-			url: siteUrl('projects/material_consumption/store_data_projects'),
+			url: siteUrl('projects/material_consumption/show_material'),
 			type: 'POST',
 			dataType: 'JSON',
 			data: new FormData(this),
@@ -362,7 +335,7 @@ $(document).ready(function() {
 			success: function(result) {
 				if (result.success) {
 					toastr.success(msgSaveOk);
-					loadTreeMenuData(result.ug_id);
+					loadDataMaterial(result.data);
 
 				} else if (typeof(result.msg) !== 'undefined') {
 					toastr.error(result.msg);
