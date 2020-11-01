@@ -18,39 +18,56 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="form-group row">
+				<label for="userBirthday" class="col-sm-4 col-form-label">Date Order</label>
+				<div class="col-sm-8">
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text">
+								<i class="far fa-calendar-alt"></i>
+							</span>
+						</div>
+						<input type="text" name="mc_date_order" class="form-control" id="dateOrder" required="required" data-inputmask-alias="datetime" data-inputmask-inputformat="dd-mm-yyyy" data-mask value="<?php echo $mode == 'edit' && $data !== FALSE ? $data->mc_date_order : '' ?>">
+					</div>
+				</div>
+			</div>	
+			<div class="form-group row">
 				<label for="url" class="col-sm-4 col-form-label">Projects</label>
 				<div class="col-sm-8">
-					<select class="form-control select2"  name="ps_p_id" id="txt_unit">
+					<input type="text" name="p_name" class="form-control" id="p_name" value="<?php echo $projects->p_name ; ?>" required="required" readOnly>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="url" class="col-sm-4 col-form-label">Projects Sub</label>
+				<div class="col-sm-8">
+					<input type="text" name="ps_name" class="form-control" id="ps_name" value="<?php echo $projects_sub->ps_name ; ?>" required="required" readOnly>
+				</div>
+			</div>	
+			<div class="form-group row">
+				<label for="url" class="col-sm-4 col-form-label">Material</label>
+				<div class="col-sm-8">
+					<select class="form-control select2"  name="il_id" id="txt_il_id">
 						<option value="">-Select-</option>
 						<?php
-							foreach($projects as $k => $v)
+							foreach($material as $k => $v)
 							{
-								echo '<option value="'.$v->p_id.'" '.(($data->ps_p_id == $v->p_id) ? 'selected':"").'>'.$v->p_name.'</option>';
+								echo '<option value="'.$v->il_id.'" '.(($data->il_id == $v->il_id) ? 'selected':"").'>'.$v->il_item_name.'</option>';
 							}
 						?>
 					</select>
 				</div>
 			</div>	
 			<div class="form-group row">
-				<label for="url" class="col-sm-4 col-form-label">Building Type</label>
+				<label for="url" class="col-sm-4 col-form-label">Price</label>
 				<div class="col-sm-8">
-					<select class="form-control select2"  name="ps_bt_id" id="txt_unit">
-						<option value="">-Select-</option>
-						<?php
-							foreach($building as $k => $v)
-							{
-								echo '<option value="'.$v->bt_id.'" '.(($data->ps_bt_id == $v->bt_id) ? 'selected':"").'>'.$v->bt_building_type.'</option>';
-							}
-						?>
-					</select>
+					<input type="text" name="mc_price" class="form-control number" id="mc-price" value="<?php echo $mode == 'edit' && $data !== FALSE ? $data->mc_price : '' ?>" required="required">
 				</div>
-			</div>	
+			</div>
 			<div class="form-group row">
-				<label for="caption" class="col-sm-4 col-form-label">Projects Sub</label>
+				<label for="url" class="col-sm-4 col-form-label">Quantity</label>
 				<div class="col-sm-8">
-					<input type="text" name="ps_name" class="form-control" id="ps_name" value="<?php echo $mode == 'edit' && $data !== FALSE ? $data->ps_name : '' ?>" required="required" <?php echo $mode == 'edit' ? '' : ''; ?>>
+					<input type="text" name="mc_quantity " class="form-control number" id="mc-quantity " value="<?php echo $mode == 'edit' && $data !== FALSE ? $data->mc_price : '' ?>" required="required">
 				</div>
-			</div>	
+			</div>
 		</div>		
 	</div>
 </form>

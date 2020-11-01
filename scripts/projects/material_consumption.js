@@ -7,18 +7,18 @@
  * @link /rab_frontend/scripts/projects/material_consumption.js
  */
 
-const _generate_menu = (data) => {
-	let treeMenu = _generate_tree_menu(data, null, 0);
-
-	// $('.collaptable').find('tbody').html('');
-	$('.collaptable').find('tbody').append(treeMenu);
-	$('.collaptable').aCollapTable({
-		startCollapsed: true,
-		addColumn: false,
-		plusButton: '<span class="fas fa-plus"></span>',
-		minusButton: '<span class="fas fa-minus"></span>'
-	}); 
-};
+function addCommas(nStr) //format number
+{
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
 
 const _generate_sub_data = (data) => {
 	let strSubData = '';
@@ -117,7 +117,7 @@ function popup_material_consumption(mode = 'add', title = 'Add', data = false)
 		id: mode + 'MaterialConsPopup',
 		size: 'medium',
 		proxy: {
-			url: siteUrl('projects/material_consumption/popup_projects_sub'),
+			url: siteUrl('projects/material_consumption/popup_material'),
 			params: {
 				action: 'popup_modal',
 				mode: mode,
@@ -173,35 +173,35 @@ function popup_material_consumption(mode = 'add', title = 'Add', data = false)
 				popup.close();
 			}
 		}],
+		listeners : {
+			onshow : function(popup){
+				
+				$('#userBirthday').inputmask('dd-mm-yyyy', { 'placeholder': 'DD-MM-YYYY' });
+				$('#userBirthday').noobsdaterangepicker({
+					parentEl: "#" + popup[0].id + " .modal-body",
+					showDropdowns: true,
+					singleDatePicker: true,
+					locale: {
+						format: 'DD-MM-YYYY'
+					}
+				});
+
+				$('input.number').keyup(function(event) {
+				  // skip for arrow keys
+				  if(event.which >= 37 && event.which <= 40) return;
+
+				  // format number
+				  $(this).val(function(index, value) {
+				    return value
+				    .replace(/\D/g, "")
+				    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+				    ;
+				  });
+				});
+			}
+		}
 	});
 }
-
-// function loadProjectsSub(p_id) 
-// {
-// 	$.ajax({
-// 		url: siteUrl('projects/material_consumption/get_sub_data'),
-// 		type: 'POST',
-// 		dataType: 'JSON',
-// 		data: {
-// 			action: 'get_sub_data',
-// 			p_id: p_id,
-// 		},
-// 		success: function (result) {
-// 			if (result.success) {
-// 				$('.projects-sub').find('tbody').html('');
-// 				$('.projects-sub').find('tbody').append('<input type="hidden" value="'+p_id+'" name="p_id">');
-// 				_generate_sub_data(result.data);
-// 			} else if (typeof (result.msg) !== 'undefined') {
-// 				toastr.error(result.msg);
-// 			} else {
-// 				toastr.error(msgErr);
-// 			}
-// 		},
-// 		error: function (error) {
-// 			toastr.error(msgErr);
-// 		}
-// 	});
-// }
 
 function loadDataMaterial(data) 
 {
@@ -298,8 +298,8 @@ function delete_data(p_id = "",ps_id = "", mode = "")
 }
 
 $(document).ready(function() {
-	
-	// get_data();
+
+
 	$('#p-id').on('change',function(){
 		var p_id = $('#p-id').val();
 

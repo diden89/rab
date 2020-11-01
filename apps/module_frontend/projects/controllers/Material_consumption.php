@@ -19,11 +19,11 @@ class Material_consumption extends NOOBS_Controller
 	public function index()
 	{
 		$this->store_params['page_active'] = isset($this->store_params['page_active']) ? $this->store_params['page_active'] : 'Home';
-		$this->store_params['header_title'] = 'Projects Data';
-		$this->store_params['pages_title'] = 'Projects Data List';
+		$this->store_params['header_title'] = 'Material Consumption';
+		$this->store_params['pages_title'] = 'Material Consumption Data';
 		$this->store_params['breadcrumb'] = array(
 			array('', 'Home'),
-			array('projects/material_consumption', 'Projects Data')
+			array('projects/material_consumption', 'Material Consumption')
 		);
 		
 		$this->store_params['source_top'] = array(
@@ -122,7 +122,7 @@ class Material_consumption extends NOOBS_Controller
 		else $this->show_404();
 	}
 
-	public function popup_projects_sub()
+	public function popup_material()
 	{
 		$post = $this->input->post(NULL, TRUE);
 		
@@ -130,9 +130,10 @@ class Material_consumption extends NOOBS_Controller
 		{
 			unset($post['action']);
 
-			$post['projects'] = $this->db_material_consumption->get_option_unit(array('p_is_active' => 'Y','p_id' => $post['p_id']),'projects')->result();
+			$post['projects'] = $this->db_material_consumption->get_option(array('p_is_active' => 'Y','p_id' => $post['p_id']),'projects')->row();
 			
-			$post['projects_sub'] = $this->db_material_consumption->get_option_unit(array('ps_is_active' => 'Y','ps_id' => $post['ps_id']),'projects_sub')->result();
+			$post['projects_sub'] = $this->db_material_consumption->get_option(array('ps_is_active' => 'Y','ps_id' => $post['ps_id']),'projects_sub')->row();
+			$post['material'] = $this->db_material_consumption->get_option(array('il_is_active' => 'Y'),'item_list')->result();
 
 			if($post['mode'] == 'edit')
 			{
