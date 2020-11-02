@@ -106,11 +106,40 @@ function popup_projects(mode = 'add', title = 'Add', data = false)
 		}],
 	});
 }
-
+function load_data_material(p_id,ps_id,years,month)
+{
+	$.ajax({
+		url: siteUrl('projects/material_consumption/show_material'),
+		type: 'POST',
+		dataType: 'JSON',
+		data: {
+			action: 'show_material',
+			p_id: p_id,
+			ps_id: ps_id,
+			years: years,
+			month: month,
+		},
+		success: function (result) {
+			if (result.success) {
+				loadDataMaterial(result.data);
+			} else if (typeof (result.msg) !== 'undefined') {
+				toastr.error(result.msg);
+			} else {
+				toastr.error(msgErr);
+			}
+		},
+		error: function (error) {
+			toastr.error(msgErr);
+		}
+	});
+}
 function popup_material_consumption(mode = 'add', title = 'Add', data = false)
 {
-	var p_id = $('#p-id').val();
-	var ps_id = $('#ps-id').val();
+	var date = new Date();
+		p_id = $('#p-id').val();
+		ps_id = $('#ps-id').val();
+		years = date.getFullYear();
+		month = date.getMonth() + 1;
 
 	$.popup({
 		title: title + ' Material Consumption',
@@ -136,7 +165,7 @@ function popup_material_consumption(mode = 'add', title = 'Add', data = false)
 				if ($.validation(form)) {
 					var formData = new FormData(form[0]);
 					$.ajax({
-						url: siteUrl('projects/material_consumption/store_data_projects_sub'),
+						url: siteUrl('projects/material_consumption/store_data_material'),
 						type: 'POST',
 						dataType: 'JSON',
 						data: formData,
@@ -153,7 +182,7 @@ function popup_material_consumption(mode = 'add', title = 'Add', data = false)
 								toastr.error(msgErr);
 							}
 
-							loadProjectsSub(result.p_id);
+							load_data_material(p_id,ps_id,years,month)
 
 							popup.close();
 
@@ -176,8 +205,8 @@ function popup_material_consumption(mode = 'add', title = 'Add', data = false)
 		listeners : {
 			onshow : function(popup){
 				
-				$('#userBirthday').inputmask('dd-mm-yyyy', { 'placeholder': 'DD-MM-YYYY' });
-				$('#userBirthday').noobsdaterangepicker({
+				$('#dateOrder').inputmask('dd-mm-yyyy h:i:s', { 'placeholder': 'DD-MM-YYYY' });
+				$('#dateOrder').noobsdaterangepicker({
 					parentEl: "#" + popup[0].id + " .modal-body",
 					showDropdowns: true,
 					singleDatePicker: true,
@@ -197,6 +226,21 @@ function popup_material_consumption(mode = 'add', title = 'Add', data = false)
 				    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 				    ;
 				  });
+
+				});
+
+				$('#mc-quantity').keyup(function(event) {
+
+				  	var price = $('#mc-price').val().replace(',','');
+				   		qty = $('#mc-quantity').val().replace(',','');
+				   		total = $('#mc-total').val(addCommas(qty * price));
+
+				});
+
+				$('#mc-price').keyup(function(event) {
+				  	var price = $('#mc-price').val().replace(',','');
+				   		qty = $('#mc-quantity').val().replace(',','');
+				   		total = $('#mc-total').val(addCommas(qty * price));
 				});
 			}
 		}

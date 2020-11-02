@@ -11,9 +11,9 @@
 ?>
 
 <form role="form" id="AddData" autocomplete="off">
-	<input type="hidden" name="action" value="store_data_projects_sub">
+	<input type="hidden" name="action" value="store_data_material">
 	<input type="hidden" name="mode" value="<?= $mode ?>">
-	<input type="hidden" name="ps_id" value="<?php echo $mode == 'edit' && $data !== FALSE ? $data->ps_id : '' ?>">
+	<input type="hidden" name="mc_id" value="<?php echo $mode == 'edit' && $data !== FALSE ? $data->ps_id : '' ?>">
 	
 	<div class="row">
 		<div class="col-md-12">
@@ -34,12 +34,14 @@
 				<label for="url" class="col-sm-4 col-form-label">Projects</label>
 				<div class="col-sm-8">
 					<input type="text" name="p_name" class="form-control" id="p_name" value="<?php echo $projects->p_name ; ?>" required="required" readOnly>
+					<input type="hidden" name="p_id" value="<?php echo $projects->p_id ; ?>">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="url" class="col-sm-4 col-form-label">Projects Sub</label>
 				<div class="col-sm-8">
 					<input type="text" name="ps_name" class="form-control" id="ps_name" value="<?php echo $projects_sub->ps_name ; ?>" required="required" readOnly>
+					<input type="hidden" name="ps_id" value="<?php echo $projects_sub->ps_id ; ?>">
 				</div>
 			</div>	
 			<div class="form-group row">
@@ -65,7 +67,13 @@
 			<div class="form-group row">
 				<label for="url" class="col-sm-4 col-form-label">Quantity</label>
 				<div class="col-sm-8">
-					<input type="text" name="mc_quantity " class="form-control number" id="mc-quantity " value="<?php echo $mode == 'edit' && $data !== FALSE ? $data->mc_price : '' ?>" required="required">
+					<input type="text" name="mc_quantity" class="form-control mc-quantity number" id="mc-quantity" value="<?php echo $mode == 'edit' && $data !== FALSE ? $data->mc_price : '' ?>" required="required">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="url" class="col-sm-4 col-form-label">Total Price</label>
+				<div class="col-sm-8">
+					<input type="text" name="mc_total" class="form-control mc-total" id="mc-total" value="<?php echo $mode == 'edit' && $data !== FALSE ? $data->mc_total : '' ?>" required="required" readOnly>
 				</div>
 			</div>
 		</div>		

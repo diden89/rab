@@ -145,21 +145,21 @@ class Material_consumption extends NOOBS_Controller
 		else $this->show_404();
 	}
 
-	public function store_data_projects()
+	public function store_data_material()
 	{
 		$post = $this->input->post(NULL, TRUE);
-		
-		if (isset($post['action']) && ! empty($post['action']) && $post['action'] == 'store_data_projects')
+	
+		if (isset($post['action']) && ! empty($post['action']) && $post['action'] == 'store_data_material')
 		{
 			unset($post['action']);
 
 			if(isset($post['p_id']) && $post['p_id'] !== "")
 			{
-				$store_data = $this->db_material_consumption->store_data_projects($post);
+				$store_data = $this->db_material_consumption->store_data_material($post);
 			}
 			else
 			{
-				$store_data = $this->db_material_consumption->store_data_projects($post);	
+				$store_data = $this->db_material_consumption->store_data_material($post);	
 			}
 
 			echo json_encode(array('success' => $store_data,'p_id' => $post['p_id']));

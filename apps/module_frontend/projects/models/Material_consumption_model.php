@@ -15,7 +15,7 @@ class Material_consumption_model extends NOOBS_Model
 		$this->db->select('*');
 		$this->db->from('material_consumption mc');
 		$this->db->join('item_list il','mc.mc_il_id = il.il_id','LEFT');
-		$this->db->join('unit un','mc.mc_un_id = un.un_id','LEFT');
+		$this->db->join('unit un','il.il_un_id = un.un_id','LEFT');
 		$this->db->join('projects_sub ps','mc.mc_ps_id = ps.ps_id','LEFT');
 		$this->db->join('projects p','ps.ps_p_id = p.p_id','LEFT');
 		$this->db->where('mc.mc_is_active','Y');
@@ -49,16 +49,20 @@ class Material_consumption_model extends NOOBS_Model
 		return $this->db->get();
 	}
 
-	public function store_data_projects($params = array())
+	public function store_data_material($params = array())
 	{
-		$this->table = 'projects';
+		$this->table = 'material_consumption';
 		$new_params = array(
-			'p_name' => $params['p_name'],
-			'p_location' => $params['p_location'],
+			'mc_il_id' => $params['il_id'],
+			'mc_ps_id' => $params['ps_id'],
+			'mc_price' => str_replace(',','',$params['mc_price']),
+			'mc_quantity' => str_replace(',','',$params['mc_quantity']),
+			'mc_total' => str_replace(',','',$params['mc_total']),
+			'mc_date_order' => date('Y-m-d H:i:s',strtotime($params['mc_date_order'])),
 		);
 
 		if ($params['mode'] == 'add') return $this->add($new_params, TRUE);
-		else return $this->edit($new_params, "p_id = {$params['p_id']}");
+		else return $this->edit($new_params, "mc_id = {$params['mc_id']}");
 	}
 
 	public function store_data_projects_sub($params = array())
