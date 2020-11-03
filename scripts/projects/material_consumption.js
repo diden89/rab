@@ -20,92 +20,6 @@ function addCommas(nStr) //format number
     return x1 + x2;
 }
 
-const _generate_sub_data = (data) => {
-	let strSubData = '';
-
-	$.each(data, (k, v) => {
-		
-		strSubData += '<tr>';
-			strSubData += '<td><b>' + v.p_name + '</b></td>'
-			strSubData += '<td><b>' + v.bt_building_type + '</b></td>'
-			strSubData += '<td><b>' + v.ps_name + '</b></td>'
-			strSubData += '<td style="text-align:center;">';
-				strSubData += '<div class="btn-group btn-group-sm" role="group" aria-label="Action Button">';
-					strSubData += '<button type="button" class="btn btn-success" data-id="' + v.ps_id + '" data-nama="' + v.ps_name + '" onclick="popup_projects_sub(\'edit\', \'Edit\',' + v.ps_id + ');"><i class="fas fa-edit"></i></button>';
-					strSubData += '<button type="button" class="btn btn-danger" data-id="' + v.ps_id + '" data-nama="' + v.ps_name + '" onclick="delete_data(' + v.p_id + ',' + v.ps_id + ',\'projects_sub\');"><i class="fas fa-trash-alt"></i></button>';
-				strSubData += '</div>';
-			strSubData += '</td>';
-			// strSubData += '<input type="hidden" value="'+ bt_id +'" name="bt_id[]">';
-		strSubData += '</tr>';
-	});
-
-	$('.projects-sub').find('tbody').append(strSubData);
-};
-
-function popup_projects(mode = 'add', title = 'Add', data = false)
-{
-	$.popup({
-		title: title + ' Projects',
-		id: mode + 'ProjectsPopup',
-		size: 'default',
-		proxy: {
-			url: siteUrl('projects/material_consumption/popup_projects'),
-			params: {
-				action: 'popup_modal',
-				mode: mode,
-				data: data
-			}
-		},
-		buttons: [{
-			btnId: 'saveData',
-			btnText:'Save',
-			btnClass: 'info',
-			btnIcon: 'fas fa-check-circle',
-			onclick: function(popup) {
-				var form  = popup.find('form');
-				if ($.validation(form)) {
-					var formData = new FormData(form[0]);
-					$.ajax({
-						url: siteUrl('projects/material_consumption/store_data_projects'),
-						type: 'POST',
-						dataType: 'JSON',
-						data: formData,
-						processData: false,
-						contentType: false,
-         				cache: false,
-         				enctype: 'multipart/form-data',
-						success: function(result) {
-							if (result.success) {
-								toastr.success(msgSaveOk);
-							} else if (typeof(result.msg) !== 'undefined') {
-								toastr.error(result.msg);
-							} else {
-								toastr.error(msgErr);
-							}
-
-							get_data();
-							loadProjectsSub(data);
-
-							popup.close();
-
-						},
-						error: function(error) {
-							toastr.error(msgErr);
-						}
-					});
-				}
-			}
-		}, {
-			btnId: 'closePopup',
-			btnText:'Tutup',
-			btnClass: 'secondary',
-			btnIcon: 'fas fa-times',
-			onclick: function(popup) {
-				popup.close();
-			}
-		}],
-	});
-}
 function load_data_material(p_id,ps_id,years,month)
 {
 	$.ajax({
@@ -205,15 +119,26 @@ function popup_material_consumption(mode = 'add', title = 'Add', data = false)
 		listeners : {
 			onshow : function(popup){
 				
-				$('#dateOrder').inputmask('dd-mm-yyyy h:i:s', { 'placeholder': 'DD-MM-YYYY' });
-				$('#dateOrder').noobsdaterangepicker({
-					parentEl: "#" + popup[0].id + " .modal-body",
-					showDropdowns: true,
-					singleDatePicker: true,
-					locale: {
-						format: 'DD-MM-YYYY'
-					}
-				});
+				// $('#dateOrder').inputmask('dd-mm-yyyy h:i:s', { 'placeholder': 'DD-MM-YYYY' });
+				// $('#dateOrder').noobsdaterangepicker({
+				// 	parentEl: "#" + popup[0].id + " .modal-body",
+				// 	showDropdowns: true,
+				// 	singleDatePicker: true,
+				// 	locale: {
+				// 		format: 'DD-MM-YYYY'
+				// 	}
+				// });
+
+				$('.form_datetime').datetimepicker({
+			        //language:  'fr',
+			        weekStart: 1,
+			        todayBtn:  1,
+					autoclose: 1,
+					todayHighlight: 1,
+					startView: 2,
+					forceParse: 0,
+			        showMeridian: 1
+			    });
 
 				$('input.number').keyup(function(event) {
 				  // skip for arrow keys
@@ -260,10 +185,10 @@ function loadDataMaterial(data)
 		listGroup += '<td>'+ v.ps_name+'</td>';
 		listGroup += '<td>'+ v.mc_date_order+'</td>';
 		listGroup += '<td>'+ v.il_item_name+'</td>';
-		listGroup += '<td>'+ v.mc_price+'</td>';
-		listGroup += '<td>'+ v.mc_quantity+'</td>';
+		listGroup += '<td>'+ addCommas(v.mc_price)+'</td>';
+		listGroup += '<td>'+ addCommas(v.mc_quantity)+'</td>';
 		listGroup += '<td>'+ v.un_name+'</td>';
-		listGroup += '<td>'+ v.mc_total+'</td>';
+		listGroup += '<td>'+ addCommas(v.mc_total)+'</td>';
 		listGroup += '<td>';
 				listGroup += '<div class="btn-group btn-group-sm" role="group" aria-label="Action Button">';
 					listGroup += '<button type="button" class="btn btn-success" data-id="' + v.p_id + '" data-item="' + v.p_name + '" onclick="popup_projects(\'edit\', \'Edit\',' + v.p_id + ');"><i class="fas fa-edit"></i></button>';

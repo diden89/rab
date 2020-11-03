@@ -27,12 +27,12 @@ class Material_consumption extends NOOBS_Controller
 		);
 		
 		$this->store_params['source_top'] = array(
-			'<link rel="stylesheet" href="'.base_url('styles/jquerysctipttop.css').'">'
+			'<link rel="stylesheet" href="'.base_url('vendors/jquery-datetimepicker/css/bootstrap-datetimepicker.min.css').'">'
 		);
 
 		$this->store_params['source_bot'] = array(
 			'<script src="'.base_url('scripts/projects/material_consumption.js').'"></script>',
-			'<script src="'.base_url('vendors/jquery_acollapsetable/jquery.aCollapTable.js').'"></script>'
+			'<script src="'.base_url('vendors/jquery-datetimepicker/js/bootstrap-datetimepicker.js').'"></script>'
 		);
 		$this->store_params['projects'] = $this->db_material_consumption->get_option(array('p_is_active' => 'Y'),'projects')->result();
 

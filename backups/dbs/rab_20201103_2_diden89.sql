@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : local
+ Source Server         : local8
  Source Server Type    : MySQL
- Source Server Version : 50650
+ Source Server Version : 80020
  Source Host           : localhost:3306
  Source Schema         : dbrab
 
  Target Server Type    : MySQL
- Target Server Version : 50650
+ Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 03/11/2020 00:27:06
+ Date: 03/11/2020 23:27:52
 */
 
 SET NAMES utf8mb4;
@@ -22,13 +22,13 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `building_type`;
 CREATE TABLE `building_type`  (
-  `bt_id` int(11) NOT NULL AUTO_INCREMENT,
+  `bt_id` int NOT NULL AUTO_INCREMENT,
   `bt_building_type` varchar(255) CHARACTER SET utf16 COLLATE utf16_bin NULL DEFAULT NULL,
   `bt_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
   `last_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`bt_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of building_type
@@ -42,14 +42,14 @@ INSERT INTO `building_type` VALUES (18, 'Type 105', 'Y', '1', '2020-10-25 10:05:
 -- ----------------------------
 DROP TABLE IF EXISTS `item_list`;
 CREATE TABLE `item_list`  (
-  `il_id` int(11) NOT NULL AUTO_INCREMENT,
+  `il_id` int NOT NULL AUTO_INCREMENT,
   `il_item_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `il_un_id` int(11) NULL DEFAULT NULL,
+  `il_un_id` int NULL DEFAULT NULL,
   `il_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
   `last_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`il_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of item_list
@@ -69,15 +69,15 @@ INSERT INTO `item_list` VALUES (16, 'Besi 8', 5, 'Y', '1', '2020-10-26 19:59:50'
 -- ----------------------------
 DROP TABLE IF EXISTS `item_rab`;
 CREATE TABLE `item_rab`  (
-  `ir_id` int(11) NOT NULL AUTO_INCREMENT,
+  `ir_id` int NOT NULL AUTO_INCREMENT,
   `ir_item_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `ir_un_id` int(11) NULL DEFAULT NULL,
-  `ir_seq` int(11) NULL DEFAULT NULL,
+  `ir_un_id` int NULL DEFAULT NULL,
+  `ir_seq` int NULL DEFAULT NULL,
   `ir_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
   `last_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`ir_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of item_rab
@@ -96,18 +96,18 @@ INSERT INTO `item_rab` VALUES (16, 'Atap', 9, 7, 'Y', '1', '2020-10-23 14:38:41'
 -- ----------------------------
 DROP TABLE IF EXISTS `log_access_group`;
 CREATE TABLE `log_access_group`  (
-  `ag_id` int(11) NOT NULL,
-  `ag_ug_id` int(11) NULL DEFAULT NULL,
-  `ag_rm_id` int(11) NULL DEFAULT NULL,
+  `ag_id` int NOT NULL,
+  `ag_ug_id` int NULL DEFAULT NULL,
+  `ag_rm_id` int NULL DEFAULT NULL,
   `ag_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT 'Y',
-  `last_user` int(11) NULL DEFAULT NULL,
+  `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
-  `log_user_id` int(10) UNSIGNED NOT NULL,
+  `log_user_id` int UNSIGNED NOT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of log_access_group
@@ -132,37 +132,41 @@ INSERT INTO `log_access_group` VALUES (131, 1, 39, 'Y', 1, '2020-09-26 10:46:30'
 -- ----------------------------
 DROP TABLE IF EXISTS `log_access_menu`;
 CREATE TABLE `log_access_menu`  (
-  `am_id` int(10) UNSIGNED NOT NULL,
-  `am_user_id` int(10) UNSIGNED NOT NULL,
-  `am_menu_id` int(10) UNSIGNED NOT NULL,
+  `am_id` int UNSIGNED NOT NULL,
+  `am_user_id` int UNSIGNED NOT NULL,
+  `am_menu_id` int UNSIGNED NOT NULL,
   `am_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Y',
-  `last_user` int(10) UNSIGNED NOT NULL,
+  `last_user` int UNSIGNED NOT NULL,
   `last_datetime` datetime(0) NOT NULL,
-  `log_user_id` int(10) UNSIGNED NOT NULL,
+  `log_user_id` int UNSIGNED NOT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of log_access_menu
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for log_access_sub_group
 -- ----------------------------
 DROP TABLE IF EXISTS `log_access_sub_group`;
 CREATE TABLE `log_access_sub_group`  (
-  `asg_id` int(11) NULL DEFAULT NULL,
-  `asg_ug_id` int(11) NULL DEFAULT NULL,
-  `asg_usg_id` int(11) NULL DEFAULT NULL,
-  `asg_rm_id` int(11) NULL DEFAULT NULL,
+  `asg_id` int NULL DEFAULT NULL,
+  `asg_ug_id` int NULL DEFAULT NULL,
+  `asg_usg_id` int NULL DEFAULT NULL,
+  `asg_rm_id` int NULL DEFAULT NULL,
   `asg_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
-  `last_user` int(11) NULL DEFAULT NULL,
+  `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
-  `log_user_id` int(10) UNSIGNED NOT NULL,
+  `log_user_id` int UNSIGNED NOT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of log_access_sub_group
@@ -186,17 +190,17 @@ INSERT INTO `log_access_sub_group` VALUES (19, 1, 1, 39, 'Y', 1, '2020-09-26 19:
 -- ----------------------------
 DROP TABLE IF EXISTS `log_building_type`;
 CREATE TABLE `log_building_type`  (
-  `bt_id` int(11) NOT NULL,
+  `bt_id` int NOT NULL,
   `bt_building_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `bt_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `last_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
-  `log_user_id` int(11) NULL DEFAULT NULL,
+  `log_user_id` int NULL DEFAULT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of log_building_type
@@ -216,19 +220,19 @@ INSERT INTO `log_building_type` VALUES (18, 'Type 105', 'Y', '1', '2020-10-25 10
 -- ----------------------------
 DROP TABLE IF EXISTS `log_item_list`;
 CREATE TABLE `log_item_list`  (
-  `il_id` int(11) NOT NULL,
+  `il_id` int NOT NULL,
   `il_item_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `il_price` decimal(10, 2) NULL DEFAULT NULL,
-  `il_un_id` int(11) NULL DEFAULT NULL,
+  `il_un_id` int NULL DEFAULT NULL,
   `il_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
-  `last_user` int(11) NULL DEFAULT NULL,
+  `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
-  `log_user_id` int(11) NULL DEFAULT NULL,
+  `log_user_id` int NULL DEFAULT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of log_item_list
@@ -258,19 +262,19 @@ INSERT INTO `log_item_list` VALUES (16, 'Besi 8', NULL, 5, 'Y', 1, '2020-10-26 1
 -- ----------------------------
 DROP TABLE IF EXISTS `log_item_rab`;
 CREATE TABLE `log_item_rab`  (
-  `ir_id` int(11) NOT NULL,
+  `ir_id` int NOT NULL,
   `ir_item_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `ir_un_id` int(11) NULL DEFAULT NULL,
-  `ir_seq` int(11) NULL DEFAULT NULL,
+  `ir_un_id` int NULL DEFAULT NULL,
+  `ir_seq` int NULL DEFAULT NULL,
   `ir_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
-  `last_user` int(11) NULL DEFAULT NULL,
+  `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
-  `log_user_id` int(11) NULL DEFAULT NULL,
+  `log_user_id` int NULL DEFAULT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of log_item_rab
@@ -298,44 +302,45 @@ INSERT INTO `log_item_rab` VALUES (16, 'Atap', 9, 8, 'N', 1, '2020-10-23 14:38:4
 -- ----------------------------
 DROP TABLE IF EXISTS `log_material_consumption`;
 CREATE TABLE `log_material_consumption`  (
-  `mc_id` int(11) NOT NULL,
-  `mc_il_id` int(11) NULL DEFAULT NULL,
-  `mc_ps_id` int(11) NULL DEFAULT NULL,
+  `mc_id` int NOT NULL,
+  `mc_il_id` int NULL DEFAULT NULL,
+  `mc_ps_id` int NULL DEFAULT NULL,
   `mc_price` decimal(10, 2) NULL DEFAULT NULL,
   `mc_quantity` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `mc_total` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `mc_date_order` datetime(0) NULL DEFAULT NULL,
   `mc_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
-  `last_user` int(11) NULL DEFAULT NULL,
+  `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
-  `log_user_id` int(10) UNSIGNED NOT NULL,
+  `log_user_id` int UNSIGNED NOT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of log_material_consumption
 -- ----------------------------
+INSERT INTO `log_material_consumption` VALUES (6, 8, 5, 450.00, '58000', '26100000', '2020-11-03 00:00:00', 'Y', 1, '2020-11-03 17:12:00', 1, 'add', '2020-11-03 17:12:00', 7);
 
 -- ----------------------------
 -- Table structure for log_menu_access_group
 -- ----------------------------
 DROP TABLE IF EXISTS `log_menu_access_group`;
 CREATE TABLE `log_menu_access_group`  (
-  `mag_id` int(11) NOT NULL,
-  `mag_ug_id` int(11) NULL DEFAULT NULL,
-  `mag_rm_id` int(11) NULL DEFAULT NULL,
+  `mag_id` int NOT NULL,
+  `mag_ug_id` int NULL DEFAULT NULL,
+  `mag_rm_id` int NULL DEFAULT NULL,
   `mag_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT 'Y',
-  `last_user` int(11) NULL DEFAULT NULL,
+  `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
-  `log_user_id` int(10) UNSIGNED NOT NULL,
+  `log_user_id` int UNSIGNED NOT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 286 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 286 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of log_menu_access_group
@@ -631,55 +636,63 @@ INSERT INTO `log_menu_access_group` VALUES (153, 1, 60, 'Y', 1, '2020-10-30 01:2
 -- ----------------------------
 DROP TABLE IF EXISTS `log_menu_access_sub_group`;
 CREATE TABLE `log_menu_access_sub_group`  (
-  `masg_id` int(11) NULL DEFAULT NULL,
-  `masg_ug_id` int(11) NULL DEFAULT NULL,
-  `masg_usg_id` int(11) NULL DEFAULT NULL,
-  `masg_rm_id` int(11) NULL DEFAULT NULL,
+  `masg_id` int NULL DEFAULT NULL,
+  `masg_ug_id` int NULL DEFAULT NULL,
+  `masg_usg_id` int NULL DEFAULT NULL,
+  `masg_rm_id` int NULL DEFAULT NULL,
   `masg_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
-  `last_user` int(11) NULL DEFAULT NULL,
+  `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
-  `log_user_id` int(10) UNSIGNED NOT NULL,
+  `log_user_id` int UNSIGNED NOT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of log_menu_access_sub_group
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for log_menu_access_user
 -- ----------------------------
 DROP TABLE IF EXISTS `log_menu_access_user`;
 CREATE TABLE `log_menu_access_user`  (
-  `mau_id` int(10) UNSIGNED NOT NULL,
-  `mau_user_id` int(10) UNSIGNED NOT NULL,
-  `mau_menu_id` int(10) UNSIGNED NOT NULL,
+  `mau_id` int UNSIGNED NOT NULL,
+  `mau_user_id` int UNSIGNED NOT NULL,
+  `mau_menu_id` int UNSIGNED NOT NULL,
   `mau_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Y',
-  `last_user` int(10) UNSIGNED NOT NULL,
+  `last_user` int UNSIGNED NOT NULL,
   `last_datetime` datetime(0) NOT NULL,
-  `log_user_id` int(10) UNSIGNED NOT NULL,
+  `log_user_id` int UNSIGNED NOT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of log_menu_access_user
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for log_projects
 -- ----------------------------
 DROP TABLE IF EXISTS `log_projects`;
 CREATE TABLE `log_projects`  (
-  `p_id` int(11) NOT NULL,
+  `p_id` int NOT NULL,
   `p_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `p_location` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `p_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
-  `last_user` int(11) NULL DEFAULT NULL,
+  `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
-  `log_user_id` int(10) UNSIGNED NOT NULL,
+  `log_user_id` int UNSIGNED NOT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of log_projects
@@ -700,19 +713,19 @@ INSERT INTO `log_projects` VALUES (5, 'tes', 'tes', 'N', 1, '2020-10-29 22:55:36
 -- ----------------------------
 DROP TABLE IF EXISTS `log_projects_sub`;
 CREATE TABLE `log_projects_sub`  (
-  `ps_id` int(11) NOT NULL,
-  `ps_p_id` int(11) NULL DEFAULT NULL,
-  `ps_bt_id` int(11) NULL DEFAULT NULL,
+  `ps_id` int NOT NULL,
+  `ps_p_id` int NULL DEFAULT NULL,
+  `ps_bt_id` int NULL DEFAULT NULL,
   `ps_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `ps_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
-  `last_user` int(11) NULL DEFAULT NULL,
+  `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
-  `log_user_id` int(10) UNSIGNED NOT NULL,
+  `log_user_id` int UNSIGNED NOT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of log_projects_sub
@@ -740,21 +753,21 @@ INSERT INTO `log_projects_sub` VALUES (8, 3, 16, 'asdsadsa', 'N', 1, '2020-10-29
 -- ----------------------------
 DROP TABLE IF EXISTS `log_rab_building`;
 CREATE TABLE `log_rab_building`  (
-  `rb_id` int(11) NOT NULL,
-  `rb_bt_id` int(11) NULL DEFAULT NULL,
-  `rb_rl_id` int(11) NULL DEFAULT NULL,
-  `rb_il_id` int(11) NULL DEFAULT NULL,
-  `rb_measure` int(11) NULL DEFAULT NULL,
-  `rb_summary` int(11) NULL DEFAULT NULL,
+  `rb_id` int NOT NULL,
+  `rb_bt_id` int NULL DEFAULT NULL,
+  `rb_rl_id` int NULL DEFAULT NULL,
+  `rb_il_id` int NULL DEFAULT NULL,
+  `rb_measure` int NULL DEFAULT NULL,
+  `rb_summary` int NULL DEFAULT NULL,
   `rb_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
-  `last_user` int(11) NULL DEFAULT NULL,
+  `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
-  `log_user_id` int(10) UNSIGNED NOT NULL,
+  `log_user_id` int UNSIGNED NOT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of log_rab_building
@@ -798,20 +811,20 @@ INSERT INTO `log_rab_building` VALUES (11, 16, 7, 10, 240, 96, 'Y', 1, '2020-10-
 -- ----------------------------
 DROP TABLE IF EXISTS `log_rab_list`;
 CREATE TABLE `log_rab_list`  (
-  `rl_id` int(11) NOT NULL,
-  `rl_ir_id` int(11) NULL DEFAULT NULL,
-  `rl_il_id` int(11) NULL DEFAULT NULL,
-  `rl_un_id` int(11) NULL DEFAULT NULL,
+  `rl_id` int NOT NULL,
+  `rl_ir_id` int NULL DEFAULT NULL,
+  `rl_il_id` int NULL DEFAULT NULL,
+  `rl_un_id` int NULL DEFAULT NULL,
   `rl_volume` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `rl_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
-  `last_user` int(11) NULL DEFAULT NULL,
+  `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
-  `log_user_id` int(11) NULL DEFAULT NULL,
+  `log_user_id` int NULL DEFAULT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of log_rab_list
@@ -834,22 +847,22 @@ INSERT INTO `log_rab_list` VALUES (7, 13, 10, 15, '0.4', 'Y', 1, '2020-10-30 00:
 -- ----------------------------
 DROP TABLE IF EXISTS `log_ref_menu`;
 CREATE TABLE `log_ref_menu`  (
-  `rm_id` int(11) NOT NULL,
-  `rm_parent_id` int(10) UNSIGNED NULL DEFAULT NULL,
+  `rm_id` int NOT NULL,
+  `rm_parent_id` int UNSIGNED NULL DEFAULT NULL,
   `rm_caption` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `rm_description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `rm_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `rm_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `rm_sequence` int(10) UNSIGNED NOT NULL DEFAULT 1,
+  `rm_sequence` int UNSIGNED NOT NULL DEFAULT 1,
   `rm_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Y',
-  `last_user` int(10) UNSIGNED NOT NULL,
+  `last_user` int UNSIGNED NOT NULL,
   `last_datetime` datetime(0) NOT NULL,
-  `log_user_id` int(10) UNSIGNED NOT NULL,
+  `log_user_id` int UNSIGNED NOT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `log_datetime` datetime(0) NULL DEFAULT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 35 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 35 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of log_ref_menu
@@ -888,17 +901,17 @@ INSERT INTO `log_ref_menu` VALUES (60, 57, 'Material Consumption', 'Material Con
 -- ----------------------------
 DROP TABLE IF EXISTS `log_unit`;
 CREATE TABLE `log_unit`  (
-  `un_id` int(11) NOT NULL,
+  `un_id` int NOT NULL,
   `un_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `un_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `last_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
-  `log_user_id` int(11) NULL DEFAULT NULL,
+  `log_user_id` int NULL DEFAULT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of log_unit
@@ -939,7 +952,7 @@ INSERT INTO `log_unit` VALUES (18, 'Set', 'Y', '1', '2020-10-26 19:53:57', 1, 'e
 -- ----------------------------
 DROP TABLE IF EXISTS `log_user_detail`;
 CREATE TABLE `log_user_detail`  (
-  `ud_id` int(10) UNSIGNED NOT NULL,
+  `ud_id` int UNSIGNED NOT NULL,
   `ud_username` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `ud_password` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `ud_fullname` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -949,16 +962,16 @@ CREATE TABLE `log_user_detail`  (
   `ud_img_filename` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `ud_img_ori` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `ud_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Y',
-  `ud_sub_group` int(10) UNSIGNED NOT NULL DEFAULT 3,
+  `ud_sub_group` int UNSIGNED NOT NULL DEFAULT 3,
   `ud_notif_flag` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
-  `last_user` int(10) UNSIGNED NOT NULL,
+  `last_user` int UNSIGNED NOT NULL,
   `last_datetime` datetime(0) NOT NULL,
-  `log_user_id` int(10) UNSIGNED NOT NULL,
+  `log_user_id` int UNSIGNED NOT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of log_user_detail
@@ -970,76 +983,82 @@ INSERT INTO `log_user_detail` VALUES (1, 'admin', '2b9d2a9db155ff51d4574bc2482b5
 -- ----------------------------
 DROP TABLE IF EXISTS `log_user_group`;
 CREATE TABLE `log_user_group`  (
-  `ug_id` int(10) UNSIGNED NOT NULL,
+  `ug_id` int UNSIGNED NOT NULL,
   `ug_caption` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `ug_description` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `ug_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Y',
-  `last_user` int(10) UNSIGNED NOT NULL,
+  `last_user` int UNSIGNED NOT NULL,
   `last_datetime` datetime(0) NOT NULL,
-  `log_user_id` int(10) UNSIGNED NOT NULL,
+  `log_user_id` int UNSIGNED NOT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of log_user_group
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for log_user_sub_group
 -- ----------------------------
 DROP TABLE IF EXISTS `log_user_sub_group`;
 CREATE TABLE `log_user_sub_group`  (
-  `usg_id` int(10) UNSIGNED NOT NULL,
+  `usg_id` int UNSIGNED NOT NULL,
   `usg_caption` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `usg_description` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `usg_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Y',
-  `usg_group` int(10) UNSIGNED NOT NULL,
-  `last_user` int(10) UNSIGNED NOT NULL,
+  `usg_group` int UNSIGNED NOT NULL,
+  `last_user` int UNSIGNED NOT NULL,
   `last_datetime` datetime(0) NOT NULL,
-  `log_user_id` int(10) UNSIGNED NOT NULL,
+  `log_user_id` int UNSIGNED NOT NULL,
   `log_action` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `log_datetime` datetime(0) NOT NULL,
-  `log_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of log_user_sub_group
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for material_consumption
 -- ----------------------------
 DROP TABLE IF EXISTS `material_consumption`;
 CREATE TABLE `material_consumption`  (
-  `mc_id` int(11) NOT NULL AUTO_INCREMENT,
-  `mc_il_id` int(11) NULL DEFAULT NULL,
-  `mc_ps_id` int(11) NULL DEFAULT NULL,
+  `mc_id` int NOT NULL AUTO_INCREMENT,
+  `mc_il_id` int NULL DEFAULT NULL,
+  `mc_ps_id` int NULL DEFAULT NULL,
   `mc_price` decimal(10, 2) NULL DEFAULT NULL,
   `mc_quantity` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `mc_total` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `mc_date_order` datetime(0) NULL DEFAULT NULL,
   `mc_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
-  `last_user` int(11) NULL DEFAULT NULL,
+  `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`mc_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of material_consumption
 -- ----------------------------
-INSERT INTO `material_consumption` VALUES (1, 8, 3, 250000.00, '2', '22', '2020-10-31 20:02:30', 'Y', 1, '2020-10-31 20:02:34');
-INSERT INTO `material_consumption` VALUES (4, 8, 3, 2312.00, '3213', '7428456', '2020-11-03 00:00:00', 'Y', 1, '2020-11-03 00:07:44');
-INSERT INTO `material_consumption` VALUES (5, 9, 3, 1.00, '234', '234', '2020-11-03 00:00:00', 'Y', 1, '2020-11-03 00:18:13');
+INSERT INTO `material_consumption` VALUES (6, 8, 5, 450.00, '58000', '26100000', '2020-11-03 00:00:00', 'Y', 1, '2020-11-03 17:12:00');
 
 -- ----------------------------
 -- Table structure for menu_access_group
 -- ----------------------------
 DROP TABLE IF EXISTS `menu_access_group`;
 CREATE TABLE `menu_access_group`  (
-  `mag_id` int(11) NOT NULL AUTO_INCREMENT,
-  `mag_ug_id` int(11) NULL DEFAULT NULL,
-  `mag_rm_id` int(11) NULL DEFAULT NULL,
+  `mag_id` int NOT NULL AUTO_INCREMENT,
+  `mag_ug_id` int NULL DEFAULT NULL,
+  `mag_rm_id` int NULL DEFAULT NULL,
   `mag_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT 'Y',
-  `last_user` int(11) NULL DEFAULT NULL,
+  `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`mag_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 154 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 154 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of menu_access_group
@@ -1083,15 +1102,15 @@ INSERT INTO `menu_access_group` VALUES (153, 1, 60, 'Y', 1, '2020-10-30 01:24:23
 -- ----------------------------
 DROP TABLE IF EXISTS `menu_access_sub_group`;
 CREATE TABLE `menu_access_sub_group`  (
-  `masg_id` int(11) NOT NULL AUTO_INCREMENT,
-  `masg_ug_id` int(11) NULL DEFAULT NULL,
-  `masg_usg_id` int(11) NULL DEFAULT NULL,
-  `masg_rm_id` int(11) NULL DEFAULT NULL,
+  `masg_id` int NOT NULL AUTO_INCREMENT,
+  `masg_ug_id` int NULL DEFAULT NULL,
+  `masg_usg_id` int NULL DEFAULT NULL,
+  `masg_rm_id` int NULL DEFAULT NULL,
   `masg_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
-  `last_user` int(11) NULL DEFAULT NULL,
+  `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`masg_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of menu_access_sub_group
@@ -1120,14 +1139,14 @@ INSERT INTO `menu_access_sub_group` VALUES (25, 1, 2, 2, 'Y', 1, '2020-09-28 16:
 -- ----------------------------
 DROP TABLE IF EXISTS `menu_access_user`;
 CREATE TABLE `menu_access_user`  (
-  `mau_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `mau_user_id` int(10) UNSIGNED NOT NULL,
-  `mau_menu_id` int(10) UNSIGNED NOT NULL,
+  `mau_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `mau_user_id` int UNSIGNED NOT NULL,
+  `mau_menu_id` int UNSIGNED NOT NULL,
   `mau_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Y',
-  `last_user` int(10) UNSIGNED NOT NULL,
+  `last_user` int UNSIGNED NOT NULL,
   `last_datetime` datetime(0) NOT NULL,
   PRIMARY KEY (`mau_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 59 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 59 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of menu_access_user
@@ -1158,14 +1177,14 @@ INSERT INTO `menu_access_user` VALUES (58, 2, 42, 'Y', 1, '2020-09-27 23:46:19')
 -- ----------------------------
 DROP TABLE IF EXISTS `projects`;
 CREATE TABLE `projects`  (
-  `p_id` int(11) NOT NULL AUTO_INCREMENT,
+  `p_id` int NOT NULL AUTO_INCREMENT,
   `p_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `p_location` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `p_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
-  `last_user` int(11) NULL DEFAULT NULL,
+  `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`p_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of projects
@@ -1179,15 +1198,15 @@ INSERT INTO `projects` VALUES (5, 'tes', 'tes', 'N', 1, '2020-10-29 22:55:36');
 -- ----------------------------
 DROP TABLE IF EXISTS `projects_sub`;
 CREATE TABLE `projects_sub`  (
-  `ps_id` int(11) NOT NULL AUTO_INCREMENT,
-  `ps_p_id` int(11) NULL DEFAULT NULL,
-  `ps_bt_id` int(11) NULL DEFAULT NULL,
+  `ps_id` int NOT NULL AUTO_INCREMENT,
+  `ps_p_id` int NULL DEFAULT NULL,
+  `ps_bt_id` int NULL DEFAULT NULL,
   `ps_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `ps_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
-  `last_user` int(11) NULL DEFAULT NULL,
+  `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`ps_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of projects_sub
@@ -1203,17 +1222,17 @@ INSERT INTO `projects_sub` VALUES (7, 4, 17, 'Blok 1', 'Y', 1, '2020-10-29 02:38
 -- ----------------------------
 DROP TABLE IF EXISTS `rab_building`;
 CREATE TABLE `rab_building`  (
-  `rb_id` int(11) NOT NULL AUTO_INCREMENT,
-  `rb_bt_id` int(11) NULL DEFAULT NULL,
-  `rb_rl_id` int(11) NULL DEFAULT NULL,
-  `rb_il_id` int(11) NULL DEFAULT NULL,
-  `rb_measure` int(11) NULL DEFAULT NULL,
-  `rb_summary` int(11) NULL DEFAULT NULL,
+  `rb_id` int NOT NULL AUTO_INCREMENT,
+  `rb_bt_id` int NULL DEFAULT NULL,
+  `rb_rl_id` int NULL DEFAULT NULL,
+  `rb_il_id` int NULL DEFAULT NULL,
+  `rb_measure` int NULL DEFAULT NULL,
+  `rb_summary` int NULL DEFAULT NULL,
   `rb_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
-  `last_user` int(11) NULL DEFAULT NULL,
+  `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`rb_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of rab_building
@@ -1233,16 +1252,16 @@ INSERT INTO `rab_building` VALUES (11, 16, 7, 10, 240, 96, 'Y', 1, '2020-10-30 0
 -- ----------------------------
 DROP TABLE IF EXISTS `rab_list`;
 CREATE TABLE `rab_list`  (
-  `rl_id` int(11) NOT NULL AUTO_INCREMENT,
-  `rl_ir_id` int(11) NULL DEFAULT NULL,
-  `rl_il_id` int(11) NULL DEFAULT NULL,
-  `rl_un_id` int(11) NULL DEFAULT NULL,
+  `rl_id` int NOT NULL AUTO_INCREMENT,
+  `rl_ir_id` int NULL DEFAULT NULL,
+  `rl_il_id` int NULL DEFAULT NULL,
+  `rl_un_id` int NULL DEFAULT NULL,
   `rl_volume` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `rl_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
-  `last_user` int(11) NULL DEFAULT NULL,
+  `last_user` int NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`rl_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of rab_list
@@ -1259,15 +1278,15 @@ INSERT INTO `rab_list` VALUES (7, 13, 10, 15, '0.4', 'Y', 1, '2020-10-30 00:25:3
 -- ----------------------------
 DROP TABLE IF EXISTS `ref_code`;
 CREATE TABLE `ref_code`  (
-  `rfc_id` int(11) NOT NULL AUTO_INCREMENT,
+  `rfc_id` int NOT NULL AUTO_INCREMENT,
   `rfc_group` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
   `rfc_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
   `rfc_value` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
   `rfc_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT 'Y',
-  `last_user` int(10) UNSIGNED NOT NULL,
+  `last_user` int UNSIGNED NOT NULL,
   `last_datetime` datetime(0) NOT NULL,
   PRIMARY KEY (`rfc_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of ref_code
@@ -1282,18 +1301,18 @@ INSERT INTO `ref_code` VALUES (4, 'FINDINGS', 'A', 'All', 'Y', 1, '2020-10-13 09
 -- ----------------------------
 DROP TABLE IF EXISTS `ref_menu`;
 CREATE TABLE `ref_menu`  (
-  `rm_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `rm_parent_id` int(10) UNSIGNED NULL DEFAULT NULL,
+  `rm_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `rm_parent_id` int UNSIGNED NULL DEFAULT NULL,
   `rm_caption` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `rm_description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `rm_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `rm_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `rm_sequence` int(10) UNSIGNED NOT NULL DEFAULT 1,
+  `rm_sequence` int UNSIGNED NOT NULL DEFAULT 1,
   `rm_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Y',
-  `last_user` int(10) UNSIGNED NOT NULL,
+  `last_user` int UNSIGNED NOT NULL,
   `last_datetime` datetime(0) NOT NULL,
   PRIMARY KEY (`rm_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 61 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 61 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of ref_menu
@@ -1336,13 +1355,13 @@ INSERT INTO `ref_menu` VALUES (60, 57, 'Material Consumption', 'Material Consump
 -- ----------------------------
 DROP TABLE IF EXISTS `unit`;
 CREATE TABLE `unit`  (
-  `un_id` int(11) NOT NULL AUTO_INCREMENT,
+  `un_id` int NOT NULL AUTO_INCREMENT,
   `un_name` varchar(255) CHARACTER SET utf16 COLLATE utf16_bin NULL DEFAULT NULL,
   `un_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
   `last_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `last_datetime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`un_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of unit
@@ -1371,7 +1390,7 @@ INSERT INTO `unit` VALUES (18, 'Set', 'Y', '1', '2020-10-26 19:53:57');
 -- ----------------------------
 DROP TABLE IF EXISTS `user_detail`;
 CREATE TABLE `user_detail`  (
-  `ud_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ud_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `ud_username` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `ud_password` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `ud_fullname` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -1381,12 +1400,12 @@ CREATE TABLE `user_detail`  (
   `ud_img_filename` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `ud_img_ori` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `ud_notif_flag` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'Y',
-  `ud_sub_group` int(10) UNSIGNED NOT NULL DEFAULT 3,
+  `ud_sub_group` int UNSIGNED NOT NULL DEFAULT 3,
   `ud_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Y',
-  `last_user` int(10) UNSIGNED NOT NULL,
+  `last_user` int UNSIGNED NOT NULL,
   `last_datetime` datetime(0) NOT NULL,
   PRIMARY KEY (`ud_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of user_detail
@@ -1398,14 +1417,14 @@ INSERT INTO `user_detail` VALUES (1, 'admin', '2b9d2a9db155ff51d4574bc2482b510e0
 -- ----------------------------
 DROP TABLE IF EXISTS `user_group`;
 CREATE TABLE `user_group`  (
-  `ug_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ug_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `ug_caption` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `ug_description` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `ug_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Y',
-  `last_user` int(10) UNSIGNED NOT NULL,
+  `last_user` int UNSIGNED NOT NULL,
   `last_datetime` datetime(0) NOT NULL,
   PRIMARY KEY (`ug_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of user_group
@@ -1417,15 +1436,15 @@ INSERT INTO `user_group` VALUES (1, 'Administrators', 'Administrator', 'Y', 1, '
 -- ----------------------------
 DROP TABLE IF EXISTS `user_sub_group`;
 CREATE TABLE `user_sub_group`  (
-  `usg_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `usg_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `usg_caption` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `usg_description` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `usg_is_active` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Y',
-  `usg_group` int(10) UNSIGNED NOT NULL,
-  `last_user` int(10) UNSIGNED NOT NULL,
+  `usg_group` int UNSIGNED NOT NULL,
+  `last_user` int UNSIGNED NOT NULL,
   `last_datetime` datetime(0) NOT NULL,
   PRIMARY KEY (`usg_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of user_sub_group

@@ -18,7 +18,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="form-group row">
-				<label for="userBirthday" class="col-sm-4 col-form-label">Date Order</label>
+				<!-- <label for="userBirthday" class="col-sm-4 col-form-label">Date Order</label>
 				<div class="col-sm-8">
 					<div class="input-group">
 						<div class="input-group-prepend">
@@ -26,9 +26,18 @@
 								<i class="far fa-calendar-alt"></i>
 							</span>
 						</div>
-						<input type="text" name="mc_date_order" class="form-control" id="dateOrder" required="required" data-inputmask-alias="datetime" data-inputmask-inputformat="dd-mm-yyyy" data-mask value="<?php echo $mode == 'edit' && $data !== FALSE ? $data->mc_date_order : '' ?>">
+						<input type="text" name="mc_date_order" class="form-control" id="dateOrder" required="required" data-inputmask-alias="datetime" data-inputmask-inputformat="dd-mm-yyyy" data-mask value="<?php //echo $mode == 'edit' && $data !== FALSE ? $data->mc_date_order : '' ?>">
 					</div>
-				</div>
+				</div> -->
+
+				<label for="dtp_input1" class="col-sm-4 col-form-label">DateTime Picking</label>
+                <div class="input-group date form_datetime col-md-8" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input1" value="" /><br/>
+
 			</div>	
 			<div class="form-group row">
 				<label for="url" class="col-sm-4 col-form-label">Projects</label>
