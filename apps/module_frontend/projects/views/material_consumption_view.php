@@ -17,7 +17,7 @@
 			</div>
 			<div class="card-body">
 				<div class="row">
-					<div class="col-2">
+					<div class="col-3">
 						<form role="form" id="showMaterial" autocomplete="off">
 							<h4>Filter Projects</h4>
 							<div class="form-group row">
@@ -79,7 +79,7 @@
 							</div>
 						</form>
 					</div>
-					<div class="col-10">
+					<div class="col-9">
 						<h4>Item List Projects</h4>
 						<div class="excel-data-table-container">
 							<table class="material-consumption table table-striped" id="example1">

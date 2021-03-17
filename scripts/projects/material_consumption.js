@@ -137,7 +137,8 @@ function popup_material_consumption(mode = 'add', title = 'Add', data = false)
 					todayHighlight: 1,
 					startView: 2,
 					forceParse: 0,
-			        showMeridian: 1
+			        showMeridian: 1,
+			        pickerPosition: "bottom-left"
 			    });
 
 				$('input.number').keyup(function(event) {

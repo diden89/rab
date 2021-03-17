@@ -148,7 +148,7 @@ class Material_consumption extends NOOBS_Controller
 	public function store_data_material()
 	{
 		$post = $this->input->post(NULL, TRUE);
-	
+		
 		if (isset($post['action']) && ! empty($post['action']) && $post['action'] == 'store_data_material')
 		{
 			unset($post['action']);
